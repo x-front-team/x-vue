@@ -1,0 +1,10 @@
+.DS_Store
+node_modules
+npm-debug.log
+dist
+.idea
+coverage
+bower_components
+*.swp
+*.swo
+ngrok.config.json

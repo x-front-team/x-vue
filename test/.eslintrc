@@ -1,0 +1,16 @@
+{
+  "globals": {
+    "$": true,
+    "jQuery": true,
+    "before": true,
+    "after": true,
+    "beforeEach": true,
+    "afterEach": true,
+    "it": true,
+    "app": true,
+    "Vue": true
+  },
+  "rules": {
+
+  }
+}
