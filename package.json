@@ -4,8 +4,9 @@
   "description": "the dropdown vue component",
   "main": "index.js",
   "scripts": {
+    "dev": "./build/dev.sh",
     "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp test"
   },
   "keywords": [
     "vue",

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>x-vue doc</title>
+</head>
+<body>
+
+  <div id="root">
+    <menu :menus="components" :onChange="setMenu"></menu>
+    <div id="container">
+      <div :is="currentComponent"></div>
+    </div>
+  </div>
+
+</body>
+</html>

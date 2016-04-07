@@ -1,0 +1,50 @@
+body{
+  font-size: 14px;
+}
+#x-vue-menu{
+  position : fixed;
+  width : 300px;
+  top : 0;
+  bottom : 0;
+  //border-right: 1px solid #ddd;
+  background-color: #efefef;
+  box-shadow: 2px 0 3px #dadada;
+
+  ul{
+    list-style: none;
+    padding : 0;
+  }
+
+  .menu-item{
+    height : 40px;
+    line-height: 40px;
+    padding : 0 20px;
+    text-decoration: none;
+    color: #333;
+    text-align: right;
+    display: block;
+    transition: all .5s;
+
+    &:hover{
+      background-color: #0b97c4;
+      color: #ffffff;
+    }
+
+  }
+
+}
+#x-vue-title{
+  height : 50px;
+  background-color: #0b97c4;
+  color: #ffffff;
+  padding-right : 20px;
+  text-align: right;
+  font-size: 28px;
+  line-height: 50px;
+  font-weight: 900;
+}
+#container{
+  margin-left: 300px;
+  padding : 20px;
+}
+

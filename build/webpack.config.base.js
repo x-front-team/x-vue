@@ -1,7 +1,7 @@
-var path = require('path')
-var webpack = require('webpack')
-var HtmlWebpackPlugin = require('html-webpack-plugin')
-var autoprefixer = require("autoprefixer")
+const path = require('path')
+const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const autoprefixer = require('autoprefixer')
 
 function postcss() {
   return [
@@ -13,16 +13,16 @@ function postcss() {
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
-  entry: ['./example/index.js', 'webpack-hot-middleware/client'],
+  entry: [path.join(__dirname, '../doc/doc.js'), 'webpack-hot-middleware/client'],
   debug: true,
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, '../dist'),
     filename: 'index.js',
     publicPath: '/'
   },
   resolve: {
     alias: {
-      src: path.resolve(__dirname, 'src')
+      component: path.resolve(__dirname, '../component')
     }
   },
   module: {
@@ -47,7 +47,7 @@ module.exports = {
     }),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'example/index.tmpl.html'),
+      template: path.join(__dirname, '../doc/index.html'),
       filename: 'index.html'
     })
   ]

@@ -23,7 +23,7 @@ module.exports = function(config) {
       ]
     },
 
-    reporters: ['progress', 'coverage'],
+    reporters: ['spec', 'coverage'],
 
     coverageReporter: {
       reporters: [

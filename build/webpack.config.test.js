@@ -1,18 +1,15 @@
-// import path from 'path'
-// import webpack from 'webpack'
-
 const path = require('path')
 const webpack = require('webpack')
 
 module.exports = {
-  entry: './test/test.js',
+  entry: '../test/test.js',
   output: {
-    path: path.resolve(__dirname, 'test'),
+    path: path.resolve(__dirname, '../test'),
     filename: 'test.js'
   },
   resolve: {
     alias: {
-      src: path.resolve(__dirname, 'src')
+      component: path.resolve(__dirname, '../component')
     }
   },
   module: {
