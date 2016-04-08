@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 
 module.exports = {
-  entry: '../test/test.js',
+  entry: path.join(__dirname, '../test/test.js'),
   output: {
     path: path.resolve(__dirname, '../test'),
     filename: 'test.js'

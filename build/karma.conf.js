@@ -7,7 +7,7 @@ module.exports = function(config) {
     files: [
       // all files ending in "test"
       { pattern: 'component/**/*.js', included: false, served: true },
-      'test/test.js'
+      '../test/test.js'
       // each file acts as entry point for the webpack configuration
     ],
 
@@ -17,7 +17,7 @@ module.exports = function(config) {
     preprocessors: {
       // only specify one entry point
       // and require all tests in there
-      'test/test.js': ['webpack'],
+      '../test/test.js': ['webpack'],
       'component/**/*.js': [
         'coverage'
       ]
@@ -27,7 +27,7 @@ module.exports = function(config) {
 
     coverageReporter: {
       reporters: [
-        { type: 'lcov', dir: 'coverage/', subdir: '.' }
+        { type: 'lcov', dir: '../coverage/', subdir: '.' }
         // { type: 'text-summary', dir: 'coverage/', subdir: '.' },
         // { type: 'html', dir: 'coverage/' }
       ]

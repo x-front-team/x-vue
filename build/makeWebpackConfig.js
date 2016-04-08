@@ -1,5 +1,6 @@
 
-function Config() {
+function Config(base) {
+  this.base = base
   this.entry = []
 }
 

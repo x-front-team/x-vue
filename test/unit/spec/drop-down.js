@@ -1,6 +1,4 @@
 
-import add from '../../../component/test'
-
 describe('drop-down', function () {
 
   let down = null
@@ -15,10 +13,6 @@ describe('drop-down', function () {
 
   it('exists', function () {
     down.should.exit
-  })
-
-  it('has coverage', function () {
-    add('aaa').should.equal('aaa111')
   })
 
 })
