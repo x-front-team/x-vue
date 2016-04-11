@@ -63,7 +63,7 @@
     ready() {
       if (this.closeOnLoseFocus) {
         this._closeListener = EventListener.listen(window, 'click', (e) => {
-          if (!this.$el.contains(e.target)) this.show = false
+          if (this.$el && !this.$el.contains(e.target)) this.show = false
         })
       }
     },
