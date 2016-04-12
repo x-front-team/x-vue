@@ -1,16 +1,16 @@
 <template>
-  <div>
-    <drop-down :label="'label'" id="x-vue-demo-drop-down">
-      <p>This is content</p>
-      <p>This is content</p>
-      <p>This is content</p>
-      <p>This is content</p>
-      <p>This is content</p>
-      <p>This is content</p>
-      <p>This is content</p>
-      <p>This is content</p>
-    </drop-down>
-  </div>
+  <card header="drop down example">
+    <div>
+      <drop-down btn-type="link" :label="'label'" id="x-vue-demo-drop-down">
+        <card type="success">
+          <card-block>
+            <card-title>This is card title</card-title>
+            <card-text>hehehehehehehehe what the fuck!!!</card-text>
+          </card-block>
+        </card>
+      </drop-down>
+    </div>
+  </card>
 </template>
 <style lang="sass" scoped rel="stylesheet/scss">
 
