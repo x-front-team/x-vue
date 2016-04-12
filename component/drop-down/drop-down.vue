@@ -1,9 +1,9 @@
 <template>
 
-  <div class="drop-down">
-    <a href="#" class="drop-down-btn" @click="toggle">
-      <button class="button" v-if="label" disabled={{disable}}>{{label}}</button>
-      <slot v-if="!label" name="btn"></slot>
+  <div class="dropdown open">
+    <x-button :type="btnType" v-if="label" :disabled="disabled" @click="toggle">{{label}}</x-button>
+    <a href="#" class="drop-down-btn" @click="toggle" v-if="!label">
+      <slot name="btn"></slot>
     </a>
     <div class="drop-down-content" v-show="show" transition="drop">
       <slot></slot>
@@ -12,15 +12,27 @@
 
 </template>
 
+<style lang="sass" rel="stylesheet/scss">
+  .drop-down-content{
+    position : absolute;
+    left: 0;
+    margin-top: 5px;
+  }
+</style>
+
 <script type="text/babel">
+  import xButton from '../button/button.vue'
   import EventListener from '../../util/EventListener'
   export default {
+    components: {
+      xButton
+    },
     props: {
       label: {
         type: String,
         default: ''
       },
-      disable: {
+      disabled: {
         type: Boolean,
         default: false
       },
@@ -34,7 +46,7 @@
       // NO
       btnType: {
         type: String,
-        default: 'default'
+        default: ''
       },
       // drop down显示的位置
       // NO

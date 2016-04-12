@@ -6,7 +6,7 @@
     </div>
     <ul>
       <li v-for="m in menus">
-        <a href="#" @click="handleClick(m, $event)" class="menu-item">{{m.label}}</a>
+        <a v-link="$key" class="menu-item">{{m.title}}</a>
       </li>
     </ul>
   </nav>
