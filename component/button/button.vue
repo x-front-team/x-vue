@@ -30,13 +30,18 @@
       onClick: {
         type: Function,
         default: function () {}
+      },
+      dropDown: {
+        type: Boolean,
+        default: false
       }
     },
     computed: {
       classes() {
         let classes = {
           'btn': true,
-          'btn-block': this.block
+          'btn-block': this.block,
+          'dropdown-toggle': this.dropDown
         }
         let type = 'btn-'
         if (this.type) {
