@@ -33,7 +33,12 @@ module.exports = {
     loaders: [
       { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
       { test: /\.vue/, loader: 'vue' },
-      { test: /\.scss/, loader: 'style-loader!css-loader!postcss-loader!sass-loader' }
+      { test: /\.scss/, loader: 'style-loader!css-loader!postcss-loader!sass-loader' },
+      { test: /\.css/, loader: 'style-loader!css-loader' },
+      { test: /\.doc/, loader: '../demo-loader/loader' }
+    ],
+    postLoaders: [
+      { test: /\.doc/, loader: '../demo-loader/loader?post' }
     ]
   },
   vue: {

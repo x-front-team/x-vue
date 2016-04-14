@@ -7,6 +7,7 @@ import Index from './index.vue'
 import dropDown from '../example/drop-down.vue'
 import pagination from '../example/pagination.vue'
 import upload from '../example/upload.vue'
+import Button from '../example/button.doc'
 
 const router = new VueRouter()
 
@@ -28,6 +29,11 @@ export const routes = {
   'upload': {
     component: upload,
     title: '上传'
+  },
+
+  'button': {
+    component: Button,
+    title: '按钮'
   }
 }
 

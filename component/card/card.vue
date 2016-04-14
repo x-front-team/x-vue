@@ -2,14 +2,12 @@
 
   <div :class="classes">
     <img :class="card-img-top" data-src="..." alt="Card image cap" v-if="image">
-    <div class="card-header" v-if="header">
+    <div class="card-header" v-if="(header && header !== true) || header === true">
       {{header === true ? null : header}}
       <slot name="header"></slot>
     </div>
-    <div class="card-block">
-      <slot></slot>
-    </div>
-    <div class="card-footer" v-if="footer">
+    <slot></slot>
+    <div class="card-footer" v-if="(footer && footer !== true) || footer === true">
       {{footer === true ? null : footer}}
       <slot name="footer"></slot>
     </div>
@@ -24,14 +22,8 @@
         type: String,
         default: ''
       },
-      header: {
-        type: String,
-        default: ''
-      },
-      footer: {
-        type: String,
-        default: ''
-      },
+      header: [String, Boolean],
+      footer: [String, Boolean],
       image: {
         type: String,
         default: ''
