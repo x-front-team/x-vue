@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import pagination from '../component/pagination'
+import pagination from 'component/pagination'
 
 export default {
   data() {

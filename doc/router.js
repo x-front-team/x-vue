@@ -5,8 +5,8 @@ Vue.use(VueRouter)
 
 import Index from './index.vue'
 import dropDown from '../example/drop-down.doc'
-import pagination from '../example/pagination.vue'
-import upload from '../example/upload.vue'
+import pagination from '../example/pagination.doc'
+import upload from '../example/upload.doc'
 import Button from '../example/button.doc'
 
 const router = new VueRouter()
