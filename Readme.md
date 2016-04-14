@@ -39,6 +39,14 @@ npm install
 npm run dev
 ```
 
+# 文档生成
+在example根目录下加入某个组件为名字的`.doc`文件,如`button.doc`,然后创建一个button文件夹,
+在该文件夹中随意创建多个demo,以`.vue`为后缀,然后在`router.js`红应用这个`.doc`文件
+
+### 已知issue
+1. 启动webpack-dev-server时会build两次
+2. 在example/button(demo文件夹名字)中创建和删除文件需要重启webpack-dev-server才能载入
+
 **注意,开发请注意代码规范,规范如下:**
 
 1. 文件名使用'-'作为分隔,不允许驼峰或者下划线
