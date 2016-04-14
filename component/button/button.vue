@@ -1,5 +1,5 @@
 <template>
-  <button v-bind:class="classes" :disabled="disabled" @click="handleClick">
+  <button v-bind:class="classes" :disabled="disabled">
     <slot></slot>
   </button>
 </template>

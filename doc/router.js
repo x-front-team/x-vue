@@ -4,7 +4,7 @@ import Vue from 'vue'
 Vue.use(VueRouter)
 
 import Index from './index.vue'
-import dropDown from '../example/drop-down.vue'
+import dropDown from '../example/drop-down.doc'
 import Button from '../example/button.doc'
 
 const router = new VueRouter()

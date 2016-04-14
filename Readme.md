@@ -16,6 +16,22 @@
 
 以及一个基础样式库,样式库具有可扩展性,可以在不修改组件的基础上进行样式定制
 
+# 开发进度
+
+进度 | 组件名 | 领取人
+--- | --- | ---
+[x] | button | 楼哲明
+[ ] | card(panel) | 楼哲明
+[ ] | dropdown | 楼哲明
+[ ] | pagination | 飞哥
+[ ] | list | 
+[ ] | tabs |
+[ ] | upload |
+[ ] | toolbar |
+[ ] | date-picker |
+[ ] | time-picker |
+[ ] | date-time-picker |
+
 
 # Development
 ```

@@ -1,24 +1,16 @@
 <template>
 
   <div class="dropdown open">
-    <x-button :type="btnType" v-if="label" :disabled="disabled" @click="toggle" :drop-down="true">{{label}}</x-button>
+    <x-button :type="btnType" v-if="label" :disabled="disabled" @click="toggleShow" :drop-down="true">{{label}}</x-button>
     <a href="#" class="drop-down-btn" @click="toggle" v-if="!label">
       <slot name="btn"></slot>
     </a>
-    <div class="drop-down-content" v-show="show" transition="drop">
+    <div class="drop-down-content" v-show="isShow" transition="drop">
       <slot></slot>
     </div>
   </div>
 
 </template>
-
-<style lang="sass" rel="stylesheet/scss">
-  .drop-down-content{
-    position : absolute;
-    left: 0;
-    margin-top: 5px;
-  }
-</style>
 
 <script type="text/babel">
   import xButton from '../button/button.vue'
@@ -43,7 +35,7 @@
         default: true
       },
       // 显示按钮的形态
-      // NO
+      // OK
       btnType: {
         type: String,
         default: ''
@@ -55,14 +47,14 @@
         default: 'right'
       },
       // 点击按钮是否切换drop down状态
-      // NO
+      // OK
       toggle: {
         type: Boolean,
         default: true
       },
       // 监听show的变化,如果有变化表示外部强制drop down是否显示
-      // NO
-      show: {
+      // OK
+      showDropDown: {
         type: Boolean,
         default: false
       }
@@ -79,10 +71,24 @@
         })
       }
     },
+    computed: {
+      isShow() {
+        if (this.toggle) {
+          return this.show
+        } else {
+          return this.showDropDown
+        }
+      }
+    },
     methods: {
-      toggle(e) {
+      toggleShow(e) {
         e.preventDefault()
-        this.show = !this.show
+        if (!this.toggle) {
+          this.show = true
+        } else {
+          this.show = !this.show
+        }
+        this.showDropDown = true
       }
     },
     beforeDestory() {

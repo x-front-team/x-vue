@@ -70,20 +70,14 @@ module.exports = function (source) {
       html + '\n' +
       "</template>"
 
-  var finalPath = path.join(filePath, '..', name + '.doc.cache')
+  var finalPath = path.join(filePath, '..', '.' + name + '.doc.cache')
 
   fs.writeFileSync(finalPath, templates + '\n\n' + scripts, 'utf8')
-
-  // console.log(filePath, fileName, name, docPath, docFiles)
-
-  // return source
 
   function getRequest() {
     return loaderUtils.stringifyRequest(loaderContext,
       '!!vue!' + finalPath)
   }
-
-  // console.log(getRequest())
 
   return 'module.exports = require(' + getRequest() + ')'
 
