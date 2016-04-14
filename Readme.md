@@ -20,17 +20,17 @@
 
 进度 | 组件名 | 领取人
 --- | --- | ---
-[x] | button | 楼哲明
-[ ] | card(panel) | 楼哲明
-[ ] | dropdown | 楼哲明
-[ ] | pagination | 飞哥
-[ ] | list | 
-[ ] | tabs |
-[ ] | upload |
-[ ] | toolbar |
-[ ] | date-picker |
-[ ] | time-picker |
-[ ] | date-time-picker |
+- [x] | button | 楼哲明
+- [ ] | card(panel) | 楼哲明
+- [ ] | dropdown | 楼哲明
+- [ ] | pagination | 飞哥
+- [ ] | list | 
+- [ ] | tabs |
+- [ ] | upload |
+- [ ] | toolbar |
+- [ ] | date-picker |
+- [ ] | time-picker |
+- [ ] | date-time-picker |
 
 
 # Development
