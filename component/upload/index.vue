@@ -1,10 +1,21 @@
 <template>
   <div class="upload">
     <span role="button">
-      <input type="file" style="display: none">
-      <button type="button" class="btn btn-ghost"></button>
-      <i class="icon icon-upload"></i>
-      <span>点击上传</span>
+      <input v-el:file="file" type="file" style="display: none">
+      <button type="button" class="btn btn-ghost" @click="handleClick">
+        <i class="icon icon-upload"></i>
+        <span>点击上传</span>
+      </button>
     </span>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    handleClick() {
+      this.$els.file.click()
+    }
+  }
+}
+</script>
