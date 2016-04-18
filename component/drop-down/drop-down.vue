@@ -1,7 +1,7 @@
 <template>
 
   <div class="dropdown open">
-    <x-button :type="btnType" v-if="label" :disabled="disabled" @click="toggleShow" :drop-down="true">{{label}}</x-button>
+    <x-button :type="btnType" v-if="label" :disabled="disabled" @click="toggleShow" drop-down>{{label}}</x-button>
     <a href="#" class="drop-down-btn" @click="toggle" v-if="!label">
       <slot name="btn"></slot>
     </a>

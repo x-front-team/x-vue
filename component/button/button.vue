@@ -5,35 +5,33 @@
 </template>
 
 <script type="text/babel">
+  import propFill from '../mixin/prop-fill'
   export default {
+    mixins: [propFill],
     props: {
       type: { // primary success info secondary danger warning link
         type: String,
         default: 'secondary'
       },
       outline: {
-        type: Boolean,
-        default: false
+        fill: true
       },
       size: {
         type: String,
         default: ''
       },
       block: {
-        type: Boolean,
-        default: false
+        fill: true
       },
       disabled: {
-        type: Boolean,
-        default: false
+        fill: true
       },
       onClick: {
         type: Function,
         default: function () {}
       },
       dropDown: {
-        type: Boolean,
-        default: false
+        fill: true
       }
     },
     computed: {

@@ -41,11 +41,16 @@ module.exports = function (source) {
     throw new Error(docPath + ' does not exist')
   }
 
-  var html = '', components = '', code
+  var html = '', components = '', code, demoFilePath
+
+  var self = this
+  // this.addContextDependency(docPath)
 
   docFiles.forEach(function (f, index) {
     if (path.extname(f) === '.vue') {
-      code = fs.readFileSync(path.join(docPath, f), 'utf8')
+      demoFilePath = path.join(docPath, f)
+      code = fs.readFileSync(demoFilePath, 'utf8')
+      self.addDependency(demoFilePath)
       html += (
         '<code-panel filename="' + f + '">\n' +
           '<div slot="demo">\n' +
