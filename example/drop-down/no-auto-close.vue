@@ -7,13 +7,13 @@
             :close-on-lose-focus="false"
             :show-drop-down.sync="showDropDown"
             :toggle="false">
-      <card>
-        <card-block>
-          <card-title>No auto close</card-title>
-          <card-text>you can not close me only if you click the close btn</card-text>
+      <x-card>
+        <x-card-block>
+          <x-card-title>No auto close</x-card-title>
+          <x-card-text>you can not close me only if you click the close btn</x-card-text>
           <x-button type="warning" @click="handleClose">关闭</x-button>
-        </card-block>
-      </card>
+        </x-card-block>
+      </x-card>
     </drop-down>
   </div>
 </template>

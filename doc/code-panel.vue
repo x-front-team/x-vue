@@ -1,16 +1,16 @@
 <template>
-  <card :header="true">
+  <x-card :header="true">
     <div slot="header">
       <span>{{filename}}</span>
       <a href="#" class="float-right" @click="toggleCode">&lt;&gt;</a>
     </div>
-    <card-block>
+    <x-card-block>
       <slot name="demo"></slot>
-    </card-block>
+    </x-card-block>
     <div class="code-container" v-show="showCode" transition="drop">
       <slot name="code"></slot>
     </div>
-  </card>
+  </x-card>
 
 </template>
 
