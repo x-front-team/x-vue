@@ -32,7 +32,6 @@
 [ ] | time-picker |
 [ ] | date-time-picker |
 
-
 # Development
 ```
 npm install
