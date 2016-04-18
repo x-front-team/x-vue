@@ -76,8 +76,8 @@ function PaginationPagesGenerate(current, visibleCount, total) {
       everyCount = visibleCount,
       everyMiddle = parseInt(Math.floor(everyCount / 2), 10)
 
-    from = current - everyMiddle,
-    to = current + everyMiddle
+    from = current - everyMiddle
+    to = from + everyCount -  visibleCount % 2
 
     // 当前页处于中间页前半部分
     if (current > 0 && current <= everyMiddle) {
@@ -86,16 +86,9 @@ function PaginationPagesGenerate(current, visibleCount, total) {
     }
 
     // 当前页加上中间页大于总页数
-    if (current + everyMiddle >= total) {
-      from = current - everyMiddle - 1
+    if (current + everyMiddle > total) {
+      from = total - everyCount + (visibleCount % 2)
       to = total
-
-      if (current >= (total - everyMiddle)) {
-        from = current - everyMiddle - 1
-      }
-      if (current === total) {
-        from = total - everyCount
-      }
     }
 
     return getVisiblePages(from, to, current, total)

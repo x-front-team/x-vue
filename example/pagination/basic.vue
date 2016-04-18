@@ -1,5 +1,5 @@
 <template>
-  <pagination :total="24" :current.sync="current"> </pagination>
+  <pagination :total="24" :current.sync="current"></pagination>
 </template>
 
 <script>
