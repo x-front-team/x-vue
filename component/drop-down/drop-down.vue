@@ -1,11 +1,11 @@
 <template>
 
-  <div class="dropdown open">
+  <div class="dropdown">
     <x-button :type="btnType" v-if="label" :disabled="disabled" @click="toggleShow" drop-down>{{label}}</x-button>
     <a href="#" class="drop-down-btn" @click="toggle" v-if="!label">
       <slot name="btn"></slot>
     </a>
-    <div class="drop-down-content" v-show="isShow" transition="drop">
+    <div class="drop-down-content open" v-show="isShow" transition="drop">
       <slot></slot>
     </div>
   </div>
@@ -66,6 +66,7 @@
     },
     ready() {
       if (this.closeOnLoseFocus) {
+//        const self = this
         this._closeListener = EventListener.listen(window, 'click', (e) => {
           if (this.$el && !this.$el.contains(e.target)) this.show = false
         })
@@ -91,7 +92,7 @@
         this.showDropDown = true
       }
     },
-    beforeDestory() {
+    beforeDestroy() {
       if (this._closeListener) this._closeListener.remove()
     }
   }

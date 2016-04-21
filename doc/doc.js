@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import XVue from '../component'
 
+Vue.config.debug = true
+
 require('../style/index.scss')
 require('./doc.scss')
 require('bootstrap/scss/bootstrap.scss')

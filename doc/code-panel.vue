@@ -5,13 +5,14 @@
       <a href="#" class="float-right" @click="toggleCode">&lt;&gt;</a>
     </div>
     <x-card-block>
-      <slot name="demo"></slot>
+      <div class="x-vue-example-panel">
+        <slot name="demo"></slot>
+      </div>
     </x-card-block>
     <div class="code-container" v-show="showCode" transition="drop">
       <slot name="code"></slot>
     </div>
   </x-card>
-
 </template>
 
 <style>

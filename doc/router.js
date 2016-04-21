@@ -8,6 +8,7 @@ import dropDown from '../example/drop-down.doc'
 import pagination from '../example/pagination.doc'
 import upload from '../example/upload.doc'
 import Button from '../example/button.doc'
+import Card from '../example/card.doc'
 
 const router = new VueRouter()
 
@@ -34,6 +35,11 @@ export const routes = {
   'button': {
     component: Button,
     title: '按钮'
+  },
+
+  'card': {
+    component: Card,
+    title: '卡片'
   }
 }
 

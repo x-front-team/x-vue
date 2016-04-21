@@ -1,7 +1,6 @@
 <template>
 
   <div :class="classes">
-    <img :class="card-img-top" data-src="..." alt="Card image cap" v-if="image">
     <div class="card-header" v-if="(header && header !== true) || header === true">
       {{header === true ? null : header}}
       <slot name="header"></slot>
@@ -16,7 +15,9 @@
 </template>
 
 <script type="text/babel">
+  import fillMixin from '../mixin/prop-fill'
   export default {
+    mixins: [fillMixin],
     props: {
       type: { // primary success info warning danger
         type: String,
@@ -29,8 +30,7 @@
         default: ''
       },
       block: {
-        type: Boolean,
-        default: false
+        fill: true
       },
       align: {
         type: String,

@@ -1,6 +1,6 @@
 <template>
 
-  <x-card>
+  <x-card header="This is header" footer="This is footer">
     <x-card-block>
       <x-card-title>This is card title</x-card-title>
       <x-card-title sub>This is card subtitle</x-card-title>

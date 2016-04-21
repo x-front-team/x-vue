@@ -1,6 +1,6 @@
 <template>
   <div id="x-vue-demo-drop-down-auto-close" class="clearfix">
-    <drop-down
+    <x-drop-down
             btn-type="primary"
             id="x-vue-demo-drop-down-base1"
             :label="'no auto close'"
@@ -14,7 +14,7 @@
           <x-button type="warning" @click="handleClose">关闭</x-button>
         </x-card-block>
       </x-card>
-    </drop-down>
+    </x-drop-down>
   </div>
 </template>
 <style lang="sass" rel="stylesheet/scss">
@@ -27,17 +27,11 @@
   }
 </style>
 <script type="text/babel">
-  import dropDown from '../../component/drop-down/drop-down.vue'
-  import xButton from '../../component/button/button.vue'
   export default {
     data() {
       return {
         showDropDown: false
       }
-    },
-    components: {
-      dropDown,
-      xButton
     },
     methods: {
       handleClose(e) {
