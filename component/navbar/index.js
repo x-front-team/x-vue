@@ -1,9 +1,11 @@
-import navbar from './index.vue'
+import Navbar from './index.vue'
 
-export navbarBrand from './navbar-brand.vue'
+export NavbarBrand from './navbar-brand.vue'
 
-export navItem from './nav-item.vue'
+export NavItem from './nav-item.vue'
 
-export navbarNav from './navbar-nav.vue'
+export NavbarNav from './navbar-nav.vue'
 
-export default navbar
+export NavGroup from './nav-group.vue'
+
+export default Navbar
