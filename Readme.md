@@ -25,7 +25,7 @@
 [x] | dropdown | 楼哲明
 [ ] | pagination | 飞哥
 [ ] | list | 
-[ ] | tabs |
+[x] | tabs | 楼哲明
 [ ] | upload |
 [ ] | toolbar |
 [ ] | date-picker |

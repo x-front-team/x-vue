@@ -11,7 +11,8 @@
   export default {
     data() {
       return {
-        routes
+        routes,
+        msg: 'asdasdasda'
       }
     },
     components: {

@@ -15,6 +15,9 @@ import XDropDownMenu from './drop-down/drop-down-menu.vue'
 import XDropDownMenuDivider from './drop-down/drop-down-menu-divider.vue'
 import XDropDownItem from './drop-down/drop-down-menu-item.vue'
 
+// tabs
+import XTabs from './tabs/tabs.vue'
+import XTab from './tabs/tab.vue'
 
 export const components = {
   XButton,
@@ -29,7 +32,10 @@ export const components = {
   XDropDown,
   XDropDownMenu,
   XDropDownMenuDivider,
-  XDropDownItem
+  XDropDownItem,
+
+  XTabs,
+  XTab
 }
 
 export default {

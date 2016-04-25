@@ -10,6 +10,7 @@ import upload from '../example/upload.doc'
 import Button from '../example/button.doc'
 import Card from '../example/card.doc'
 import Navbar from '../example/navbar.doc'
+import Tabs from '../example/tabs.doc'
 
 const router = new VueRouter()
 
@@ -46,6 +47,11 @@ export const routes = {
   'navbar': {
     component: Navbar,
     title: 'Navbar'
+  },
+
+  'tabs': {
+    component: Tabs,
+    title: 'Tab'
   }
 }
 
