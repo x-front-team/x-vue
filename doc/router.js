@@ -9,6 +9,7 @@ import pagination from '../example/pagination.doc'
 import upload from '../example/upload.doc'
 import Button from '../example/button.doc'
 import Card from '../example/card.doc'
+import Navbar from '../example/navbar.doc'
 
 const router = new VueRouter()
 
@@ -40,6 +41,11 @@ export const routes = {
   'card': {
     component: Card,
     title: '卡片'
+  },
+
+  'navbar': {
+    component: Navbar,
+    title: 'Navbar'
   }
 }
 
