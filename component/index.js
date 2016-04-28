@@ -19,6 +19,12 @@ import XDropDownItem from './drop-down/drop-down-menu-item.vue'
 import XTabs from './tabs/tabs.vue'
 import XTab from './tabs/tab.vue'
 
+// date picker
+import XDatePicker from './date-picker/date-picker.vue'
+
+// directives
+import XDateTimePicker from './date-picker/date-time-picker'
+
 export const components = {
   XButton,
 
@@ -35,7 +41,13 @@ export const components = {
   XDropDownItem,
 
   XTabs,
-  XTab
+  XTab,
+
+  XDatePicker
+}
+
+export const directives = {
+  XDateTimePicker
 }
 
 export default {
@@ -43,6 +55,9 @@ export default {
   install(Vue) {
     Object.keys(components).forEach((name) => {
       Vue.component(name, components[name])
+    })
+    Object.keys(directives).forEach((name) => {
+      Vue.directive(name, directives[name])
     })
   }
 

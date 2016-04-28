@@ -12,17 +12,18 @@ function postcss() {
 }
 
 module.exports = {
-  devtool: 'cheap-module-eval-source-map',
-  entry: [path.join(__dirname, '../doc/doc.js'), 'webpack-hot-middleware/client'],
+  devtool: 'cheap-source-map',
+  entry: [path.join(__dirname, '../doc/doc.js')],
   debug: true,
   output: {
-    path: path.join(__dirname, '../dist'),
-    filename: 'index.js',
+    path: path.join(__dirname, '..'),
+    filename: 'index.[hash].js',
     publicPath: '/'
   },
   resolve: {
     alias: {
-      component: path.resolve(__dirname, '../component')
+      component: path.resolve(__dirname, '../component'),
+      util: path.resolve(__dirname, '../util')
     }
   },
   module: {
@@ -32,7 +33,9 @@ module.exports = {
     loaders: [
       { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
       { test: /\.vue/, loader: 'vue' },
-      { test: /\.scss/, loader: 'style-loader!css-loader!postcss-loader!sass-loader' }
+      { test: /\.scss/, loader: 'style-loader!css-loader!postcss-loader!sass-loader' },
+      { test: /\.css/, loader: 'style-loader!css-loader' },
+      { test: /\.doc/, loader: '../demo-loader/loader' }
     ]
   },
   vue: {

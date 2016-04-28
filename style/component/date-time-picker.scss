@@ -1,0 +1,45 @@
+.x-date-picker-table{
+  width : 100%;
+  td, th{
+    text-align: center;
+  }
+}
+.date-picker-cell{
+  display: inline-block;
+  width : 30px;
+  line-height: 30px;
+  text-decoration: none;
+  border-radius: 15px;
+  transition: all .3s;
+
+  &:hover{
+    background-color: #eee;
+    text-decoration: none;
+  }
+
+  &:active, &:visited, &:focus{
+    text-decoration: none;
+  }
+
+  &.not-this-month{
+    color: #aaa;
+    &:hover{
+      background-color: transparent;
+      cursor: default;
+    }
+  }
+
+  &.today{
+    color: #000
+  }
+
+  &.selected{
+    background-color: #00b0e8;
+    color: #ffffff;
+
+    &:hover{
+      background-color: #00b0e8;
+      color: #ffffff;
+    }
+  }
+}

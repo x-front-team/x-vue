@@ -9,7 +9,10 @@ import pagination from '../example/pagination.doc'
 import upload from '../example/upload.doc'
 import Button from '../example/button.doc'
 import Card from '../example/card.doc'
+import Navbar from '../example/navbar.doc'
 import Tabs from '../example/tabs.doc'
+
+import DateTimePicker from '../example/date-time-picker.doc'
 
 const router = new VueRouter()
 
@@ -43,9 +46,19 @@ export const routes = {
     title: '卡片'
   },
 
+  'navbar': {
+    component: Navbar,
+    title: 'Navbar'
+  },
+
   'tabs': {
     component: Tabs,
     title: 'Tab'
+  },
+
+  'date-time-picker': {
+    component: DateTimePicker,
+    title: '日期时间'
   }
 }
 
