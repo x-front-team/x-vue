@@ -1,6 +1,5 @@
 const path = require('path')
 const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const autoprefixer = require('autoprefixer')
 
 function postcss() {
@@ -16,8 +15,9 @@ module.exports = {
   entry: [path.join(__dirname, '../doc/doc.js')],
   debug: true,
   output: {
-    path: path.join(__dirname, '..'),
-    filename: 'index.[hash].js'
+    path: path.join(__dirname, '../doc-built'),
+    filename: 'index.js',
+    publicPath: 'doc-built/'
   },
   resolve: {
     alias: {
@@ -46,11 +46,6 @@ module.exports = {
       'process.env': {
         NODE_ENV: '"production"'
       }
-    }),
-    new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, '../doc/index.html'),
-      filename: 'index.html'
     })
   ]
 }

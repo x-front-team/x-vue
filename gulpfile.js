@@ -49,6 +49,7 @@ gulp.task('package-min', function () {
     .pipe(gulp.dest('dist'))
 })
 
+// package the css
 gulp.task('package-css', function () {
   return gulp.src('style/index.scss')
     .pipe(sass().on('error', sass.logError))
@@ -72,11 +73,17 @@ gulp.task('bump', function () {
     .pipe(gulp.dest('./'))
 })
 
-// gulp.task('publish', ['clear-dist', 'package', 'package-min', 'package-css', 'bump', 'npm-publish', 'clear-dist'])
-
 
 gulp.task('publish', function (done) {
   runSequence('clear-dist', 'package', 'package-min', 'package-css', 'bump', 'npm-publish', 'clear-dist', function () {
     done()
   })
+})
+
+
+// make doc
+gulp.task('build-doc', function () {
+  return gulp.src('doc/doc.js')
+    .pipe(webpack(require('./build/webpack.build.doc')))
+    .pipe(gulp.dest('doc-built'))
 })
