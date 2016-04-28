@@ -17,8 +17,7 @@ module.exports = {
   debug: true,
   output: {
     path: path.join(__dirname, '..'),
-    filename: 'index.[hash].js',
-    publicPath: '/'
+    filename: 'index.[hash].js'
   },
   resolve: {
     alias: {
@@ -45,7 +44,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: '"development"'
+        NODE_ENV: '"production"'
       }
     }),
     new webpack.HotModuleReplacementPlugin(),
