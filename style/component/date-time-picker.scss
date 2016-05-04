@@ -43,3 +43,25 @@
     }
   }
 }
+.x-date-picker-tool{
+  line-height: 40px;
+  position : relative;
+
+  .last-month, .next-month{
+    position : absolute;
+    top : 0;
+  }
+
+  .last-month{
+    left : 20px;
+  }
+  .next-month{
+    right : 20px;
+  }
+
+  .year-month{
+    text-align: center;
+    display: block;
+  }
+
+}

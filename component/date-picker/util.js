@@ -106,3 +106,13 @@ export function formatDate(date, fmt) {
   return fmt
 
 }
+
+export const weekArray = {
+  0: '天',
+  1: '一',
+  2: '二',
+  3: '三',
+  4: '四',
+  5: '五',
+  6: '六'
+}

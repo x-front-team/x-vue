@@ -32,7 +32,8 @@ import Vue from 'vue'
 import dateTimePicker from './date-time-picker.vue'
 import { formatDate } from './util'
 
-const FragmentFactory = Vue.FragmentFactory
+import EventListener from '../../util/EventListener'
+
 const parseDirective = Vue.parsers.directive.parseDirective
 const { createAnchor, after, on, off } = Vue.util
 
@@ -42,10 +43,17 @@ const template = '<date-time-picker ' +
   'transition="drop" ' +
   ':on-change="onChange" ' +
   ':highlight-today="highlightToday" ' +
-  'value="value"></date-time-picker>'
+  ':value="value"></date-time-picker>'
 
 const body = document.querySelector('body')
 const REGEX_FILTER = /[^|]\|[^|]/
+
+const Component = Vue.extend({
+  template,
+  components: {
+    dateTimePicker
+  }
+})
 
 // real directive
 export default {
@@ -68,21 +76,23 @@ export default {
 
     // create date picker Vue instance
     this.__vm = this.createVm()
+    this.setVmValue()
 
     // create start and end anchor to help insert picker into body end
-    this.startAnchor = createAnchor('date time picker start')
-    this.endAnchor = createAnchor('date time picker end')
+    let startAnchor = createAnchor('date time picker start')
+    let endAnchor = createAnchor('date time picker end')
 
-    // create date time picker fragment
-    const factory = new FragmentFactory(this.__vm, template)
-    this.dtpFrag = factory.create(this._host, this._scope, this._frag)
+    // // insert to body end
+    after(startAnchor, body.lastChild)
+    after(endAnchor, startAnchor)
 
-    // insert to body end
-    after(this.startAnchor, body.lastChild)
-    after(this.endAnchor, this.startAnchor)
-    this.dtpFrag.before(this.endAnchor)
+    this.__vm.$mount()
+    this.__vm.$before(endAnchor)
 
+    // 根据目标节点绑定事件控制控件显示
     this.bindEvent()
+    // watch model, model变化重新设置组件的value
+    this.watchModel()
 
   },
 
@@ -93,6 +103,26 @@ export default {
 
     // destroy the fragment object
     this.dtpFrag = null
+  },
+
+  /*
+   * watch this.vm[model], 如果变化则改变this.__vm.value
+   */
+  watchModel() {
+    if (!this.model) return
+    this.vm.$watch(this.model, () => {
+      this.setVmValue()
+    })
+  },
+
+  /*
+   * 根据父vm的model的值设置value
+   */
+  setVmValue() {
+    let seconds = Date.parse(this.vm[this.model])
+    if (!isNaN(seconds)) {
+      this.__vm.value = seconds
+    }
   },
 
   // bind events to toggle date time picker
@@ -111,17 +141,22 @@ export default {
       this.__vm.show = true
     }
 
-    // const blurCb = () => {
-    //   this.__vm.show = false
-    // }
+    let self = this
+
+    // important: 使用vm.$mount生成的节点,给vm设置的$el是一个注释节点<!-- v start -->
+    // 只有使用nextElementSibling来获取模板生成的节点
+    const _closeListener = EventListener.listen(window, 'click', function (e) {
+      if (self.el &&
+        !self.el.contains(e.target) &&
+        self.__vm.$el.nextElementSibling &&
+        !self.__vm.$el.nextElementSibling.contains(e.target)) self.__vm.show = false
+    })
 
     on(this.el, 'focus', focusCb)
 
-    // on(this.el, 'blur', blurCb)
-
     this._removeEventBind = function () {
       off(this.el, 'focus', focusCb)
-      // off(this.el, 'blur', blurCb)
+      _closeListener.remove()
     }
 
   },
@@ -130,13 +165,11 @@ export default {
   createVm() {
 
     const _this = this
-    return new Vue({
-      components: {
-        dateTimePicker
-      },
+    let vm = new Component({
       data: {
         show: false,
         rect: {},
+        value: 0,
         highlightToday: _this.params.highlightToday
       },
       methods: {
@@ -156,6 +189,8 @@ export default {
         }
       }
     })
+
+    return vm
 
   },
 

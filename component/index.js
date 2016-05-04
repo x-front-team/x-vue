@@ -21,9 +21,10 @@ import XTab from './tabs/tab.vue'
 
 // date picker
 import XDatePicker from './date-picker/date-picker.vue'
+import XDateTimePicker from './date-picker/date-time-picker.vue'
 
 // directives
-import XDateTimePicker from './date-picker/date-time-picker'
+import DateTimePicker from './date-picker/date-time-picker'
 
 export const components = {
   XButton,
@@ -43,11 +44,12 @@ export const components = {
   XTabs,
   XTab,
 
-  XDatePicker
+  XDatePicker,
+  XDateTimePicker
 }
 
 export const directives = {
-  XDateTimePicker
+  DateTimePicker
 }
 
 export default {

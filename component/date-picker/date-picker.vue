@@ -2,16 +2,6 @@
 
   <div class="x-date-picker">
 
-    <div class="x-date-picker-tool">
-      <a href="#" class="last-month" @click.prevent="lastMonth">
-        <chevron-left></chevron-left>
-      </a>
-      <a href="#">{{control.year + '年' + (control.month + 1) + '月'}}</a>
-      <a href="#" class="next0month" @click.prevent="nextMonth">
-        <chevron-right></chevron-right>
-      </a>
-    </div>
-
     <table class="x-date-picker-table">
       <thead>
       <tr>
@@ -40,12 +30,9 @@
 
 <script type="text/babel">
 
-  import chevronLeft from '../svg-icon/chevron-left.vue'
-  import chevronRight from '../svg-icon/chevron-right.vue'
-
   import XButton from '../button/button.vue'
 
-  import { getNormalDateArray, getFirstDateArrayLength, fillDateArray } from './util'
+  import { getNormalDateArray, getFirstDateArrayLength, fillDateArray, weekArray } from './util'
 
   // use this today for default value or today value
   const today = new Date()
@@ -65,12 +52,12 @@
           return today
         }
       },
-      // use .sync bind to make value two-way
       value: {
-        type: Date,
+        type: Number,
         default: function () {
           return today
-        }
+        },
+        twoWay: false
       },
       onChange: {
         type: Function,
@@ -79,119 +66,33 @@
       highlightToday: {
         type: Boolean,
         default: true
+      },
+      selectMonth: {
+        type: Function,
+        default: function () {}
+      },
+      control: {
+        type: Object
       }
     },
 
     components: {
-      XButton,
-      chevronLeft,
-      chevronRight
+      XButton
     },
 
     data() {
       return {
-        dateArray: [],
-        control: {
-          year: 0,
-          month: 0,
-          date: 0
-        },
         today: today,
-        weeks: {
-          0: '天',
-          1: '一',
-          2: '二',
-          3: '三',
-          4: '四',
-          5: '五',
-          6: '六'
-        }
+        weeks: weekArray
       }
     },
 
-    ready() {
-      let date = this.value || this.defaultDate || this.today
-      this.control.year = date.getFullYear()
-      this.control.month = date.getMonth()
-      this.control.date = date.getDate()
-
-      this.dateArray = this.makeDateArray()
-
-      // 监听value的值得变化,如果改变判断年月是否相同,不同则改变control的值
-      this._unWatchValue = this.$watch('value', (newVal) => {
-        if (newVal.getFullYear() !== this.control.year || newVal.getMonth() !== this.control.month) {
-          this.control.year = newVal.getFullYear()
-          this.control.month = newVal.getMonth()
-          this.control.date = newVal.getDate()
-        }
-      })
-
-      // control作为组件内部的控制器,大部分时候跟value相同,只有在翻页的时候回不一样
-      this._unWatchControl = this.$watch('control', () => {
-        this.dateArray = this.makeDateArray()
-      }, { deep: true })
-
-      // 这里应该添加对defaultDate等的值变化的watcher,有变化就重新生成dateArray
-    },
-
     beforeDestroy() {
-      this._unWatchControl()
       this._unWatchValue()
     },
 
-    methods: {
-      /**
-       * 选择一个日期
-       * 赋值给value
-       * @param e
-       * @param item
-       */
-      choose(e, item) {
-        e.preventDefault()
-
-        let date = new Date()
-        date.setFullYear(item.year)
-        date.setMonth(item.month)
-        date.setDate(item.day)
-        this.value = date
-
-        this.dateArray.forEach((arr) => {
-          arr.forEach((d) => {
-            d.selected = false
-          })
-        })
-        item.selected = true
-
-        this.onChange(date)
-      },
-
-      /**
-       * 在选择器上选择上个月
-       */
-      lastMonth() {
-        let month = this.control.month
-        if (month === 0) {
-          this.control.year = this.control.year - 1
-          this.control.month = 11
-        } else {
-          this.control.month = month - 1
-        }
-      },
-
-      /**
-       * 在选择器上选择下个月
-       */
-      nextMonth() {
-        let month = this.control.month
-        if (month === 11) {
-          this.control.year = this.control.year + 1
-          this.control.month = 0
-        } else {
-          this.control.month = month + 1
-        }
-      },
-
-      makeDateArray() {
+    computed: {
+      dateArray() {
         const dateArr = []
 
         // 先看value,如果没有就使用默认日期,最后才使用今天
@@ -221,6 +122,37 @@
         fillDateArray(year, month, dateArr)
 
         return dateArr
+      }
+    },
+
+    methods: {
+      /**
+       * 选择一个日期
+       * 赋值给value
+       * @param e
+       * @param item
+       */
+      choose(e, item) {
+        e.preventDefault()
+
+        let date = new Date()
+        date.setFullYear(item.year)
+        date.setMonth(item.month)
+        date.setDate(item.day)
+        this.value = date
+
+        this.dateArray.forEach((arr) => {
+          arr.forEach((d) => {
+            d.selected = false
+          })
+        })
+        item.selected = true
+
+        this.onChange(date)
+      },
+
+      handleMonthClick() {
+        this.selectMonth()
       }
     }
 

@@ -12,7 +12,7 @@ function postcss() {
 }
 
 module.exports = {
-  devtool: 'cheap-source-map',
+  devtool: '#cheap-eval-source-map',
   entry: [path.join(__dirname, '../doc/doc.js'), 'webpack-hot-middleware/client'],
   debug: true,
   output: {

@@ -1,7 +1,6 @@
 <template>
 
-  <x-date-picker></x-date-picker>
-  <input type="text" v-x-date-time-picker :highlight-today="highlight" @click="toggle">
+  <input type="text" v-date-time-picker :highlight-today="highlight" @click="toggle">
 
 </template>
 <style lang="sass" scoped rel="stylesheet/scss">
