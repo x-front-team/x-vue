@@ -8,15 +8,13 @@
 </template>
 
 <script type="text/babel">
+  import propsMixin from './props-mixin'
   export default {
+    mixins: [propsMixin],
     props: {
       path: {
         type: String,
         default: ''
-      },
-      size: {
-        type: Number,
-        default: 24
       }
     },
     computed: {

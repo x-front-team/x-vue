@@ -85,5 +85,7 @@
     "webpack-dev-server": "^1.14.1",
     "webpack-hot-middleware": "^2.6.4"
   },
-  "dependencies": {}
+  "dependencies": {
+    "classnames": "^2.2.5"
+  }
 }

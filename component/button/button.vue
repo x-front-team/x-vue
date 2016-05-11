@@ -1,11 +1,12 @@
 <template>
-  <button v-bind:class="classes" :disabled="disabled">
+  <button :class="classNames" :disabled="disabled">
     <slot></slot>
   </button>
 </template>
 
 <script type="text/babel">
   import propFill from '../mixin/prop-fill'
+  import cx from 'classnames'
   export default {
     mixins: [propFill],
     props: {
@@ -32,10 +33,11 @@
       },
       dropDown: {
         fill: true
-      }
+      },
+      classes: [String, Array, Object]
     },
     computed: {
-      classes() {
+      classNames() {
         let classes = {
           'btn': true,
           'btn-block': this.block,
@@ -52,7 +54,7 @@
         if (this.size) {
           classes['btn-' + this.size] = true
         }
-        return classes
+        return cx(classes, this.classes)
       }
     },
     methods: {

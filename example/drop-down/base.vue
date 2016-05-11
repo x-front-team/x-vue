@@ -3,7 +3,7 @@
     <x-drop-down btn-type="link" :label="'link'" id="x-vue-demo-drop-down-base-link">
       <example type="link"></example>
     </x-drop-down>
-    <x-drop-down btn-type="primary" :label="'primary'" id="x-vue-demo-drop-down-base-primary">
+    <x-drop-down position="left" btn-type="primary" :label="'primary'" id="x-vue-demo-drop-down-base-primary">
       <example type="primary"></example>
     </x-drop-down>
     <x-drop-down btn-type="success" :label="'success'" id="x-vue-demo-drop-down-base-success">

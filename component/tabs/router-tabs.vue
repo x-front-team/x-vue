@@ -1,8 +1,8 @@
 <template>
   <ul :class="classes">
-    <li class="nav-item" v-for="item in items" track-by="id">
+    <li class="nav-item" v-for="item in routes" track-by="$index">
       <a href="#"
-         @click.prevent="handleChange(item)"
+         v-link="item.path"
          :class="{'nav-link': true, active: item.active, disabled: item.disabled}">
         {{item.title}}
       </a>
@@ -16,7 +16,7 @@
    */
   export default {
     props: {
-      routers: {
+      routes: {
         type: Array,
         default: []
       }

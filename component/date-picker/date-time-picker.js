@@ -86,6 +86,8 @@ export default {
     after(startAnchor, body.lastChild)
     after(endAnchor, startAnchor)
 
+
+    debugger
     this.__vm.$mount()
     this.__vm.$before(endAnchor)
 
@@ -148,8 +150,8 @@ export default {
     const _closeListener = EventListener.listen(window, 'click', function (e) {
       if (self.el &&
         !self.el.contains(e.target) &&
-        self.__vm.$el.nextElementSibling &&
-        !self.__vm.$el.nextElementSibling.contains(e.target)) self.__vm.show = false
+        self.__vm.$el &&
+        !self.__vm.$el.contains(e.target)) self.__vm.show = false
     })
 
     on(this.el, 'focus', focusCb)
@@ -166,6 +168,7 @@ export default {
 
     const _this = this
     let vm = new Component({
+      replace: false,
       data: {
         show: false,
         rect: {},

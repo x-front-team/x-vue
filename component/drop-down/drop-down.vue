@@ -5,12 +5,19 @@
     <a href="#" class="drop-down-btn" @click="toggle" v-if="!label">
       <slot name="btn"></slot>
     </a>
-    <div class="drop-down-content open" v-show="isShow" transition="drop">
+    <div :class="{'drop-down-content': true, 'open': true, 'left': position === 'left'}" v-show="isShow" transition="drop">
       <slot></slot>
     </div>
   </div>
 
 </template>
+
+<style scoped lang="sass" rel="stylesheet/scss">
+  .left{
+    left: auto !important;
+    right: 0;
+  }
+</style>
 
 <script type="text/babel">
   import xButton from '../button/button.vue'
@@ -41,7 +48,7 @@
         default: ''
       },
       // drop down显示的位置
-      // NO
+      // left or right
       position: {
         type: String,
         default: 'right'

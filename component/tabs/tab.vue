@@ -1,5 +1,5 @@
 <template>
-  <div :class="{'tab-pane': true, active: show}"
+  <div :class="{'tab-pane': true, active: active}"
        v-show="show"
        transition-mode="out-in"
        :transition="transition">
@@ -32,16 +32,36 @@
     },
     data() {
       return {
-        show: false
+        show: false,
+        index: 0
       }
     },
     created() {
-      this.unWatchActive = this.$watch('active', (newVal) => {
-        if (newVal) {
-          this.$parent.setSelectedItem(this)
-        }
+
+      this.index = this.$parent.addItem(this.item)
+
+      this.unWatchActive = this.$watch('active', () => {
+        this.$parent.updateItem(this.index, this.item)
       })
-      this.show = this.active
+//      this.show = this.active
+    },
+    computed: {
+      show() {
+        return this.active
+      },
+      item() {
+        return {
+          title: this.title,
+          disabled: this.disabled,
+          active: this.active,
+          select: () => {
+            this.active = true
+          },
+          disSelect: () => {
+            this.active = false
+          }
+        }
+      }
     },
     beforeDestroy() {
       this.unWatchActive()
