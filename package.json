@@ -1,6 +1,6 @@
 {
   "name": "x-vue",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "vue components based on bootstrap",
   "main": "dist/x-vue.min.js",
   "scripts": {
@@ -19,7 +19,8 @@
     "dist/x-vue.css",
     "dist/x-vue.min.css",
     "component",
-    "style"
+    "style",
+    "CHANGELOG.md"
   ],
   "author": "Jokcy <jokcylou@hotmail.com>",
   "license": "ISC",

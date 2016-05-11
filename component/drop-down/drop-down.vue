@@ -2,9 +2,9 @@
 
   <div class="dropdown">
     <x-button :type="btnType" v-if="label" :disabled="disabled" @click="toggleShow" drop-down>{{label}}</x-button>
-    <a href="#" class="drop-down-btn" @click="toggle" v-if="!label">
+    <span class="drop-down-btn" @click="toggleShow" v-if="!label">
       <slot name="btn"></slot>
-    </a>
+    </span>
     <div :class="{'drop-down-content': true, 'open': true, 'left': position === 'left'}" v-show="isShow" transition="drop">
       <slot></slot>
     </div>
@@ -16,6 +16,9 @@
   .left{
     left: auto !important;
     right: 0;
+  }
+  .drop-down-btn{
+    cursor: pointer;
   }
 </style>
 
@@ -71,14 +74,6 @@
         show: false
       }
     },
-    ready() {
-      if (this.closeOnLoseFocus) {
-//        const self = this
-        this._closeListener = EventListener.listen(window, 'click', (e) => {
-          if (this.$el && !this.$el.contains(e.target)) this.show = false
-        })
-      }
-    },
     computed: {
       isShow() {
         if (this.toggle) {
@@ -97,6 +92,13 @@
           this.show = !this.show
         }
         this.showDropDown = true
+      }
+    },
+    ready() {
+      if (this.closeOnLoseFocus) {
+        this._closeListener = EventListener.listen(window, 'click', (e) => {
+          if (this.$el && !this.$el.contains(e.target)) this.show = false
+        })
       }
     },
     beforeDestroy() {
