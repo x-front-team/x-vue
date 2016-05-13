@@ -18,6 +18,7 @@ import XDropDownItem from './drop-down/drop-down-menu-item.vue'
 // tabs
 import XTabs from './tabs/tabs.vue'
 import XTab from './tabs/tab.vue'
+import XRouterTabs from './tabs/router-tabs.vue'
 
 // date picker
 import XDatePicker from './date-picker/date-picker.vue'
@@ -43,6 +44,7 @@ export const components = {
 
   XTabs,
   XTab,
+  XRouterTabs,
 
   XDatePicker,
   XDateTimePicker

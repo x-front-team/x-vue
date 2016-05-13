@@ -14,13 +14,9 @@
 </template>
 
 <script type="text/babel">
+  import tabsMixin from './tabs-mixin'
   export default {
-    props: {
-      type: {
-        type: String,
-        default: 'tabs'
-      }
-    },
+    mixins: [tabsMixin],
     data() {
       return {
         items: [],
@@ -35,28 +31,6 @@
         this.items[0].vue.active = true
       }
     },
-    computed: {
-      classes() {
-        let classes = {
-          'nav': true,
-          'nav-tabs': this.type === 'tabs',
-          'nav-pills': this.type === 'pills'
-        }
-        return classes
-      },
-//      items() {
-//        return this.$children.map((child, index) => {
-//          return {
-//            id: child._uid,
-//            index,
-//            title: child.title,
-//            active: child.active,
-//            disabled: child.disabled,
-//            vue: child
-//          }
-//        })
-//      }
-    },
     methods: {
       addItem(item) {
         this.items.push(item)
@@ -69,21 +43,10 @@
         if (item.disabled || item.active) return
 
         this.items.forEach((child) => {
-//          child.active = false
           child.disSelect()
         })
 
-//        item.active = true
-
         item.select()
-//        this.active = index
-
-//        if (!item.active) {
-//          this.items.forEach((child) => {
-//            child.vue.active = false
-//          })
-//          item.vue.active = true
-//        }
       },
       setSelectedItem(son) {
         this.items.forEach((child) => {
