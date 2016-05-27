@@ -9,11 +9,15 @@ export default {
   props: {
     className: {
       type: Array,
-      default: []
+      default: function () {
+        return []
+      }
     },
     styles: {
       type: Object,
-      default: {}
+      default: function () {
+        return {}
+      }
     }
   }
 }

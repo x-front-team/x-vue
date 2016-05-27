@@ -1,67 +1,228 @@
+// date time picker
+.x-date-time-picker-container{
+  position: absolute;
+  box-sizing: border-box;
+  width : 214px;
+  /*height : 236px;*/
+  /*padding : 10px;*/
+  border: 1px solid #999999;
+  background-color: #ffffff;
+}
+.x-date-picker-tool{
+  line-height: 28px;
+  height : 28px;
+  position : relative;
+  border-bottom: 1px solid #aaaaaa;
+
+  .last-month, .next-month, .last-year, .next-year{
+    position : absolute;
+    top : 0;
+    line-height: 25px;
+  }
+
+  .last-month{
+    left : 30px;
+  }
+  .next-month{
+    right : 30px;
+  }
+  .last-year{
+    left : 10px;
+  }
+  .next-year{
+    right : 10px;
+  }
+
+  .control-panel{
+    display: block;
+    text-align: center;
+    font-size: 12px;
+    color: #666666;
+    font-weight :900;
+  }
+
+}
+
+// date picker
 .x-date-picker-table{
+  margin : 10px 0;
   width : 100%;
+  th{
+    color: #333333;
+    font-size: 12px;
+  }
   td, th{
     text-align: center;
   }
 }
 .date-picker-cell{
   display: inline-block;
-  width : 30px;
-  line-height: 30px;
+  width : 18px;
+  box-sizing: border-box;
+  line-height: 17px;
+  height : 17px;
   text-decoration: none;
-  border-radius: 15px;
+  border-radius: 2px;
   transition: all .3s;
-
-  &:hover{
-    background-color: #eee;
-    text-decoration: none;
-  }
+  color: #000000;
+  font-size: 12px;
 
   &:active, &:visited, &:focus{
     text-decoration: none;
   }
 
   &.not-this-month{
-    color: #aaa;
-    &:hover{
-      background-color: transparent;
-      cursor: default;
-    }
+    color: #666666;
   }
 
   &.today{
-    color: #000
+    color: #009ce5;
+    border: 1px solid #009ce5;
+  }
+
+  &.disabled{
+    color: #aeaeae;
+    &:hover{
+      background-color: transparent;
+      cursor : not-allowed;
+    }
   }
 
   &.selected{
-    background-color: #00b0e8;
+    background-color: #009ce5;
     color: #ffffff;
 
     &:hover{
-      background-color: #00b0e8;
+      background-color: #009ce5;
       color: #ffffff;
     }
   }
+
+  &:hover{
+    background-color: #eee;
+    text-decoration: none;
+  }
 }
-.x-date-picker-tool{
-  line-height: 40px;
-  position : relative;
+.chose-today{
+  text-align: center;
+  line-height: 28px;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: '宋体';
+  color: #009ce5;
+  border-top: 1px solid #aaaaaa;
+}
 
-  .last-month, .next-month{
-    position : absolute;
-    top : 0;
-  }
-
-  .last-month{
-    left : 20px;
-  }
-  .next-month{
-    right : 20px;
-  }
-
-  .year-month{
+// month picker
+.x-month-picker{
+  &>table{
+    width : 100%;
     text-align: center;
-    display: block;
-  }
 
+    td{
+      height: 52px;
+    }
+
+    .month-item{
+      display: inline-block;
+      border-radius: 2px;
+      padding : 1px 8px;
+      cursor: pointer;
+      transition: all .3s;
+      color: #000000;
+      font-size: 12px;
+      &:hover{
+        background-color: #eee;
+        text-decoration: none;
+      }
+
+      &.selected{
+        background-color: #009ce5;
+        color: #ffffff;
+        &.this-month{
+          color: #ffffff;
+          border: 1px solid #009ce5;
+        }
+      }
+
+      &.disabled{
+        color: #aeaeae;
+        &:hover{
+          cursor: not-allowed;
+          background-color: transparent;
+        }
+      }
+
+      &.this-month{
+        color: #009ce5;
+        border: 1px solid #009ce5;
+      }
+
+    }
+  }
+}
+
+
+// year picker
+.x-year-picker{
+  ul {
+    margin : 0;
+    padding : 0;
+  }
+  table{
+    width : 100%;
+    text-align: center;
+  }
+}
+.year-item{
+  display: inline-block;
+  float : left;
+  width : 68px;
+  height : 52px;
+  text-align: center;
+}
+.control-item{
+  display: block;
+  float : left;
+  width : 68px;
+  height: 52px;
+  text-align: center;
+
+  .year-picker-item{
+    color : #999999;
+    margin-top : 12px;
+    &:hover{
+      color : #009ce5;
+      background-color: transparent;
+    }
+  }
+}
+.year-picker-item{
+  display: inline-block;
+  padding : 2px 8px;
+  margin-top : 15px;
+  font-size: 12px;
+  color : #000000;
+  border-radius: 2px;
+  &.this-year{
+    color: #009ce5;
+    border: 1px solid #009ce5;
+  }
+  &.selected{
+    text-decoration: none;
+    color : #ffffff;
+    background-color: #009ce5;
+  }
+  &:hover{
+    text-decoration: none;
+    color : #ffffff;
+    background-color: #009ce5;
+  }
+  &.disabled{
+    color: #aeaeae;
+    &:hover{
+      cursor: not-allowed;
+      background-color: transparent;
+    }
+  }
 }

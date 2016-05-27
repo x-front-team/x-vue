@@ -39,6 +39,10 @@ const { createAnchor, after, on, off } = Vue.util
 
 const template = '<date-time-picker ' +
   ':rect="rect" ' +
+  ':min-date="minDate" ' +
+  ':start-date="startDate" ' +
+  ':end-date="endDate" ' +
+  ':max-date="maxDate" ' +
   'v-show="show" ' +
   'transition="drop" ' +
   ':on-change="onChange" ' +
@@ -55,6 +59,8 @@ const Component = Vue.extend({
   }
 })
 
+const RANGE_CONTROL = new Vue()
+
 // real directive
 export default {
 
@@ -62,12 +68,20 @@ export default {
 
   paramWatchers: {
     highlightToday: function (val) {
-      this.__vm.highlightToday = val
+      this.__vm.highlightToday = !!val
+    },
+    minDate: function (val) {
+      this.__vm.minDate = val
+    },
+    maxDate: function (val) {
+      this.__vm.maxDate = val
     }
   },
 
   bind: function () {
     const el = this.el
+    let _range = this.modifiers
+    let _rangeName = this.expression
 
     // get v-model attr
     let raw = el.getAttribute('v-model')
@@ -86,15 +100,32 @@ export default {
     after(startAnchor, body.lastChild)
     after(endAnchor, startAnchor)
 
+    // 设置range属性
+    if (_range.start) {
+      this.isStart = true
+    } else if (_range.end) {
+      this.isEnd = true
+    }
 
-    debugger
+    if ((this.isStart || this.isEnd) && !_rangeName) {
+      console.warn('range need range name')
+      return
+    }
+
+    if (this.isStart || this.isEnd) {
+      this.doWithRange()
+    }
+
+    // watch model, model变化重新设置组件的value
+    this.watchModel()
+
+    // do mount
     this.__vm.$mount()
     this.__vm.$before(endAnchor)
+    this.__vm.$el = this.__vm.$el.childNodes[0]
 
     // 根据目标节点绑定事件控制控件显示
     this.bindEvent()
-    // watch model, model变化重新设置组件的value
-    this.watchModel()
 
   },
 
@@ -103,8 +134,8 @@ export default {
       this._removeEventBind()
     }
 
-    // destroy the fragment object
-    this.dtpFrag = null
+    if (this._removeRangeControl) this._removeRangeControl()
+
   },
 
   /*
@@ -147,11 +178,20 @@ export default {
 
     // important: 使用vm.$mount生成的节点,给vm设置的$el是一个注释节点<!-- v start -->
     // 只有使用nextElementSibling来获取模板生成的节点
-    const _closeListener = EventListener.listen(window, 'click', function (e) {
-      if (self.el &&
-        !self.el.contains(e.target) &&
-        self.__vm.$el &&
-        !self.__vm.$el.contains(e.target)) self.__vm.show = false
+    const _closeListener = EventListener.listen(window, 'click', function () {
+      // if (self.el &&
+      //   !self.el.contains(e.target) &&
+      //   self.__vm.$el &&
+      //   !self.__vm.$el.contains(e.target)) self.__vm.show = false
+      self.__vm.show = false
+    })
+
+    const _closeEleListener = EventListener.listen(this.__vm.$el, 'click', (e) => {
+      e.stopPropagation()
+    })
+
+    const _closeTargetListener = EventListener.listen(this.el, 'click', (e) => {
+      e.stopPropagation()
     })
 
     on(this.el, 'focus', focusCb)
@@ -159,6 +199,8 @@ export default {
     this._removeEventBind = function () {
       off(this.el, 'focus', focusCb)
       _closeListener.remove()
+      _closeEleListener.remove()
+      _closeTargetListener.remove()
     }
 
   },
@@ -173,10 +215,13 @@ export default {
         show: false,
         rect: {},
         value: 0,
-        highlightToday: _this.params.highlightToday
+        highlightToday: _this.params.highlightToday,
+        minDate: -1,
+        maxDate: -1
       },
       methods: {
         onChange: function (value) {
+          this.value = Date.parse(value)
           // 如果设置了在选择时关闭则设置show为false
           if (_this.params.closeOnSelected !== false) {
             this.show = false
@@ -188,6 +233,9 @@ export default {
           } else {
             _this.el.value = formatDate(value, _this.params.format || 'yyyy-MM-dd')
           }
+          // 如果有设置range时间的方法,则执行
+          // 只通过判断是否有该方法判断是否是range
+          if (_this.setRangeTime) _this.setRangeTime(value)
 
         }
       }
@@ -203,6 +251,37 @@ export default {
       return { model: parsed.expression, filters: parsed.filters }
     } else {
       return { model: raw }
+    }
+  },
+
+  /**
+   * put this into range control
+   * listen to range change to control picker to control range
+   */
+  doWithRange() {
+    let rc = RANGE_CONTROL
+    let rangeName = this.expression
+    let rangeType = this.isStart ? 'start' : 'end'
+    let rangeOtherType = this.isStart ? 'end' : 'start'
+    Vue.set(this.__vm, rangeOtherType + 'Date', -1)
+    if (!rc[rangeName]) {
+      Vue.set(rc, rangeName, {})
+    }
+    Vue.set(rc[rangeName], rangeType, -1)
+    let unWatchRange = rc.$watch(rangeName + '.' + rangeOtherType, (newVal) => {
+      // if (newVal[rangeOtherType] !== oldVal[rangeOtherType]) {
+        // 设置 this.__vm相关的数据
+      this.__vm[rangeOtherType + 'Date'] = newVal
+      // }
+    }, { deep: true })
+    this.setRangeTime = function (time) {
+      rc[rangeName][rangeType] = Date.parse(time)
+    }
+    this._removeRangeControl = function () {
+      unWatchRange()
+      if (rc[rangeName]) {
+        Vue.delete(rc, rangeName)
+      }
     }
   }
 

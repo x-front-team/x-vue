@@ -8,46 +8,15 @@
           <a href="#"
              @click.prevent="select(month)"
              :class="{'month-item': true,
-             'this-month': thisYear && month === thisMonth,
-             'selected': thisYear && month === selected}">{{month}}</a>
+             'this-month': thisYear === control.year && month.month === thisMonth - 1,
+             'disabled': month.disabled,
+             'selected': month.selected}">{{month.month + 1}}月</a>
         </td>
       </tr>
       </tbody>
     </table>
   </div>
 </template>
-
-<style lang="sass" rel="stylesheet/scss">
-  .x-month-picker{
-    &>table{
-      width : 100%;
-      text-align: center;
-
-      .month-item{
-        display: inline-block;
-        border-radius: 5px;
-        width : 60px;
-        line-height: 40px;
-        cursor: pointer;
-        transition: all .3s;
-        &:hover{
-          background-color: #eee;
-          text-decoration: none;
-        }
-
-        &.selected{
-          background-color: #00b0e8;
-          color: #ffffff;
-        }
-
-        &.this-month{
-          color: #333333;
-        }
-
-      }
-    }
-  }
-</style>
 
 <script type="text/babel">
 
@@ -65,59 +34,62 @@
       },
       control: {
         type: Object
+      },
+      onChange: {
+        type: Function
       }
     },
 
     data: function () {
       return {
-        months: [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]],
-        control: {
-          year: 0
-        },
+//        months: [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]],
         selectedYear: 0,
-        thisMonth: date.getMonth() + 1
+        thisMonth: date.getMonth() + 1,
+        thisYear: date.getFullYear()
       }
     },
-
-//    ready() {
-//      if (this.value) {
-//        this.control.year = this.selectedYear = new Date(this.value).getFullYear()
-//      } else {
-//        this.control.year = this.selectedYear = new Date().getFullYear()
-//      }
-//
-//      this.$watch('value', (val) => {
-//        let date = new Date(val)
-//        let year = date.getFullYear()
-//        this.selectedYear = year
-//        if (this.control.year !== year) {
-//          this.control.year = year
-//        }
-//      })
-//
-//    },
 
     computed: {
       selected() {
         if (!this.value) return -1
         return new Date(this.value).getMonth() + 1
       },
-      thisYear() {
-        return this.control.year === this.selectedYear
+      months() {
+        let { minDate, maxDate, valueDate } = this.control
+        minDate = minDate === -1 ? null : new Date(minDate)
+        maxDate = maxDate === -1 ? null : new Date(maxDate)
+
+        let year = this.control.year
+        let minYear = minDate && minDate.getFullYear()
+        let minMonth = minDate && minDate.getMonth()
+        let maxYear = maxDate && maxDate.getFullYear()
+        let maxMonth = maxDate && maxDate.getMonth()
+
+        let monthArr = [], arr, i=0, j
+        while (i < 11) {
+          arr = []
+          for (j=0; j<3; j++) {
+            arr.push({
+              month: i,
+              selected: valueDate && year === valueDate.year && i === valueDate.month,
+              disabled: (minYear && year < minYear) ||
+                        (maxYear && year > maxYear) ||
+                        (minYear && minMonth && year === minYear && i < minMonth) ||
+                        (maxYear && maxMonth && year === maxYear && i > maxMonth)
+            })
+            i++
+          }
+          monthArr.push(arr)
+        }
+        return monthArr
+
+
       }
     },
     methods: {
       select(month) {
-        this.value.setMonth(month - 1)
-      },
-      lastYear() {
-        this.control.year--
-      },
-      nextYear() {
-        this.control.year++
-      },
-      handleYearClick() {
-        this.selectedYear()
+        if (month.disabled) return
+        this.onChange(month.month)
       }
     }
   }

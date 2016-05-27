@@ -4,8 +4,38 @@ export function isLeapYear(year) {
   return typeof year === 'number' && (year % 100 === 0 ? year % 400 === 0 : year % 4 === 0)
 }
 
+const testFullDate = new Date()
+let testFullSec = 0
+const isLessThen = function (year, month, date, minDate) {
+  if (minDate === -1) return false
+  testFullDate.setFullYear(year)
+  testFullDate.setMonth(month)
+  testFullDate.setDate(date)
+  testFullDate.setHours(23)
+  testFullDate.setMinutes(59)
+  testFullDate.setSeconds(59)
+
+  testFullSec = testFullDate.getTime()
+
+  return testFullSec <= minDate
+}
+
+const isLargerThen = function (year, month, date, maxDate) {
+  if (maxDate === -1) return false
+  testFullDate.setFullYear(year)
+  testFullDate.setMonth(month)
+  testFullDate.setDate(date)
+  testFullDate.setHours(23)
+  testFullDate.setMinutes(59)
+  testFullDate.setSeconds(59)
+
+  testFullSec = testFullDate.getTime()
+
+  return testFullSec >= maxDate
+}
+
 // 获取正常的每个月的日期的数组
-export function getNormalDateArray(year, month, today) {
+export function getNormalDateArray(year, month, today, { maxDate, minDate, valueDate }) {
 
   let todayYear = today.getFullYear()
   let todayMonth = today.getMonth()
@@ -19,13 +49,16 @@ export function getNormalDateArray(year, month, today) {
   }
 
   let arr = []
-
   for (let i=0; i<length; i++) {
     arr.push({
       year, month,
       isThisMonth: true,
-      selected: false,
+      selected: valueDate &&
+                year === valueDate.year &&
+                month === valueDate.month &&
+                i + 1 === valueDate.date,
       day: i + 1,
+      disabled: isLessThen(year, month, i + 1, minDate) || isLargerThen(year, month, i + 1, maxDate),
       isToday: isThisYearMonth && i + 1 === todayDate
     })
   }
@@ -39,7 +72,7 @@ export function getFirstDateArrayLength(difference) {
 }
 
 // 填入必要的上个月和下个月的日期,让二维数组都变成长度7
-export function fillDateArray(year, month, array) {
+export function fillDateArray(year, month, array, { maxDate, minDate, valueDate }) {
 
   let firstWeek = array[0]
   let lastWeek = array[array.length - 1]
@@ -57,7 +90,12 @@ export function fillDateArray(year, month, array) {
       year: prevYear,
       month: prevMonth,
       isThisMonth: false,
-      selected: false,
+      selected: valueDate &&
+                prevYear === valueDate.year &&
+                prevMonth === valueDate.month &&
+                prevMonthLength === valueDate.date,
+      disabled: isLessThen(prevYear, prevMonth, prevMonthLength, minDate) ||
+                isLargerThen(prevYear, prevMonth, prevMonthLength, maxDate),
       day: prevMonthLength,
       isToday: false
     })
@@ -69,7 +107,12 @@ export function fillDateArray(year, month, array) {
       year: lastYear,
       month: lastMonth,
       isThisMonth: false,
-      selected: false,
+      selected: valueDate &&
+                lastYear === valueDate.year &&
+                lastMonth === valueDate.month &&
+                lastIndex === valueDate.date,
+      disabled: isLessThen(lastYear, lastMonth, lastIndex, minDate) ||
+                isLargerThen(lastYear, lastMonth, lastIndex, maxDate),
       day: lastIndex,
       isToday: false
     })

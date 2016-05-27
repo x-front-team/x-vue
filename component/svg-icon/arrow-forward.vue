@@ -1,5 +1,5 @@
 <template>
-  <svg-icon path="M10 6l-1.41 1.41 4.58 4.59-4.58 4.59 1.41 1.41 6-6z" :size="size"></svg-icon>
+  <svg-icon path="M12 4l-1.41 1.41 5.58 5.59h-12.17v2h12.17l-5.58 5.59 1.41 1.41 8-8z" :size="size"></svg-icon>
 </template>
 
 <script>

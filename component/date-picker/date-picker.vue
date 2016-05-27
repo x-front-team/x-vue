@@ -24,6 +24,10 @@
       </tbody>
     </table>
 
+    <div class="chose-today" @click="selectToday">
+      <span>今天</span>
+    </div>
+
   </div>
 
 </template>
@@ -108,7 +112,7 @@
         let firstDayWeek = date.getDay()
         let difference = firstDayWeek - this.weekArray[0]
 
-        let days = getNormalDateArray(year, month, this.today)
+        let days = getNormalDateArray(year, month, this.today, this.control)
 
         let firstDateArray = days.splice(0, getFirstDateArrayLength(difference))
 
@@ -119,8 +123,7 @@
         }
 
         // 让第一个月和最后一个月数组变成7
-        fillDateArray(year, month, dateArr)
-
+        fillDateArray(year, month, dateArr, this.control)
         return dateArr
       }
     },
@@ -134,6 +137,7 @@
        */
       choose(e, item) {
         e.preventDefault()
+        if (item.disabled) return
 
         let date = new Date()
         date.setFullYear(item.year)
@@ -149,6 +153,10 @@
         item.selected = true
 
         this.onChange(date)
+      },
+
+      selectToday() {
+        this.onChange(new Date())
       },
 
       handleMonthClick() {

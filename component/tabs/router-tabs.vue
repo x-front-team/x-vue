@@ -20,7 +20,9 @@
     props: {
       routes: {
         type: Array,
-        default: []
+        default: function () {
+          return []
+        }
       }
     },
     computed: {

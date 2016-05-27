@@ -1,6 +1,6 @@
 {
   "name": "x-vue",
-  "version": "0.0.10",
+  "version": "0.0.15",
   "description": "vue components based on bootstrap",
   "main": "dist/x-vue.min.js",
   "scripts": {

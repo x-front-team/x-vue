@@ -24,6 +24,16 @@ import XRouterTabs from './tabs/router-tabs.vue'
 import XDatePicker from './date-picker/date-picker.vue'
 import XDateTimePicker from './date-picker/date-time-picker.vue'
 
+// nav
+import XNavBar from './navbar/index.vue'
+import XNavBarBrand from './navbar/navbar-brand.vue'
+import XNavItem from './navbar/nav-item.vue'
+import XNavBarNav from './navbar/navbar-nav.vue'
+import XNavGroup from './navbar/nav-group.vue'
+
+// pagination
+import XPagination from './pagination/index.vue'
+
 // directives
 import DateTimePicker from './date-picker/date-time-picker'
 
@@ -47,7 +57,15 @@ export const components = {
   XRouterTabs,
 
   XDatePicker,
-  XDateTimePicker
+  XDateTimePicker,
+
+  XNavBar,
+  XNavBarBrand,
+  XNavItem,
+  XNavBarNav,
+  XNavGroup,
+
+  XPagination
 }
 
 export const directives = {

@@ -2,23 +2,27 @@
 
   <div class="x-date-time-picker-container" :style="style">
 
-    <div class="x-date-picker-tool" v-show="showing === 'date'">
-      <a href="#" class="last-month" @click.prevent="lastMonth">
-        <chevron-left></chevron-left>
+    <div class="x-date-picker-tool">
+      <a href="#" class="last-year" @click.prevent="lastYear" v-show="showing === 'date' || showing === 'month'">
+        <arrow-back size="14"></arrow-back>
       </a>
-      <a href="#" class="year-month" @click.prevent="selectMonth">{{control.year + '年' + (control.month + 1) + '月'}}</a>
-      <a href="#" class="next-month" @click.prevent="nextMonth">
-        <chevron-right></chevron-right>
+      <a href="#" class="last-month" @click.prevent="lastMonth" v-show="showing === 'date'">
+        <chevron-left size="14"></chevron-left>
       </a>
-    </div>
-
-    <div class="x-date-picker-tool" v-show="showing === 'month'">
-      <a href="#" class="last-month" @click.prevent="lastYear">
-        <chevron-left></chevron-left>
+      <a href="#" class="year-month control-panel" @click.prevent="selectMonth" v-show="showing === 'date'">
+        {{control.year + '年' + (control.month + 1) + '月'}}
       </a>
-      <a href="#" class="year-month" @click.prevent="selectYear">{{control.year + '年'}}</a>
-      <a href="#" class="next-month" @click.prevent="nextYear">
-        <chevron-right></chevron-right>
+      <a href="#" class="year-month control-panel" @click.prevent="selectYear" v-show="showing === 'month'">
+        {{control.year + '年'}}
+      </a>
+      <a class="year-month control-panel" v-show="showing === 'year'">
+        {{control.year + '年'}}
+      </a>
+      <a href="#" class="next-month" @click.prevent="nextMonth" v-show="showing === 'date'">
+        <chevron-right size="14"></chevron-right>
+      </a>
+      <a href="#" class="next-year" @click.prevent="nextYear" v-show="showing === 'date' || showing === 'month'">
+        <arrow-forward size="14"></arrow-forward>
       </a>
     </div>
 
@@ -31,43 +35,31 @@
 
     <month-picker :select-year="selectYear"
                   :value="value"
+                  :on-change="monthChange"
+                  :control="control"
                   v-show="showing === 'month'"></month-picker>
+
+    <year-picker :control="control"
+                 v-show="showing === 'year'"
+                 :on-change="yearChange"></year-picker>
 
   </div>
 
 </template>
-
-<style lang="sass" rel="stylesheet/scss">
-  .x-date-time-picker-container{
-    position: absolute;
-    box-sizing: content-box;
-    width : 207px;
-    padding : 10px;
-    border: 1px solid #dedede;
-    background-color: #ffffff;
-  }
-</style>
 
 <script type="text/babel">
   import datePicker from './date-picker.vue'
 
 //  import timePicker from './time-picker.vue'
   import monthPicker from './month-picker.vue'
-//  import yearPicker from './year-picker.vue'
+  import yearPicker from './year-picker.vue'
 
   import chevronLeft from '../svg-icon/chevron-left.vue'
   import chevronRight from '../svg-icon/chevron-right.vue'
+  import arrowBack from '../svg-icon/arrow-back.vue'
+  import arrowForward from '../svg-icon/arrow-forward.vue'
 
   const today = new Date()
-  function updateControl(control, date) {
-    if (typeof date !== Date) date = new Date
-    control.year = date.getFullYear()
-    control.month = date.getMonth()
-    control.date = date.getDate()
-    control.hour = date.getHours()
-    control.minute = date.getMinutes()
-    control.second = date.getSeconds()
-  }
 
   export default {
     props: {
@@ -82,33 +74,60 @@
       },
       value: {
         type: Number
+      },
+      startDate: {
+        type: Number,
+        default: -1
+      },
+      endDate: {
+        type: Number,
+        default: -1
+      },
+      minDate: {
+        type: Number,
+        default: -1
+      },
+      maxDate: {
+        type: Number,
+        default: -1
       }
     },
     components: {
       chevronLeft,
       chevronRight,
+      arrowBack,
+      arrowForward,
       datePicker,
 
 //      timePicker,
       monthPicker,
-//      yearPicker
+      yearPicker
     },
 
     data() {
       return {
         showing: 'date',
-        control: {
-          year: 0,
-          month: 0,
-          date: 0,
-          hour: 0,
-          minute: 0,
-          second: 0
-        }
+
+        year: 0,
+        month: 0,
+        date: 0,
+        hour: 0,
+        minute: 0,
+        second: 0
       }
     },
 
     ready() {
+
+      const updateControl = (date) => {
+        if (date instanceof Date) date = new Date(date)
+        this.year = date.getFullYear()
+        this.month = date.getMonth()
+        this.date = date.getDate()
+        this.hour = date.getHours()
+        this.minute = date.getMinutes()
+        this.second = date.getSeconds()
+      }
 
       let date = this.value || today
 
@@ -116,14 +135,12 @@
         date = new Date(date)
       }
 
-      updateControl(this.control, date)
-
-//      this.dateArray = this.makeDateArray()
-
+      updateControl(date)
       // 监听value的值得变化,如果改变判断年月是否相同,不同则改变control的值
       this._unWatchValue = this.$watch('value', (newVal) => {
+        console.log('new value:' + newVal, new Date(newVal))
         let date = new Date(newVal)
-        updateControl(this.control, date)
+        updateControl(date)
       })
 
     },
@@ -133,6 +150,38 @@
         return {
           left: this.rect.left + 'px',
           top: this.rect.top + this.rect.height + 'px'
+        }
+      },
+      control() {
+        let { year, month, date, hour, minute, second, minDate, maxDate, startDate, endDate } = this
+
+        if (minDate === -1 && startDate === -1) minDate = -1
+        else if (minDate === -1) minDate = startDate
+        else if (startDate === -1) minDate = minDate
+        else minDate = minDate < startDate ? minDate : startDate
+
+        if (maxDate === -1 && endDate === -1) maxDate = -1
+        else if (maxDate === -1) maxDate = endDate
+        else if (endDate === -1) maxDate = maxDate
+        else maxDate = maxDate > endDate ? maxDate : endDate
+
+        let valueDate
+        if (!this.value) {
+          valueDate = null
+        } else {
+          let d = new Date(this.value)
+          valueDate = {
+            year: d.getFullYear(),
+            month: d.getMonth(),
+            date: d.getDate(),
+            hour: d.getHours(),
+            minute: d.getMinutes(),
+            seconds: d.getSeconds()
+          }
+        }
+
+        return {
+          year, month, date, hour, minute, second, minDate, maxDate, valueDate
         }
       }
     },
@@ -146,12 +195,12 @@
        * 在选择器上选择上个月
        */
       lastMonth() {
-        let month = this.control.month
+        let month = this.month
         if (month === 0) {
-          this.control.year = this.control.year - 1
-          this.control.month = 11
+          this.year = this.year - 1
+          this.month = 11
         } else {
-          this.control.month = month - 1
+          this.month = month - 1
         }
       },
 
@@ -159,20 +208,20 @@
        * 在选择器上选择下个月
        */
       nextMonth() {
-        let month = this.control.month
+        let month = this.month
         if (month === 11) {
-          this.control.year = this.control.year + 1
-          this.control.month = 0
+          this.year = this.year + 1
+          this.month = 0
         } else {
-          this.control.month = month + 1
+          this.month = month + 1
         }
       },
 
       lastYear() {
-        this.control.year--
+        this.year--
       },
       nextYear() {
-        this.control.year++
+        this.year++
       },
 
       selectMonth() {
@@ -182,10 +231,22 @@
 
       selectYear() {
         // 将视图转换为year-picker
+        this.showing = 'year'
       },
 
       dateChange(value) {
         this.onChange(value)
+      },
+
+      monthChange(month) {
+        // 需要判断当前选择器是否到月为止,如果是则触发onChange
+        this.month = month
+        this.showing = 'date'
+      },
+
+      yearChange(year) {
+        this.year = year
+        this.showing = 'month'
       }
     }
 
