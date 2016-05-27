@@ -280,7 +280,8 @@ export default {
     this._removeRangeControl = function () {
       unWatchRange()
       if (rc[rangeName]) {
-        Vue.delete(rc, rangeName)
+        // Vue.delete(rc, rangeName)
+        rc[rangeName] = null
       }
     }
   }
