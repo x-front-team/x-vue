@@ -48,6 +48,7 @@ const template = '<date-time-picker ' +
   ':on-change="onChange" ' +
   ':on-complete="onComplete" ' +
   ':highlight-today="highlightToday" ' +
+  ':is-time-enabled="isTimeEnabled"' +
   ':value="value"></date-time-picker>'
 
 const body = document.querySelector('body')
@@ -218,7 +219,9 @@ export default {
         value: 0,
         highlightToday: _this.params.highlightToday,
         minDate: -1,
-        maxDate: -1
+        maxDate: -1,
+        // 是否开启了时间选择模式, 暂时先这么粗暴的判断一下
+        isTimeEnabled: /hh:mm:ss/.test(_this.params.format)
       },
       methods: {
         onChange: function (value) {
