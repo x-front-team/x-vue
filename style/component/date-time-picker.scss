@@ -4,7 +4,7 @@
   box-sizing: border-box;
   width : 214px;
   /*height : 236px;*/
-  /*padding : 10px;*/
+  padding-bottom: 10px;
   border: 1px solid #999999;
   background-color: #ffffff;
 }
@@ -12,8 +12,14 @@
   margin: 0;
   border-bottom: 1px solid #aaa;
   a {
+    display: block;
+    height: 43px;
+    line-height:43px;
     color: #aaa;
     text-decoration: none;
+  }
+  .picker-tab:nth-child(2) {
+    border-left: 1px solid #aaa;
   }
   a.active {
     color: #009ce5;
@@ -240,4 +246,11 @@
 
 .x-time-picker {
   //padding: 10px;
+}
+
+.done {
+  width: 93%;
+  padding: .1rem .75rem;
+  margin: 0 auto;
+  background-color: #009ce5;
 }

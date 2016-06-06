@@ -2,15 +2,15 @@
 
   <div class="x-date-time-picker-container" :style="style">
     <div class="x-date-picker-modes row">
-      <div class="col-xs-6 text-xs-center"
+      <div class="col-xs-6 text-xs-center picker-tab"
            @click.prevent="toggleMode('DATE')">
         <a href="javascript:void(0)"
-           :class="{ 'active': currentMode === 'DATE' }">日期</a>
+           :class="{ 'active': currentMode === 'DATE' }"><event-note></event-note> 日期</a>
       </div>
-      <div class="col-xs-6 text-xs-center"
+      <div class="col-xs-6 text-xs-center picker-tab"
            @click.prevent="toggleMode('TIME')">
         <a href="javascript:void(0)"
-           :class="{ 'active': currentMode === 'TIME' }">时间</a>
+           :class="{ 'active': currentMode === 'TIME' }"><av-time></av-time> 时间</a>
       </div>
     </div>
     <div v-show="currentMode === 'DATE'">
@@ -60,7 +60,7 @@
                    :control="control"
                    :on-change="timeChange"></time-picker>
     </div>
-  <button class="btn btn-primary btn-sm btn-block" @click="onAllComplete">
+  <button class="btn btn-primary btn-sm btn-block done" @click="onAllComplete">
     确定
   </button>
   </div>
@@ -69,16 +69,16 @@
 
 <script type="text/babel">
   import datePicker from './date-picker.vue'
-
-//  import timePicker from './time-picker.vue'
+  import timePicker from './time-picker.vue'
   import monthPicker from './month-picker.vue'
   import yearPicker from './year-picker.vue'
-  import timePicker from './time-picker.vue'
 
   import chevronLeft from '../svg-icon/chevron-left.vue'
   import chevronRight from '../svg-icon/chevron-right.vue'
   import arrowBack from '../svg-icon/arrow-back.vue'
   import arrowForward from '../svg-icon/arrow-forward.vue'
+  import eventNote from '../svg-icon/event-note.vue'
+  import avTime from '../svg-icon/av-time.vue'
 
   const today = new Date()
 
@@ -122,6 +122,8 @@
       chevronRight,
       arrowBack,
       arrowForward,
+      eventNote,
+      avTime,
       datePicker,
 
       timePicker,
@@ -139,7 +141,7 @@
         date: 0,
         hour: 0,
         minute: 0,
-        second: 0
+        second: 0,
       }
     },
 

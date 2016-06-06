@@ -1,38 +1,50 @@
 <template>
   <div class="x-time-picker">
-    <div class="time-area row">
+    <div class="time-area">
       <div class="col-xs-4 text-xs-center">
-        <button @click="increaseHour">⬆️</button>
+        <button  @click="increaseHour">
+          <chevron-up></chevron-up>
+        </button>
         <div>
           <input type="text" class="form-control text-xs-center" :value="hourText" disabled>
         </div>
-        <button @click="decreaseHour">⬇️</button>
+        <button @click="decreaseHour">
+          <chevron-down></chevron-down>
+        </button>
       </div>
       <div class="col-xs-4 text-xs-center">
-        <button @click="increaseMinute">⬆️</button>
+        <button @click="increaseMinute">
+          <chevron-up></chevron-up>
+        </button>
         <div>
           <input type="text" class="form-control text-xs-center" :value="minuteText" disabled>
         </div>
-        <button @click="decreaseMinute">⬇️</button>
+        <button @click="decreaseMinute">
+          <chevron-down></chevron-down>
+        </button>
       </div>
       <div class="col-xs-4 text-xs-center">
-        <button @click="increaseSecond">⬆️</button>
+        <button @click="increaseSecond">
+          <chevron-up></chevron-up>
+        </button>
         <div>
           <input type="text" class="form-control text-xs-center" :value="secondText" disabled>
         </div>
-        <button @click="decreaseSecond">⬇️</button>
+        <button @click="decreaseSecond">
+          <chevron-down></chevron-down>
+        ️</button>
       </div>
     </div>
-    <div class="chose-now" @click="selectNow">
-      <span>现在</span>
-    </div>
+    <!--<div class="chose-now" @click="selectNow">-->
+      <!--<span>现在</span>-->
+    <!--</div>-->
   </div>
 
 </template>
 
 <script type="text/babel">
-//  import chevronUp from '../svg-icon/chevron-up.vue'
-//  import chevronDown from '../svg-icon/chevron-down.vue'
+  import chevronUp from '../svg-icon/chevron-up.vue'
+  import chevronDown from '../svg-icon/chevron-down.vue'
   export default {
     props: {
       setHour: {
@@ -51,10 +63,10 @@
         type: Function
       }
     },
-//    components: {
-//      chevronUp,
-//      chevronDown,
-//    },
+    components: {
+      chevronUp,
+      chevronDown,
+    },
 //    data: function () {
 //      let { hour, minute, second } = this.control
 //      return {
@@ -146,7 +158,39 @@
 </script>
 
 <style lang="sass" rel="stylesheet/scss" scoped>
+  $light-color: #ccc;
+  
+  button {
+    background: none;
+    border: none;
+    color: $light-color;
+    &:hover {
+      color: #000;
+    }
+  }
+  input.form-control {
+    display: block;
+    width: 35px;
+    height:35px;
+    padding: 0;
+    margin: 15px auto;
+    border-radius: 2px;
+    background-color: transparent;
+  }
   .time-area {
-    height: 120px;
+    height: 140px;
+  }
+  .col-xs-4 {
+    position: relative;
+    padding-top: 10px;
+    &:after {
+      content: ':';
+      position: absolute;
+      left: 99%;
+      top: 45%;
+    }
+    &:last-child:after{
+      content: '';
+    }
   }
 </style>

@@ -24,9 +24,9 @@
       </tbody>
     </table>
 
-    <div class="chose-today" @click="selectToday">
-      <span>今天</span>
-    </div>
+    <!--<div class="chose-today" @click="selectToday">-->
+      <!--<span>今天</span>-->
+    <!--</div>-->
 
   </div>
 

@@ -3,11 +3,12 @@ import XVue from '../component'
 
 Vue.config.debug = true
 
-require('bootstrap/scss/bootstrap.scss')
-require('../style/index.scss')
-require('./doc.scss')
-require('highlight.js/styles/default.css')
-require('highlight.js/styles/monokai-sublime.css')
+import 'bootstrap/scss/bootstrap.scss'
+// import 'font-awesome/css/font-awesome.css'
+import '../style/index.scss'
+import './doc.scss'
+import 'highlight.js/styles/default.css'
+import 'highlight.js/styles/monokai-sublime.css'
 
 // import card from '../component/card/card.vue'
 // import cardTitle from '../component/card/card-title.vue'

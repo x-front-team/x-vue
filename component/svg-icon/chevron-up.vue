@@ -1,17 +1,14 @@
 <template>
-  <chevron-left></chevron-left>
+  <svg-icon path="M7.41 15.41l4.59-4.58 4.59 4.58 1.41-1.41-6-6-6 6z" :size="size"></svg-icon>
 </template>
 
 <script>
-  import chevronLeft from './chevron-left.vue'
+  import svgIcon from './svg-icon.vue'
+  import propsMixin from './props-mixin'
   export default {
+    mixins: [propsMixin],
     components: {
-      chevronLeft
+      svgIcon
     }
   }
 </script>
-<style lang="sass" rel="stylesheet/scss" scoped>
-  svg-icon {
-    transform: rotate(90deg)
-  }
-</style>
