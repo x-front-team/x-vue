@@ -1,6 +1,6 @@
 <template>
 
-  <input type="text" v-date-time-picker :highlight-today="highlight" @click="toggle">
+  <input type="text" v-date-time-picker v-model="value" :format="'yyyy-MM-dd hh:mm:ss'" :highlight-today="highlight" @click="toggle">
 
 </template>
 <style lang="sass" scoped rel="stylesheet/scss">
@@ -11,7 +11,8 @@
     data: function () {
       return {
         model: 'bbb',
-        highlight: false
+        highlight: false,
+        value: '2016-06-01 09:22:12',
       }
     },
     methods: {

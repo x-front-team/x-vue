@@ -8,6 +8,17 @@
   border: 1px solid #999999;
   background-color: #ffffff;
 }
+.x-date-picker-modes {
+  margin: 0;
+  border-bottom: 1px solid #aaa;
+  a {
+    color: #aaa;
+    text-decoration: none;
+  }
+  a.active {
+    color: #009ce5;
+  }
+}
 .x-date-picker-tool{
   line-height: 28px;
   height : 28px;
@@ -103,7 +114,7 @@
     text-decoration: none;
   }
 }
-.chose-today{
+.chose-today, .chose-now{
   text-align: center;
   line-height: 28px;
   font-size: 12px;
@@ -225,4 +236,8 @@
       background-color: transparent;
     }
   }
+}
+
+.x-time-picker {
+  //padding: 10px;
 }

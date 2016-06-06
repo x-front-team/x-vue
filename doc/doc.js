@@ -3,9 +3,9 @@ import XVue from '../component'
 
 Vue.config.debug = true
 
+require('bootstrap/scss/bootstrap.scss')
 require('../style/index.scss')
 require('./doc.scss')
-require('bootstrap/scss/bootstrap.scss')
 require('highlight.js/styles/default.css')
 require('highlight.js/styles/monokai-sublime.css')
 
