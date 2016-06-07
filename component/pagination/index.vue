@@ -1,12 +1,12 @@
 <template>
   <nav v-if="total > 1">
-    <ul class="pagination">
+    <ul :class="classes">
       <li :class="{ disabled: current === 1 }" class="page-item">
         <a aria-label="Previous" @click.prevent="prev" class="page-link">
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
-      <li v-for="page in visiblePages" v-bind:class="{ active: page == current }" class="page-item">
+      <li v-for="page in visiblePages" :class="{ active: page == current }" class="page-item">
         <a @click.prevent="jump(page)" class="page-link">{{ page }}</a>
       </li>
       <li :class="{ disabled: current === this.total }" class="page-item">
@@ -17,6 +17,15 @@
     </ul>
   </nav>
 </template>
+
+<style>
+  .page-link{
+    cursor: pointer;
+  }
+  .page-link:hover{
+    text-decoration: none;
+  }
+</style>
 
 <script>
 export default {
@@ -32,12 +41,29 @@ export default {
     visibleCount: {
       type: Number,
       default: 10
+    },
+    size: { // lg or sm
+      type: String,
+      default: ''
+    },
+    onChange: {
+      type: Function,
+      default: function () {}
     }
   },
 
   computed: {
     visiblePages() {
       return PaginationPagesGenerate(this.current, this.visibleCount, this.total)
+    },
+    classes() {
+      let classes = {
+        pagination: true
+      }
+      if (this.size) {
+        classes['pagination-' + this.size] = true
+      }
+      return classes
     }
   },
 
@@ -45,7 +71,8 @@ export default {
     jump(num) {
       if (num <= 0 || num > this.total)
         return
-      this.current = num
+//      this.current = num
+      this.onChange(num)
     },
 
     prev() {

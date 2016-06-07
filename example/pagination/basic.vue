@@ -1,7 +1,7 @@
 <template>
-  <pagination :total="24" :current.sync="current"></pagination>
+  <pagination :total="24" :current="current" :on-change="updateCurrent" :visible-count="5"></pagination>
 
-  <pagination :total="24" :visible-count="9"></pagination>
+  <pagination :total="24" :visible-count="9" :on-change="updateCurrent" size="sm"></pagination>
 </template>
 
 <script>
@@ -15,6 +15,11 @@ export default {
   },
   components: {
     pagination
+  },
+  methods: {
+    updateCurrent(page) {
+      this.current = page
+    }
   }
 }
 </script>
