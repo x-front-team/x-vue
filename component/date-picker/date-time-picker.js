@@ -46,7 +46,9 @@ const template = '<date-time-picker ' +
   'v-show="show" ' +
   'transition="drop" ' +
   ':on-change="onChange" ' +
+  ':on-complete="onComplete" ' +
   ':highlight-today="highlightToday" ' +
+  ':is-time-enabled="isTimeEnabled"' +
   ':value="value"></date-time-picker>'
 
 const body = document.querySelector('body')
@@ -64,7 +66,7 @@ const RANGE_CONTROL = new Vue()
 // real directive
 export default {
 
-  params: ['format', 'default', 'highlightToday', 'closeOnSelected'],
+  params: ['value', 'format', 'default', 'highlightToday', 'closeOnSelected'],
 
   paramWatchers: {
     highlightToday: function (val) {
@@ -217,16 +219,20 @@ export default {
         value: 0,
         highlightToday: _this.params.highlightToday,
         minDate: -1,
-        maxDate: -1
+        maxDate: -1,
+        // 是否开启了时间选择模式, 暂时先这么粗暴的判断一下
+        isTimeEnabled: /hh:mm:ss/.test(_this.params.format)
       },
       methods: {
         onChange: function (value) {
           this.value = Date.parse(value)
+
+        },
+        onComplete: function (value) {
           // 如果设置了在选择时关闭则设置show为false
           if (_this.params.closeOnSelected !== false) {
             this.show = false
           }
-
           // set value to modle
           if (_this.model) {
             _this.vm[_this.model] = formatDate(value, _this.params.format || 'yyyy-MM-dd')
@@ -236,7 +242,6 @@ export default {
           // 如果有设置range时间的方法,则执行
           // 只通过判断是否有该方法判断是否是range
           if (_this.setRangeTime) _this.setRangeTime(value)
-
         }
       }
     })

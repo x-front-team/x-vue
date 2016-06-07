@@ -24,9 +24,9 @@
       </tbody>
     </table>
 
-    <div class="chose-today" @click="selectToday">
-      <span>今天</span>
-    </div>
+    <!--<div class="chose-today" @click="selectToday">-->
+      <!--<span>今天</span>-->
+    <!--</div>-->
 
   </div>
 
@@ -143,7 +143,8 @@
         date.setFullYear(item.year)
         date.setMonth(item.month)
         date.setDate(item.day)
-        this.value = date
+        // value是prop, 能赋值?
+//        this.value = date
 
         this.dateArray.forEach((arr) => {
           arr.forEach((d) => {

@@ -1,7 +1,9 @@
 <template>
-  <menu :menus="routes"></menu>
-  <div id="container">
-    <router-view></router-view>
+  <div>
+    <menu :menus="routes"></menu>
+    <div id="container">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 

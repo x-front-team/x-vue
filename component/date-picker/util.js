@@ -151,7 +151,7 @@ export function formatDate(date, fmt) {
 }
 
 export const weekArray = {
-  0: '天',
+  0: '日',
   1: '一',
   2: '二',
   3: '三',

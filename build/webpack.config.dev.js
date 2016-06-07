@@ -13,7 +13,7 @@ function postcss() {
 
 module.exports = {
   devtool: '#cheap-eval-source-map',
-  entry: [path.join(__dirname, '../doc/doc.js'), 'webpack-hot-middleware/client'],
+  entry: [path.join(__dirname, '../doc/doc.js'), 'webpack-hot-middleware/client?reload=true'],
   debug: true,
   output: {
     path: path.join(__dirname, '../dist'),
@@ -35,7 +35,14 @@ module.exports = {
       { test: /\.vue/, loader: 'vue' },
       { test: /\.scss/, loader: 'style-loader!css-loader!postcss-loader!sass-loader' },
       { test: /\.css/, loader: 'style-loader!css-loader' },
-      { test: /\.doc/, loader: '../demo-loader/loader' }
+      { test: /\.doc/, loader: '../demo-loader/loader' },
+      { test: /\.(gif|jpg|jpeg|png|bmp|svg|woff|woff2|eot|ttf)(\?.*)?$/,
+        loader: 'url',
+        query: {
+          limit: 8912,
+          name: 'static/resources/[name].[hash:8].[ext]'
+        }
+      }
     ]
   },
   vue: {
