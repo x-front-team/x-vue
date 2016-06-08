@@ -65,6 +65,8 @@ const RANGE_CONTROL = new Vue()
 
 // real directive
 export default {
+  // terminal: true,
+  // priority: Vue.directive('if').priority + 16,
 
   params: ['value', 'format', 'default', 'highlightToday', 'closeOnSelected'],
 
@@ -154,7 +156,9 @@ export default {
    * 根据父vm的model的值设置value
    */
   setVmValue() {
-    let seconds = Date.parse(this.vm[this.model])
+    let value = this.vm.$get(this.model || '')
+    console.log(value)
+    let seconds = Date.parse(value)
     if (!isNaN(seconds)) {
       this.__vm.value = seconds
     }
@@ -235,7 +239,7 @@ export default {
           }
           // set value to modle
           if (_this.model) {
-            _this.vm[_this.model] = formatDate(value, _this.params.format || 'yyyy-MM-dd')
+            _this.vm.$set(_this.model, formatDate(value, _this.params.format || 'yyyy-MM-dd'))
           } else {
             _this.el.value = formatDate(value, _this.params.format || 'yyyy-MM-dd')
           }

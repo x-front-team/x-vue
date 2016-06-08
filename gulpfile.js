@@ -20,7 +20,7 @@ gulp.task('test-watch', ['test'], function () {
 
 gulp.task('test', function (done) {
 
-  var server = new Server({
+  const server = new Server({
     configFile: __dirname + '/build/karma.conf.js',
     singleRun: true
   }, function() {
