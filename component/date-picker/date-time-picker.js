@@ -157,7 +157,6 @@ export default {
    */
   setVmValue() {
     let value = this.vm.$get(this.model || '')
-    console.log(value)
     let seconds = Date.parse(value)
     if (!isNaN(seconds)) {
       this.__vm.value = seconds
@@ -170,9 +169,9 @@ export default {
     const focusCb = () => {
       let rect = this.el.getBoundingClientRect()
       this.__vm.$set('rect', {
-        left: rect.left,
+        left: rect.left + document.body.scrollLeft,
         right: rect.right,
-        top: rect.top,
+        top: rect.top + document.body.scrollTop,
         bottom: rect.bottom,
         width: rect.width || this.el.clientWidth,
         height: rect.height || this.el.clientHeight

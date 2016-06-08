@@ -176,6 +176,7 @@
     margin: 15px auto;
     border-radius: 2px;
     background-color: transparent;
+    text-align: center;
   }
   .time-area {
     height: 140px;
