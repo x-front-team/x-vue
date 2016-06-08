@@ -154,7 +154,10 @@ export default {
    * 根据父vm的model的值设置value
    */
   setVmValue() {
-    let seconds = Date.parse(this.vm[this.model])
+    if (!this.model) {
+      return
+    }
+    let seconds = Date.parse(this.vm.$get(this.model))
     if (!isNaN(seconds)) {
       this.__vm.value = seconds
     }
@@ -166,9 +169,9 @@ export default {
     const focusCb = () => {
       let rect = this.el.getBoundingClientRect()
       this.__vm.$set('rect', {
-        left: rect.left,
+        left: rect.left + document.body.scrollLeft,
         right: rect.right,
-        top: rect.top,
+        top: rect.top + document.body.scrollTop,
         bottom: rect.bottom,
         width: rect.width || this.el.clientWidth,
         height: rect.height || this.el.clientHeight
@@ -235,7 +238,7 @@ export default {
           }
           // set value to modle
           if (_this.model) {
-            _this.vm[_this.model] = formatDate(value, _this.params.format || 'yyyy-MM-dd')
+            _this.vm.$set(_this.model, formatDate(value, _this.params.format || 'yyyy-MM-dd'))
           } else {
             _this.el.value = formatDate(value, _this.params.format || 'yyyy-MM-dd')
           }
