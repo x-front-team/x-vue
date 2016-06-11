@@ -8,6 +8,8 @@
 
   // 设置ueditor路径
   global.UEDITOR_HOME_URL = 'http://ueditor.baidu.com/ueditor/'
+
+  // 保证编辑器id唯一
   let uuid = 1
   function getEditorId() {
     return `ueditor_container_${uuid++}`
@@ -39,6 +41,7 @@
         'http://ueditor.baidu.com/ueditor/ueditor.config.js',
         'http://ueditor.baidu.com/ueditor/ueditor.all.min.js',
       ], () => {
+        // 合并配置并初始化
         this.editor = global.UE.getEditor(this.containerId, {
           ...defaultConfig,
           ...this.config,
@@ -59,11 +62,13 @@
 //      }
     },
     methods: {
+      // 通知父组件,内容发生变化
       onContentChange () {
         this.onChange(this.editor.getContent())
       }
     },
     watch: {
+      // 由于绑定了content的prop被编辑器干掉了,所以需要通过watch同步父组件的prop变化
       content (val) {
         // 如果val === this.editor.getContent()说明是本组件调用父组件onChange方法而导致的值变化
         // 重新设置会导致文本光标位置变化
