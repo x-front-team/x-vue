@@ -23,7 +23,7 @@ module.exports = {
   resolve: {
     alias: {
       component: path.resolve(__dirname, '../component'),
-      util: path.resolve(__dirname, '../util')
+      util: path.resolve(__dirname, '../util'),
     }
   },
   module: {
@@ -42,7 +42,7 @@ module.exports = {
           limit: 8912,
           name: 'static/resources/[name].[hash:8].[ext]'
         }
-      }
+      },
     ]
   },
   vue: {

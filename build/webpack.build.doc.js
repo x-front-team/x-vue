@@ -22,7 +22,7 @@ module.exports = {
   resolve: {
     alias: {
       component: path.resolve(__dirname, '../component'),
-      util: path.resolve(__dirname, '../util')
+      util: path.resolve(__dirname, '../util'),
     }
   },
   module: {
