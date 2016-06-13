@@ -3,12 +3,12 @@
     <button :on-click="clear" size="sm">清空内容</button>
     <button :on-click="changeContent" size="sm">设置新内容</button>
   </p>
-  <rich-text-editor :content="content" :config="config" :on-change="onEditorChange"></rich-text-editor>
+  <ueditor :content="content" :config="config" :on-change="onEditorChange"></ueditor>
 </template>
 
 <script>
-import richTextEditor from 'component/rich-text-editor/rich-text-editor.vue'
-import button from 'component/button/button.vue'
+import Ueditor from 'component/ueditor/ueditor.vue'
+import Button from 'component/button/button.vue'
 
 export default {
   data() {
@@ -22,8 +22,8 @@ export default {
     }
   },
   components: {
-    richTextEditor,
-    button,
+    Ueditor,
+    Button,
   },
   methods: {
     onEditorChange (content) {
