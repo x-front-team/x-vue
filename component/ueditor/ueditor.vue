@@ -72,7 +72,10 @@
       content (val) {
         // 如果val === this.editor.getContent()说明是本组件调用父组件onChange方法而导致的值变化
         // 重新设置会导致文本光标位置变化
-        if (val === this.editor.getContent()) {
+        // 在ueditor脚本加载完之前, 模板中的content还未被替换,会随着父组件的变化而变化,当然this.editor也还未被赋值
+        // 在ueditor脚本加载完并初始化编辑器后,模板被替换,组件只能通过watch监听content的变化,来设置值
+        // 可能这种做法并不太好, 可能定义一个promise会更好
+        if (!this.editor || val === this.editor.getContent()) {
           return
         }
         this.editor.setContent(val)
