@@ -43,7 +43,7 @@ npm run dev
 在该文件夹中随意创建多个demo,以`.vue`为后缀,然后在`router.js`中引用这个`.doc`文件
 
 ### 已知issue
-1. 启动webpack-dev-server时会build两次
+1. 启动webpack-dev-server时会build两次 --fixed
 2. 在example/button(demo文件夹名字)中创建和删除文件需要重启webpack-dev-server才能载入(addDependency)
 
 **注意,开发请注意代码规范,规范如下:**

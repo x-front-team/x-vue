@@ -37,6 +37,9 @@ import XPagination from './pagination/index.vue'
 // directives
 import DateTimePicker from './date-picker/date-time-picker'
 
+// ueditor
+import Ueditor from './ueditor/ueditor.vue'
+
 export const components = {
   XButton,
 
@@ -65,7 +68,9 @@ export const components = {
   XNavBarNav,
   XNavGroup,
 
-  XPagination
+  XPagination,
+
+  Ueditor,
 }
 
 export const directives = {

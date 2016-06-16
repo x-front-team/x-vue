@@ -2,7 +2,7 @@
   <svg viewBox="0 0 24 24"
        preserveAspectRatio="xMidYMid meet"
        fit
-       :style="style">
+       :style="styl">
     <g><path :d="path"/></g>
   </svg>
 </template>
@@ -18,7 +18,7 @@
       }
     },
     computed: {
-      style() {
+      styl() {
         return {
           fill: 'currentcolor',
           verticalAlign: 'middle',

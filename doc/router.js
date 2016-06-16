@@ -12,6 +12,7 @@ import Card from '../example/card.doc'
 import Navbar from '../example/navbar.doc'
 import Menu from '../example/menu.doc'
 import Tabs from '../example/tabs.doc'
+import UEdtior from '../example/ueditor.doc'
 
 import DateTimePicker from '../example/date-time-picker.doc'
 
@@ -65,7 +66,11 @@ export const routes = {
   'date-time-picker': {
     component: DateTimePicker,
     title: '日期时间'
-  }
+  },
+  'ueditor': {
+    component: UEdtior,
+    title: '富文本编辑器'
+  },
 }
 
 router.map(routes)

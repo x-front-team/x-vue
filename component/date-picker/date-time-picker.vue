@@ -1,6 +1,6 @@
 <template>
 
-  <div class="x-date-time-picker-container" :style="style">
+  <div class="x-date-time-picker-container" :style="styl">
     <div v-if="isTimeEnabled" class="x-date-picker-modes row">
       <div class="col-xs-6 text-xs-center picker-tab"
            @click.prevent="toggleMode('DATE')">
@@ -177,7 +177,7 @@
     },
 
     computed: {
-      style() {
+      styl () {
         return {
           left: this.rect.left + 'px',
           top: this.rect.top + this.rect.height + 'px'
