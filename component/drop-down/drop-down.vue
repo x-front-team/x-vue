@@ -66,7 +66,8 @@
       // OK
       showDropDown: {
         type: Boolean,
-        default: false
+        default: false,
+        twoWay: true
       }
     },
     data() {
@@ -97,7 +98,10 @@
     ready() {
       if (this.closeOnLoseFocus) {
         this._closeListener = EventListener.listen(window, 'click', (e) => {
-          if (this.$el && !this.$el.contains(e.target)) this.show = false
+          if (this.$el && !this.$el.contains(e.target)) {
+            this.showDropDown = false
+            this.show = false
+          }
         })
       }
     },

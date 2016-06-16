@@ -283,7 +283,8 @@ export default {
       // }
     }, { deep: true })
     this.setRangeTime = function (time) {
-      rc[rangeName][rangeType] = Date.parse(time)
+      debugger
+      rc[rangeName][rangeType] = time
     }
     this._removeRangeControl = function () {
       unWatchRange()

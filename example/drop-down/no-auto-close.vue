@@ -4,7 +4,6 @@
             btn-type="primary"
             id="x-vue-demo-drop-down-base1"
             :label="'no auto close'"
-            :close-on-lose-focus="false"
             :show-drop-down.sync="showDropDown"
             :toggle="false">
       <x-card>
