@@ -3,10 +3,10 @@ import XVue from '../component'
 
 Vue.config.debug = true
 
-import 'bootstrap/scss/bootstrap.scss'
+import 'bootstrap/dist/css/bootstrap.css'
 // import 'font-awesome/css/font-awesome.css'
-import '../style/index.scss'
-import './doc.scss'
+import '../style/index.styl'
+import './doc.styl'
 import 'highlight.js/styles/default.css'
 import 'highlight.js/styles/monokai-sublime.css'
 

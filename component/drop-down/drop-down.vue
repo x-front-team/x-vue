@@ -12,7 +12,7 @@
 
 </template>
 
-<style scoped lang="sass" rel="stylesheet/scss">
+<style lang="stylus" rel="stylesheet/stylus" scoped>
   .left{
     left: auto !important;
     right: 0;

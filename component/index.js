@@ -1,6 +1,9 @@
 // button
 import XButton from './button/button.vue'
 
+//modal
+import XModal from './modal/modal.vue'
+
 // card
 import XCard from './card/card.vue'
 import XCardTitle from './card/card-title.vue'
@@ -42,6 +45,8 @@ import Ueditor from './ueditor/ueditor.vue'
 
 export const components = {
   XButton,
+
+  XModal,
 
   XCard,
   XCardTitle,

@@ -4,7 +4,8 @@ import Vue from 'vue'
 Vue.use(VueRouter)
 
 import Index from './index.vue'
-import dropDown from '../example/drop-down.doc'
+import DropDown from '../example/drop-down.doc'
+import Modal from '../example/modal.doc'
 import pagination from '../example/pagination.doc'
 import upload from '../example/upload.doc'
 import Button from '../example/button.doc'
@@ -24,7 +25,7 @@ export const routes = {
     title: '首页'
   },
   'drop-down': {
-    component: dropDown,
+    component: DropDown,
     title: '下拉框'
   },
 
@@ -66,6 +67,10 @@ export const routes = {
   'date-time-picker': {
     component: DateTimePicker,
     title: '日期时间'
+  },
+  'modal': {
+    component: Modal,
+    title: '模态框',
   },
   'ueditor': {
     component: UEdtior,

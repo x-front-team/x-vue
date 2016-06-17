@@ -157,8 +157,8 @@
   }
 </script>
 
-<style lang="sass" rel="stylesheet/scss" scoped>
-  $light-color: #ccc;
+<style lang="stylus" rel="stylesheet/stylus" scoped>
+  $light-color = #ccc;
   
   button {
     background: none;
