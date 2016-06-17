@@ -1,0 +1,24 @@
+.drop
+  &-transition
+    transition: transform .45s cubic-bezier(0.23, 1, 0.32, 1) 0s, opacity .45s cubic-bezier(0.23, 1, 0.32, 1) 0s;
+    transform: scaleY(1);
+    transform-origin: left top 0;
+  &-enter, &-leave
+    transform-origin: left top 0;
+    transform: scaleY(0);
+    opacity: 0;
+
+
+.fade
+  &-transition
+    transition: opacity .3s;
+  &-enter, &-leave
+    opacity: 0;
+
+.slide-down
+  &-transition
+    transition: .3s;
+  &-enter, &-leave
+    opacity: 0;
+    transform: translateY(-30px)
+  

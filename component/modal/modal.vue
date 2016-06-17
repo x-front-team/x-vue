@@ -2,29 +2,30 @@
   <div>
     <backdrop v-if="show"></backdrop>
     <div class="modal" v-if="show" transition="slide-down" @click="cancel">
-      <div class="modal-dialog modal-{{size}}" @click="stopEvent">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" @click.prevent="cancel">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <slot name="header">
-              <h4 class="modal-title">{{title}}</h4>
-            </slot>
-          </div>
-          <div class="modal-body">
-            <slot></slot>
-          </div>
-          <div class="modal-footer">
-            <slot name="footer">
-              <button type="primary" classes="btn-modal-xs modal-footer-save" @click.prevent="confirm">确定</button>
-              <span class="btn-split">或</span>
-              <button type="link" @click="handleCancel(dropDown)" @click.prevent="cancel">取消</button>
-            </slot>
+      <div class="modal-center-wrapper">
+        <div class="modal-dialog modal-{{size}}" @click="stopEvent">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" @click.prevent="cancel">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <slot name="header">
+                <h4 class="modal-title">{{title}}</h4>
+              </slot>
+            </div>
+            <div class="modal-body">
+              <slot></slot>
+            </div>
+            <div class="modal-footer">
+              <slot name="footer">
+                <button type="primary" classes="btn-modal-xs modal-footer-save" @click.prevent="confirm">确定</button>
+                <span class="btn-split">或</span>
+                <button type="link" @click="handleCancel(dropDown)" @click.prevent="cancel">取消</button>
+              </slot>
+            </div>
           </div>
         </div>
       </div>
-      <span class="vertical-alignment-helper"></span>
     </div>
   </div>
 
@@ -96,8 +97,16 @@
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
   .modal{
-    display block
-    overflow auto
+    display: table
+    width: 100%
+    height: 100%
+  }
+  .modal-center-wrapper {
+    display: table-cell
+    vertical-align: middle
+  }
+  .modal-dialog {
+    margin-top: -100px
   }
   .modal-content{
     padding : 10px 15px
@@ -120,5 +129,10 @@
     line-height :20px
     font-size 14px
     color: #3982c0
+  }
+  .vertical-alignment-helper {
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
   }
 </style>
