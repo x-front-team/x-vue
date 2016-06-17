@@ -4,7 +4,7 @@ const spawn = require('child_process').spawn
 const rimraf = require('rimraf')
 const cssmin = require('gulp-cssmin')
 const rename = require('gulp-rename')
-const sass = require('gulp-sass')
+const stylus = require('gulp-stylus')
 const autoprefixer = require('gulp-autoprefixer')
 const bump = require('gulp-bump')
 const runSequence = require('run-sequence')
@@ -51,8 +51,8 @@ gulp.task('package-min', function () {
 
 // package the css
 gulp.task('package-css', function () {
-  return gulp.src('style/index.scss')
-    .pipe(sass().on('error', sass.logError))
+  return gulp.src('style/index.styl')
+    .pipe(stylus())
     .pipe(autoprefixer({ browsers: '> 1%' }))
     .pipe(rename('x-vue.css'))
     .pipe(gulp.dest('dist'))

@@ -27,13 +27,13 @@ module.exports = {
   },
   module: {
     preLoaders: [
-      { test: /\.(js|vue)$/, loader: 'eslint-loader', exclude: /node_modules/ }
+      { test: /\.(js|vue)$/, loader: 'eslint', exclude: /node_modules/ }
     ],
     loaders: [
       { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
       { test: /\.vue/, loader: 'vue' },
-      { test: /\.scss/, loader: 'style-loader!css-loader!postcss-loader!sass-loader' },
-      { test: /\.css/, loader: 'style-loader!css-loader' },
+      { test: /\.styl/, loader: 'style!css!postcss!stylus' },
+      { test: /\.css/, loader: 'style!css' },
       { test: /\.doc/, loader: '../demo-loader/loader' }
     ]
   },

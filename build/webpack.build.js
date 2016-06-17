@@ -26,15 +26,20 @@ module.exports = {
     libraryTarget: 'umd',
     umdNamedDefine: true
   },
-  resolve: {},
+  resolve: {
+    alias: {
+      component: path.resolve(__dirname, '../component'),
+      util: path.resolve(__dirname, '../util'),
+    }
+  },
   module: {
     preLoaders: [
-      { test: /\.(js|vue)$/, loader: 'eslint-loader', exclude: /node_modules/ }
+      { test: /\.(js|vue)$/, loader: 'eslint', exclude: /node_modules/ }
     ],
     loaders: [
       { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
       { test: /\.vue/, loader: 'vue' },
-      { test: /\.scss/, loader: 'style-loader!css-loader!postcss-loader!sass-loader' }
+      { test: /\.styl/, loader: 'style!css!postcss!stylus' }
     ]
   },
   vue: {
