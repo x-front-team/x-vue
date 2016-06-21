@@ -9,7 +9,7 @@ export default {
   saveInterval: 90000000,
   zIndex: 1100,
   toolbars: [ [
-    'source', 'undo', 'redo', '|',
+    'fullscreen','source', 'undo', 'redo', '|',
     'bold', 'italic', 'underline', 'strikethrough', 'removeformat', 'formatmatch', 'autotypeset', 'pasteplain', '|',
     'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
     'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
