@@ -1,12 +1,18 @@
 <template>
   <p>
-    <button :on-click="clear" size="sm">清空内容</button>
-    <button :on-click="changeContent" size="sm">设置新内容</button>
+    <button :on-click="clear1" size="sm">清空内容</button>
+    <button :on-click="changeContent1" size="sm">设置新内容</button>
   </p>
-  <ueditor :content="content" :config="config" :on-change="onEditorChange"></ueditor>
+  <ueditor :content="testData.content1" :config="config" :on-change="onEditor1Change"></ueditor>
+  <p></p>
+  <p>
+    <button :on-click="clear2" size="sm">清空内容</button>
+    <button :on-click="changeContent2" size="sm">设置新内容</button>
+  </p>
+  <ueditor :content="testData.content2" :config="config"  :on-change="onEditor2Change"></ueditor>
 </template>
 
-<script>
+<script type="text/babel">
 import Ueditor from 'component/ueditor/ueditor.vue'
 import Button from 'component/button/button.vue'
 
@@ -14,10 +20,15 @@ export default {
   data() {
     return {
       // 富文本内容
-      content: '<p style="color: red;">这是一段红色富文本</p>',
+      testData: {
+        content1: '',
+        content2: '',
+//        content1: '<p style="color: red;">这是一段红色富文本</p>',
+//        content2: '<p style="color: green;">这是一段绿色富文本</p>',
+      },
       // 富文本配置
       config: {
-        initialFrameHeight: 500,
+        initialFrameHeight: 100,
       }
     }
   },
@@ -25,17 +36,35 @@ export default {
     Ueditor,
     Button,
   },
+  ready () {
+    setTimeout(() => {
+      this.$set('testData', {
+        content1: '<p style="color: red;">这是一段红色富文本</p>',
+        content2: '<p style="color: green;">这是一段绿色富文本</p>',
+      })
+    }, 500)
+  },
   methods: {
-    onEditorChange (content) {
-      this.content = content
-      console.log(this.content)
+    onEditor1Change (content) {
+      this.testData.content1 = content
+      console.log(this.testData.content1)
     },
-    clear () {
-      this.content = ''
+    onEditor2Change (content) {
+      this.testData.content2 = content
+      console.log(this.testData.content2)
     },
-    changeContent () {
-      this.content = '<p style="color: blue;">我是新内容, 一段蓝色文本</p>'
-    }
+    clear1 () {
+      this.testData.content1 = ''
+    },
+    clear2 () {
+      this.testData.content2 = ''
+    },
+    changeContent1 () {
+      this.testData.content1 = '<p style="color: blue;">我是新内容, 一段蓝色文本</p>'
+    },
+    changeContent2 () {
+      this.testData.content2 = '<p style="color: blue;">我是新内容, 一段蓝色文本</p>'
+    },
   }
 }
 </script>

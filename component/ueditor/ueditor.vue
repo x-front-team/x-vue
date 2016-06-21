@@ -1,5 +1,5 @@
 <template>
-  <script :id="containerId" type="text/plain" v-html="content"></script>
+  <script :id="containerId" type="text/plain"></script>
 </template>
 
 <script type="text/babel">
@@ -33,20 +33,21 @@
       }
     },
     ready () {
-      // 理论上必须先加载config.js,然后再加载主模块, 但不知为何,这俩换了顺序也可以,
-      // 另外做过简单的demo, 同步情况下, 如果config在后,初始化失败
-      // 可能因为是都是异步加载,all.js加载较慢, 绝大部分情况下都是后执行
-      // 改为顺序加载
-      $script.order([
-        'http://ueditor.baidu.com/ueditor/ueditor.config.js',
-        'http://ueditor.baidu.com/ueditor/ueditor.all.min.js',
-      ], () => {
-        // 合并配置并初始化
-        this.editor = global.UE.getEditor(this.containerId, {
-          ...defaultConfig,
-          ...this.config,
+      this.editorPromise = new Promise((resolve) => {
+        // 必须先加载config.js
+        $script.order([
+          'http://ueditor.baidu.com/ueditor/ueditor.config.js',
+          'http://ueditor.baidu.com/ueditor/ueditor.all.min.js',
+        ], () => {
+          // 合并配置并初始化
+          // getEditor调用完后,它还会去加载其他静态资源,后续api需要在ready回调中调用
+          this.editor = global.UE.getEditor(this.containerId, {
+            ...defaultConfig,
+            ...this.config,
+          })
+          this.editor.addListener('contentChange', this.onContentChange)
+          resolve()
         })
-        this.editor.addListener('contentChange', this.onContentChange)
       })
     },
     data () {
@@ -70,15 +71,16 @@
     watch: {
       // 由于绑定了content的prop被编辑器干掉了,所以需要通过watch同步父组件的prop变化
       content (val) {
-        // 如果val === this.editor.getContent()说明是本组件调用父组件onChange方法而导致的值变化
-        // 重新设置会导致文本光标位置变化
-        // 在ueditor脚本加载完之前, 模板中的content还未被替换,会随着父组件的变化而变化,当然this.editor也还未被赋值
-        // 在ueditor脚本加载完并初始化编辑器后,模板被替换,组件只能通过watch监听content的变化,来设置值
-        // 可能这种做法并不太好, 可能定义一个promise会更好
-        if (!this.editor || val === this.editor.getContent()) {
-          return
-        }
-        this.editor.setContent(val)
+        // 忘了这个重要的API!!!
+        this.editorPromise.then(() => {
+          this.editor.ready(() => {
+            if (val === this.editor.getContent()) {
+              return
+            }
+            this.editor.setContent(val)
+          })
+        })
+
       }
     }
   }
