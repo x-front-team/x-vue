@@ -283,7 +283,6 @@ export default {
       // }
     }, { deep: true })
     this.setRangeTime = function (time) {
-      debugger
       rc[rangeName][rangeType] = time
     }
     this._removeRangeControl = function () {
