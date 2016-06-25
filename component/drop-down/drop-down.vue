@@ -87,12 +87,14 @@
     methods: {
       toggleShow(e) {
         e.preventDefault()
-        if (!this.toggle) {
-          this.show = true
-        } else {
-          this.show = !this.show
+        if (!this.disabled) {
+          if (!this.toggle) {
+            this.show = true
+          } else {
+            this.show = !this.show
+          }
+          this.showDropDown = true
         }
-        this.showDropDown = true
       }
     },
     ready() {

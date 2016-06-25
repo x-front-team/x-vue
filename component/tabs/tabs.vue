@@ -3,7 +3,7 @@
     <li class="nav-item" v-for="item in items" track-by="$index">
       <a href="#"
          @click.prevent="changeSelectedItem(item)"
-         :class="{'nav-link': true, active: item.active, disabled: item.disabled}">
+         :class="{'nav-link': true, active: item.index === active, disabled: item.disabled}">
         {{item.title}}
       </a>
     </li>
@@ -17,19 +17,20 @@
   import tabsMixin from './tabs-mixin'
   export default {
     mixins: [tabsMixin],
+    props: ['active'],
     data() {
       return {
         items: [],
-        active: 0
+        index: 0
       }
     },
     ready() {
-      let flag = this.items.reduce((result, item) => {
-        return result || item.active
-      }, false)
-      if (!flag) {
-        this.items[0].vue.active = true
-      }
+//      let flag = this.items.reduce((result, item) => {
+//        return result || item.active
+//      }, false)
+//      if (!flag) {
+//        this.items[0].vue.active = true
+//      }
     },
     methods: {
       addItem(item) {
@@ -40,13 +41,14 @@
         this.items.$set(index, item)
       },
       changeSelectedItem(item) {
-        if (item.disabled || item.active) return
-
-        this.items.forEach((child) => {
-          child.disSelect()
-        })
-
-        item.select()
+//        if (item.disabled || item.active) return
+//
+//        this.items.forEach((child) => {
+//          child.disSelect()
+//        })
+//
+//        item.select()
+        this.active = item.index
       },
       setSelectedItem(son) {
         this.items.forEach((child) => {

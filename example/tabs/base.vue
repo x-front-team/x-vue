@@ -1,9 +1,9 @@
 <template>
 
-  <x-tabs :type="type">
-    <x-tab title="tab1" transition="fade" :active="selected === 1">This is Tab1</x-tab>
-    <x-tab title="tab2" transition="fade" :active="selected === 2">This is Tab2</x-tab>
-    <x-tab title="tab3" transition="fade" :active="selected === 3">This is Tab3</x-tab>
+  <x-tabs :type="type" :active.sync="selected">
+    <x-tab title="tab1" transition="fade" :index="1">This is Tab1</x-tab>
+    <x-tab title="tab2" transition="fade" :index="2">This is Tab2</x-tab>
+    <x-tab title="tab3" transition="fade" :index="3">This is Tab3</x-tab>
   </x-tabs>
 
   <div>
