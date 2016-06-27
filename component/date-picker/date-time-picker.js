@@ -183,29 +183,33 @@ export default {
 
     // important: 使用vm.$mount生成的节点,给vm设置的$el是一个注释节点<!-- v start -->
     // 只有使用nextElementSibling来获取模板生成的节点
-    const _closeListener = EventListener.listen(window, 'click', function () {
+    const _closeListener = EventListener.listen(window, 'click', (e) => {
       // if (self.el &&
       //   !self.el.contains(e.target) &&
       //   self.__vm.$el &&
       //   !self.__vm.$el.contains(e.target)) self.__vm.show = false
-      self.__vm.show = false
+      if (e.target !== this.el) self.__vm.show = false
     })
 
     const _closeEleListener = EventListener.listen(this.__vm.$el, 'click', (e) => {
       e.stopPropagation()
     })
 
-    const _closeTargetListener = EventListener.listen(this.el, 'click', (e) => {
-      e.stopPropagation()
-    })
+    // const _closeTargetListener = EventListener.listen(this.el, 'click', (e) => {
+    //   e.stopPropagation()
+    // })
 
     on(this.el, 'focus', focusCb)
+
+    // on(this.el, 'blur', () => {
+    //   this.__vm.show = false
+    // })
 
     this._removeEventBind = function () {
       off(this.el, 'focus', focusCb)
       _closeListener.remove()
       _closeEleListener.remove()
-      _closeTargetListener.remove()
+      // _closeTargetListener.remove()
     }
 
   },
