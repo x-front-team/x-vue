@@ -1,26 +1,25 @@
 <template>
 
   <div class="dropdown">
-    <x-button :type="btnType" v-if="label" :disabled="disabled" @click="toggleShow" drop-down>{{label}}</x-button>
-    <span class="drop-down-btn" @click="toggleShow" v-if="!label">
-      <slot name="btn"></slot>
-    </span>
-    <div :class="{'drop-down-content': true, 'open': true, 'left': position === 'left'}" v-show="isShow" transition="drop">
+    <slot name="btn">
+      <x-button
+              :type="btnType"
+              :disabled="disabled"
+              @click="toggleShow"
+              drop-down>{{label}}</x-button>
+    </slot>
+    <!--<span class="drop-down-btn" @click="toggleShow" v-if="!label">-->
+    <!---->
+    <!--</span>-->
+    <div :class="{'drop-down-content': true, 'open': true}"
+         v-el:content
+         v-show="isShow"
+         transition="drop">
       <slot></slot>
     </div>
   </div>
 
 </template>
-
-<style lang="stylus" rel="stylesheet/stylus" scoped>
-  .left{
-    left: auto !important;
-    right: 0;
-  }
-  .drop-down-btn{
-    cursor: pointer;
-  }
-</style>
 
 <script type="text/babel">
   import xButton from '../button/button.vue'
@@ -95,20 +94,34 @@
           }
           this.showDropDown = true
         }
+      },
+      appendContentToBody() {
+        let rect = this.$el.getBoundingClientRect()
+        let elHeight = this.$el.clientHeight
+
+        let el = this.contentEl = this.$els.content
+        el.parentNode.removeChild(el)
+        global.document.body.appendChild(el)
+
+        el.style.top = rect.top + elHeight + 'px'
+        el.style.left = rect.left + 'px'
       }
     },
     ready() {
       if (this.closeOnLoseFocus) {
         this._closeListener = EventListener.listen(window, 'click', (e) => {
-          if (this.$el && !this.$el.contains(e.target)) {
+          if ((this.$el && !this.$el.contains(e.target)) ||
+                  (this.contentEl && !this.contentEl.contains(e.target))) {
             this.showDropDown = false
             this.show = false
           }
         })
       }
+      this.appendContentToBody()
     },
     beforeDestroy() {
       if (this._closeListener) this._closeListener.remove()
+      this.contentEl.parentNode.removeChild(this.contentEl)
     }
   }
 </script>
