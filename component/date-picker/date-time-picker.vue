@@ -310,7 +310,7 @@
         // 必须设置毫秒, 否则range边界时间与选择的时间比较会出错
         timeDate.setMilliseconds(0)
 
-        if (this.endDate > -1 && this.startDate >= +timeDate) {
+        if (this.startDate > -1 && this.startDate >= +timeDate) {
           console.log('chosen time:', +timeDate, 'is smaller or equal than startDate:', this.startDate, '.refused')
           return
         }
