@@ -5,7 +5,11 @@
     <span class="drop-down-btn" @click="toggleShow" v-if="!label">
       <slot name="btn"></slot>
     </span>
-    <div :class="{'drop-down-content': true, 'open': true, 'left': position === 'left'}" v-show="isShow" transition="drop">
+    <div :class="{'drop-down-content': true, 'open': true, 'left': position === 'left'}"
+         v-show="isShow"
+         :style="styl"
+         v-el:content
+         :transition="effect">
       <slot></slot>
     </div>
   </div>
@@ -25,6 +29,7 @@
 <script type="text/babel">
   import xButton from '../button/button.vue'
   import EventListener from '../../util/EventListener'
+  import Vue from 'vue'
   export default {
     components: {
       xButton
@@ -68,11 +73,35 @@
         type: Boolean,
         default: false,
         twoWay: true
-      }
+      },
+//      renderToBody: {
+//        type: Boolean,
+//        default: false
+//      }
     },
     data() {
       return {
-        show: false
+        show: false,
+        width: 0,
+        height: 0,
+        effect: 'fade',
+        styl: {}
+      }
+    },
+    watch: {
+      isShow(value) {
+        if (value) {
+          let style = {}
+          let rect = this.$el.getBoundingClientRect()
+          let windowHeight = global.document.documentElement.clientHeight
+          if (windowHeight - this.$el.clientHeight - rect.top < this.height) {
+            style.top = '-' + (this.height) + 'px'
+//            this.effect = 'climb'
+          } else {
+//            this.effect = 'drop'
+          }
+          this.$set('styl', style)
+        }
       }
     },
     computed: {
@@ -98,6 +127,8 @@
       }
     },
     ready() {
+      let el = this.$els.content
+      let display = el.style.display
       if (this.closeOnLoseFocus) {
         this._closeListener = EventListener.listen(window, 'click', (e) => {
           if (this.$el && !this.$el.contains(e.target)) {
@@ -106,6 +137,15 @@
           }
         })
       }
+
+      el.style.visibility = 'hidden'
+      el.style.display = 'block'
+      Vue.nextTick(() => {
+        this.width = el.clientWidth
+        this.height = el.clientHeight
+        el.style.visibility = 'visible'
+        el.style.display = display
+      })
     },
     beforeDestroy() {
       if (this._closeListener) this._closeListener.remove()
