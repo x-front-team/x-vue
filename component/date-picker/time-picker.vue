@@ -1,34 +1,34 @@
 <template>
   <div class="x-time-picker">
     <div class="time-area">
-      <div class="col-xs-4 text-xs-center">
+      <div class="time-part col-xs-{{colSpan}} text-xs-center">
         <button  @click="increaseHour">
           <chevron-up></chevron-up>
         </button>
         <div>
-          <input type="text" class="form-control text-xs-center" :value="hourText" disabled>
+          <input type="text" class="form-control text-xs-center" :value="hourText" maxlength="2" @blur="hourBlur">
         </div>
         <button @click="decreaseHour">
           <chevron-down></chevron-down>
         </button>
       </div>
-      <div class="col-xs-4 text-xs-center">
+      <div class="time-part col-xs-{{colSpan}} text-xs-center">
         <button @click="increaseMinute">
           <chevron-up></chevron-up>
         </button>
         <div>
-          <input type="text" class="form-control text-xs-center" :value="minuteText" disabled>
+          <input type="text" class="form-control text-xs-center" :value="minuteText" maxlength="2" @blur="minuteBlur">
         </div>
         <button @click="decreaseMinute">
           <chevron-down></chevron-down>
         </button>
       </div>
-      <div class="col-xs-4 text-xs-center">
+      <div v-if="isSecondEnabled" class="time-part col-xs-{{colSpan}} text-xs-center" >
         <button @click="increaseSecond">
           <chevron-up></chevron-up>
         </button>
         <div>
-          <input type="text" class="form-control text-xs-center" :value="secondText" disabled>
+          <input type="text" class="form-control text-xs-center" :value="secondText" maxlength="2" @blur="secondBlur">
         </div>
         <button @click="decreaseSecond">
           <chevron-down></chevron-down>
@@ -47,20 +47,15 @@
   import chevronDown from '../svg-icon/chevron-down.vue'
   export default {
     props: {
-      setHour: {
-        type: Function,
-      },
-      setMinute: {
-        type: Function,
-      },
-      setSecond: {
-        type: Function,
-      },
       control: {
         type: Object,
       },
       onChange: {
         type: Function
+      },
+      isSecondEnabled: {
+        type: Boolean,
+        default: true,
       }
     },
     components: {
@@ -92,6 +87,10 @@
       second () {
         return this.control.second
       },
+      colSpan () {
+        // 暂不考虑用flex, 如果需要隐藏小时或者分,这里需要改
+        return 12 / (this.isSecondEnabled ? 3 : 2)
+      }
     },
     methods: {
       getText (segment) {
@@ -150,9 +149,30 @@
       setSecond (second) {
         this.onChange(this.hour, this.minute, second)
       },
-      selectNow () {
-
-      }
+      formatValue (val, min, max) {
+        if (!/^\d{1,2}$/.test(val)) {
+          val = 0
+        }
+        val = Number.parseInt(val, 10)
+        val = Math.max(min, val)
+        val = Math.min(val, max)
+        return val
+      },
+      hourBlur (e) {
+        let val = e.target.value
+        let formattedVal = this.formatValue(val, 0, 23)
+        this.setHour(formattedVal)
+      },
+      minuteBlur (e) {
+        let val = e.target.value
+        let formattedVal = this.formatValue(val, 0, 59)
+        this.setMinute(formattedVal)
+      },
+      secondBlur (e) {
+        let val = e.target.value
+        let formattedVal = this.formatValue(val, 0, 59)
+        this.setSecond(formattedVal)
+      },
     }
   }
 </script>
@@ -180,10 +200,10 @@
   }
   .time-area {
     height: 140px;
-  }
-  .col-xs-4 {
-    position: relative;
     padding-top: 10px;
+  }
+  .time-part {
+    position: relative;
     &:after {
       content: ':';
       position: absolute;
@@ -193,5 +213,12 @@
     &:last-child:after{
       content: '';
     }
+  }
+//  删除number的spinner上下箭头
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
   }
 </style>

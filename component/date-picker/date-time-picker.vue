@@ -1,7 +1,7 @@
 <template>
 
   <div class="x-date-time-picker-container" :style="styl">
-    <div v-if="isTimeEnabled" class="x-date-picker-modes row">
+    <div v-if="isDateEnabled && isTimeEnabled" class="x-date-picker-modes row">
       <div class="col-xs-6 text-xs-center picker-tab"
            @click.prevent="toggleMode('DATE')">
         <a href="javascript:void(0)"
@@ -58,6 +58,7 @@
     <div v-show="currentMode === 'TIME'">
       <time-picker :select-time="selectTime"
                    :control="control"
+                   :is-second-enabled="isSecondEnabled"
                    :on-change="timeChange"></time-picker>
     </div>
   <button class="btn btn-primary btn-sm btn-block done" @click="onAllComplete">
@@ -116,9 +117,9 @@
         type: Number,
         default: -1
       },
-      isTimeEnabled: {
-        type: Boolean,
-        default: false,
+      format: {
+        type: String,
+        default: 'yyyy-MM-dd'
       }
     },
     components: {
@@ -136,8 +137,12 @@
     },
 
     data() {
+      // 是否开启日期选择模式
+      let isDateEnabled = /yyyy|MM|dd/.test(this.format)
+      // 是否开启了时间选择模式
+      let isTimeEnabled = /hh|mm|ss/.test(this.format)
       return {
-        currentMode: 'DATE',
+        currentMode: isDateEnabled ? 'DATE' : 'TIME',
         showing: 'date',
 
         year: 0,
@@ -146,6 +151,11 @@
         hour: 0,
         minute: 0,
         second: 0,
+
+        isDateEnabled,
+        isTimeEnabled,
+        // 是否显示秒
+        isSecondEnabled: /ss/.test(this.format),
       }
     },
 
@@ -169,7 +179,6 @@
       updateControl(date)
       // 监听value的值得变化,如果改变判断年月是否相同,不同则改变control的值
       this._unWatchValue = this.$watch('value', (newVal) => {
-        console.log('new value:' + newVal, new Date(newVal))
         let date = new Date(newVal)
         updateControl(date)
       })
@@ -180,12 +189,12 @@
       styl () {
         return {
           left: this.rect.left + 'px',
-          top: this.rect.top + this.rect.height + 'px'
+          top: this.rect.top + this.rect.height + 'px',
+          width: !this.isDateEnabled && 'auto'
         }
       },
       control() {
         let { year, month, date, hour, minute, second, minDate, maxDate, startDate, endDate } = this
-
         if (minDate === -1 && startDate === -1) minDate = -1
         else if (minDate === -1) minDate = startDate
         else if (startDate === -1) minDate = minDate
@@ -212,6 +221,9 @@
         return {
           year, month, date, hour, minute, second, minDate, maxDate, valueDate
         }
+      },
+      chosenDateTime () {
+        // 用于处理上下调整时间。。。比较麻烦
       }
     },
 
@@ -222,18 +234,6 @@
       // 父组件可以通过该方法获取日期时间的值
       getValue() {
 
-      },
-      // 设置小时,传递给time picker子组件
-      setHour (val) {
-        this.hour = val
-      },
-      // 设置分钟,传递给time picker子组件
-      setMinute (val) {
-        this.minute = val
-      },
-      // 设置秒,传递给time picker子组件
-      setSecond (val) {
-        this.second = val
       },
       /**
        * 在选择器上选择上个月
@@ -307,6 +307,17 @@
         timeDate.setHours(hour)
         timeDate.setMinutes(minute)
         timeDate.setSeconds(second)
+        // 必须设置毫秒, 否则range边界时间与选择的时间比较会出错
+        timeDate.setMilliseconds(0)
+
+        if (this.endDate > -1 && this.startDate >= +timeDate) {
+          console.log('chosen time:', +timeDate, 'is smaller or equal than startDate:', this.startDate, '.refused')
+          return
+        }
+        if (this.endDate > -1 && this.endDate <= +timeDate) {
+          console.log('chosen time:', +timeDate, 'is bigger or equal than endDate:', this.endDate, '.refused')
+          return
+        }
         this.onChange(timeDate)
       },
       onAllComplete () {

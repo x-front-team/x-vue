@@ -48,7 +48,7 @@ const template = '<date-time-picker ' +
   ':on-change="onChange" ' +
   ':on-complete="onComplete" ' +
   ':highlight-today="highlightToday" ' +
-  ':is-time-enabled="isTimeEnabled"' +
+  ':format="format"' +
   ':value="value"></date-time-picker>'
 
 const body = document.querySelector('body')
@@ -91,6 +91,8 @@ export default {
     let raw = el.getAttribute('v-model')
     let { model } = this.parseModelRaw(raw)
     this.model = model
+    this.params.format = this.params.format || 'yyyy-MM-dd'
+    this.isDateEnabled = /yyyy|MM|dd/.test(this.params.format)
 
     // create date picker Vue instance
     this.__vm = this.createVm()
@@ -112,7 +114,6 @@ export default {
     }
 
     if ((this.isStart || this.isEnd) && !_rangeName) {
-      console.warn('range need range name')
       return
     }
 
@@ -157,7 +158,12 @@ export default {
    */
   setVmValue() {
     let value = this.vm.$get(this.model || '')
+    if (!value) {
+      return
+    }
     let seconds = Date.parse(value)
+    // 如果是纯时间格式 10:00 这种,会转换为NaN,再给一个机会,加上年月日转换
+    seconds = seconds || Date.parse(`2016-01-01 ${value}`)
     if (!isNaN(seconds)) {
       this.__vm.value = seconds
     }
@@ -223,12 +229,11 @@ export default {
       data: {
         show: false,
         rect: {},
-        value: 0,
+        value: null,
         highlightToday: _this.params.highlightToday,
         minDate: -1,
         maxDate: -1,
-        // 是否开启了时间选择模式, 暂时先这么粗暴的判断一下
-        isTimeEnabled: /hh:mm:ss/.test(_this.params.format)
+        format: _this.params.format,
       },
       methods: {
         onChange: function (value) {
@@ -242,9 +247,9 @@ export default {
           }
           // set value to modle
           if (_this.model) {
-            _this.vm.$set(_this.model, formatDate(value, _this.params.format || 'yyyy-MM-dd'))
+            _this.vm.$set(_this.model, formatDate(value, _this.params.format))
           } else {
-            _this.el.value = formatDate(value, _this.params.format || 'yyyy-MM-dd')
+            _this.el.value = formatDate(value, _this.params.format)
           }
           // 如果有设置range时间的方法,则执行
           // 只通过判断是否有该方法判断是否是range
@@ -275,6 +280,7 @@ export default {
     let rangeName = this.expression
     let rangeType = this.isStart ? 'start' : 'end'
     let rangeOtherType = this.isStart ? 'end' : 'start'
+    // TODO 初始化设置rangeOtherType的值为model的值
     Vue.set(this.__vm, rangeOtherType + 'Date', -1)
     if (!rc[rangeName]) {
       Vue.set(rc, rangeName, {})
