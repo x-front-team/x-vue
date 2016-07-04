@@ -3,11 +3,11 @@ export default {
   initialFrameWidth: '100%',
   initialFrameHeight: 200,
   minFrameHeight: 150,
-  elementPathEnabled: false,
-  wordCountMsg: '',
-  enableAutoSave: false,//无效。。。
-  saveInterval: 90000000,
-  zIndex: 1100,
+  // elementPathEnabled: false,
+  // wordCountMsg: '',
+  // enableAutoSave: false,//无效。。。
+  // saveInterval: 90000000,
+  zIndex: 1,
   toolbars: [ [
     'fullscreen','source', 'undo', 'redo', '|',
     'bold', 'italic', 'underline', 'strikethrough', 'removeformat', 'formatmatch', 'autotypeset', 'pasteplain', '|',
