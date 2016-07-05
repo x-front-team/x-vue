@@ -30,7 +30,7 @@
 import Vue from 'vue'
 
 import dateTimePicker from './date-time-picker.vue'
-import { formatDate } from './util'
+import { formatDate, parseDateTime } from './util'
 
 import EventListener from '../../util/EventListener'
 
@@ -161,9 +161,7 @@ export default {
     if (!value) {
       return
     }
-    let seconds = Date.parse(value)
-    // 如果是纯时间格式 10:00 这种,会转换为NaN,再给一个机会,加上年月日转换
-    seconds = seconds || Date.parse(`2016-01-01 ${value}`)
+    let seconds = parseDateTime(value)
     if (!isNaN(seconds)) {
       this.__vm.value = seconds
     }
@@ -237,7 +235,7 @@ export default {
       },
       methods: {
         onChange: function (value) {
-          this.value = Date.parse(value)
+          this.value = parseDateTime(value)
 
         },
         onComplete: function (value) {
@@ -280,12 +278,24 @@ export default {
     let rangeName = this.expression
     let rangeType = this.isStart ? 'start' : 'end'
     let rangeOtherType = this.isStart ? 'end' : 'start'
-    // TODO 初始化设置rangeOtherType的值为model的值
+    // debugger
+    let initModel = this.vm.$get(this.model || '')
+    let initDate = parseDateTime(initModel)
+    //
     Vue.set(this.__vm, rangeOtherType + 'Date', -1)
+    // 初始化
     if (!rc[rangeName]) {
-      Vue.set(rc, rangeName, {})
+      Vue.set(rc, rangeName, {
+        start: -1,
+        end: -1
+      })
     }
-    Vue.set(rc[rangeName], rangeType, -1)
+    //      expression     start      startValue
+    // 给range中间vue对象中的自己设置初始值
+    // 等待range所有组件初始化完毕
+    Vue.nextTick(() => {
+      Vue.set(rc[rangeName], rangeType, initDate || -1)
+    })
     let unWatchRange = rc.$watch(rangeName + '.' + rangeOtherType, (newVal) => {
       // if (newVal[rangeOtherType] !== oldVal[rangeOtherType]) {
         // 设置 this.__vm相关的数据

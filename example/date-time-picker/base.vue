@@ -1,16 +1,18 @@
 <template>
 
-  <input type="text"
-         v-model="value.a"
-         v-date-time-picker
-         format="yyyy-MM-dd hh:mm:ss"
-         :highlight-today="highlight" @click="toggle">
+  <p>
+    <input type="text"
+           v-model="value.a"
+           v-date-time-picker
+           format="yyyy-MM-dd hh:mm:ss"
+           :highlight-today="highlight" @click="toggle">
 
-  <input type="text"
-         v-model="period"
-         v-date-time-picker
-         format="hh:mm"
-         @click="toggle">
+    <input type="text"
+           v-model="period"
+           v-date-time-picker
+           format="hh:mm"
+           @click="toggle">
+  </p>
 
 </template>
 <style lang="sass" scoped rel="stylesheet/scss">

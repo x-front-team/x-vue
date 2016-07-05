@@ -7,10 +7,6 @@
     <input type="text" v-date-time-picker:range.start="time" format="hh:mm" v-model="startTime">
     <input type="text" v-date-time-picker:range.end="time" format="hh:mm" v-model="endTime">
   </p>
-  <p>
-    <!--<input type="text" v-date-time-picker:range.start="time" format="hh:mm" v-model="startTime">-->
-    <!--<input type="text" v-date-time-picker:range.end="time" format="hh:mm" v-model="endTime">-->
-  </p>
 </template>
 
 <script type="text/babel">
