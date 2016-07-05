@@ -207,8 +207,8 @@
     &:after {
       content: ':';
       position: absolute;
-      left: 99%;
-      top: 45%;
+      left: 97%;
+      top: 42%;
     }
     &:last-child:after{
       content: '';
