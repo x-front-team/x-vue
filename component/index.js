@@ -41,7 +41,7 @@ import XPagination from './pagination/index.vue'
 import DateTimePicker from './date-picker/date-time-picker'
 
 // ueditor
-import Ueditor from './ueditor/ueditor.vue'
+// import Ueditor from './ueditor/ueditor.vue'
 
 export const components = {
   XButton,
@@ -75,7 +75,7 @@ export const components = {
 
   XPagination,
 
-  Ueditor,
+  // Ueditor,
 }
 
 export const directives = {
