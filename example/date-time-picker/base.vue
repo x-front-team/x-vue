@@ -26,7 +26,7 @@
         highlight: false,
         period: '22:00',
         value: {
-          a: '2016-06-01 09:22:12'
+          a: ''
         }
       }
     },

@@ -22,8 +22,8 @@
         return {
           fill: 'currentcolor',
           verticalAlign: 'middle',
-          width: this.size,
-          height: this.size
+          width: this.size + 'px',
+          height: this.size + 'px'
         }
       }
     }

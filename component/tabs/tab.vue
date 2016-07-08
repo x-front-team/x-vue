@@ -32,7 +32,7 @@
     },
     computed: {
       show() {
-        console.log(this.$parent.active, this.index)
+//        console.log(this.$parent.active, this.index)
         return this.index === this.$parent.active
       },
       item() {

@@ -33,6 +33,7 @@ import dateTimePicker from './date-time-picker.vue'
 import { formatDate, parseDateTime } from './util'
 
 import EventListener from '../../util/EventListener'
+import { getBodyScrollTop } from '../../util/dom'
 
 const parseDirective = Vue.parsers.directive.parseDirective
 const { createAnchor, after, on, off } = Vue.util
@@ -171,11 +172,14 @@ export default {
   bindEvent() {
 
     const focusCb = () => {
+      // TODO:这样的定位方式存在一些缺陷
+      // 如果存在局部滚动,在局部滚动的时候就会出现错位
       let rect = this.el.getBoundingClientRect()
+      let bodyScrollTop = getBodyScrollTop()
       this.__vm.$set('rect', {
         left: rect.left + document.body.scrollLeft,
         right: rect.right,
-        top: rect.top + document.body.scrollTop,
+        top: rect.top + bodyScrollTop,
         bottom: rect.bottom,
         width: rect.width || this.el.clientWidth,
         height: rect.height || this.el.clientHeight
@@ -239,6 +243,7 @@ export default {
 
         },
         onComplete: function (value) {
+          value = value || new Date()
           // 如果设置了在选择时关闭则设置show为false
           if (_this.params.closeOnSelected !== false) {
             this.show = false

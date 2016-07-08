@@ -94,6 +94,10 @@
           let style = {}
           let rect = this.$el.getBoundingClientRect()
           let windowHeight = global.document.documentElement.clientHeight
+          if (rect.top < this.height) {
+            this.$set('styl', style)
+            return
+          }
           if (windowHeight - this.$el.clientHeight - rect.top < this.height) {
             style.top = '-' + (this.height) + 'px'
 //            this.effect = 'climb'
