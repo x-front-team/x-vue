@@ -20,7 +20,7 @@
   </div>
 
 </template>
-<style lang="sass" rel="stylesheet/scss">
+<style lang="stylus" rel="stylesheet/stylus">
   .tab-content {
     padding : 20px;
   }

@@ -15,7 +15,7 @@
   </p>
 
 </template>
-<style lang="sass" scoped rel="stylesheet/scss">
+<style lang="stylus" scoped rel="stylesheet/stylus">
 
 </style>
 <script type="text/babel">

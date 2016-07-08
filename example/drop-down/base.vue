@@ -17,7 +17,7 @@
     </x-drop-down>
   </div>
 </template>
-<style lang="sass" rel="stylesheet/scss">
+<style lang="stylus" rel="stylesheet/stylus">
   #x-vue-demo-drop-down-base{
     .dropdown{
       float: left;

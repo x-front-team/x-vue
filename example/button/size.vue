@@ -11,7 +11,7 @@
 
 </template>
 
-<style lang="sass" rel="stylesheet/scss">
+<style lang="stylus" rel="stylesheet/stylus">
   .button-example .btn{
     margin-bottom: 10px;
   }
