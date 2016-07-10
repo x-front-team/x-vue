@@ -93,7 +93,7 @@ gulp.task('add-header', function () {
 })
 
 gulp.task('publish', function (done) {
-  runSequence('clear-dist', 'bump', 'package', 'package-min', 'package-css', 'add-header', function () {
+  runSequence('clear-dist', 'bump', 'package', 'package-min', 'package-css', 'add-header', 'npm-publish', function () {
     done()
   })
 })
