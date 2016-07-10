@@ -85,6 +85,7 @@ export const directives = {
 export default {
 
   install(Vue) {
+    Vue.X_VUE_VERSION = process.env.X_VUE_VERSION
     Object.keys(components).forEach((name) => {
       Vue.component(name, components[name])
     })

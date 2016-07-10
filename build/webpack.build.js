@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const autoprefixer = require('autoprefixer')
+const pkg = require('../package.json')
 
 function postcss() {
   return [
@@ -49,6 +50,7 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
+        X_VUE_VERSION: '"' + pkg.version + '"',
         NODE_ENV: '"production"'
       }
     }),

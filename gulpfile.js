@@ -1,4 +1,7 @@
+"use strict";
+
 const gulp = require('gulp')
+// const $ = require('gulp-load-plugins')()
 const Server = require('karma').Server
 const spawn = require('child_process').spawn
 const rimraf = require('rimraf')
@@ -7,6 +10,7 @@ const rename = require('gulp-rename')
 const stylus = require('gulp-stylus')
 const autoprefixer = require('gulp-autoprefixer')
 const bump = require('gulp-bump')
+const header = require('gulp-header')
 const runSequence = require('run-sequence')
 
 const webpack = require('gulp-webpack')
@@ -68,14 +72,28 @@ gulp.task('clear-dist', function (done) {
 
 // bump
 gulp.task('bump', function () {
-  gulp.src('package.json')
+  return gulp.src('package.json')
     .pipe(bump({ type: 'patch' }))
     .pipe(gulp.dest('./'))
 })
 
+gulp.task('add-header', function () {
+  let pkg = require('./package.json');
+  let banner = ['/**',
+    ' * <%= pkg.name %> - <%= pkg.description %>',
+    ' * @version v<%= pkg.version %>',
+    ' * @link <%= pkg.homepage %>',
+    ' * @license <%= pkg.license %>',
+    ' */',
+    ''].join('\n');
+
+  return gulp.src(['dist/*.js', 'dist/*.css'])
+    .pipe(header(banner, { pkg : pkg } ))
+    .pipe(gulp.dest('dist/'))
+})
 
 gulp.task('publish', function (done) {
-  runSequence('clear-dist', 'package', 'package-min', 'package-css', 'bump', 'npm-publish', 'clear-dist', function () {
+  runSequence('clear-dist', 'bump', 'package', 'package-min', 'package-css', 'add-header', function () {
     done()
   })
 })
