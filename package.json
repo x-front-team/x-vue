@@ -48,6 +48,7 @@
     "gulp-bump": "^2.1.0",
     "gulp-cssmin": "^0.1.7",
     "gulp-header": "^1.8.7",
+    "gulp-load-plugins": "^1.2.4",
     "gulp-rename": "^1.2.2",
     "gulp-rollup": "^1.8.0",
     "gulp-stylus": "^2.5.0",
