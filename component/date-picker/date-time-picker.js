@@ -69,17 +69,17 @@ export default {
   // terminal: true,
   // priority: Vue.directive('if').priority + 16,
 
-  params: ['value', 'format', 'default', 'highlightToday', 'closeOnSelected'],
+  params: ['value', 'format', 'default', 'highlightToday', 'closeOnSelected', 'maxDate', 'minDate'],
 
   paramWatchers: {
     highlightToday: function (val) {
       this.__vm.highlightToday = !!val
     },
     minDate: function (val) {
-      this.__vm.minDate = val
+      this.__vm.minDate = parseDateTime(val)
     },
     maxDate: function (val) {
-      this.__vm.maxDate = val
+      this.__vm.maxDate = parseDateTime(val)
     }
   },
 
@@ -233,8 +233,8 @@ export default {
         rect: {},
         value: null,
         highlightToday: _this.params.highlightToday,
-        minDate: -1,
-        maxDate: -1,
+        minDate: parseDateTime(this.params.minDate) || -1,
+        maxDate: parseDateTime(this.params.maxDate) || -1,
         format: _this.params.format,
       },
       methods: {

@@ -12,6 +12,12 @@
            v-date-time-picker
            format="hh:mm"
            @click="toggle">
+
+    <input type="text"
+           v-date-time-picker
+           format="yyyy-MM-dd"
+           :max-date="maxDate"
+           @click="toggle">
   </p>
 
 </template>
@@ -25,6 +31,7 @@
         model: 'bbb',
         highlight: false,
         period: '22:00',
+        maxDate: new Date().getTime(),
         value: {
           a: ''
         }

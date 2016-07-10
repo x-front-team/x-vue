@@ -6,7 +6,7 @@
     <x-drop-down position="left" btn-type="primary" disabled :label="'primary'" id="x-vue-demo-drop-down-base-primary">
       <example type="primary"></example>
     </x-drop-down>
-    <x-drop-down btn-type="success" :label="'success'" id="x-vue-demo-drop-down-base-success">
+    <x-drop-down btn-type="success" :label="'success'" position="left" id="x-vue-demo-drop-down-base-success">
       <example type="success"></example>
     </x-drop-down>
     <x-drop-down btn-type="info" :label="'info'" id="x-vue-demo-drop-down-base-info">

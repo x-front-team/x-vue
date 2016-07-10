@@ -1,11 +1,15 @@
 <template>
 
   <div class="dropdown">
-    <x-button :type="btnType" v-if="label" :disabled="disabled" @click="toggleShow" drop-down>{{label}}</x-button>
+    <x-button :type="btnType"
+              v-if="label"
+              :disabled="disabled"
+              @click="toggleShow"
+              drop-down>{{label}}</x-button>
     <span class="drop-down-btn" @click="toggleShow" v-if="!label">
       <slot name="btn"></slot>
     </span>
-    <div :class="{'drop-down-content': true, 'open': true, 'left': position === 'left'}"
+    <div :class="{'drop-down-content': true, 'open': true}"
          v-show="isShow"
          :style="styl"
          v-el:content
@@ -30,6 +34,7 @@
   import xButton from '../button/button.vue'
   import EventListener from '../../util/EventListener'
   import Vue from 'vue'
+  import { getBodyScrollTop } from 'util/dom'
   export default {
     components: {
       xButton
@@ -93,18 +98,33 @@
         if (value) {
           let style = {}
           let rect = this.$el.getBoundingClientRect()
-          let windowHeight = global.document.documentElement.clientHeight
-          if (rect.top < this.height) {
-            this.$set('styl', style)
-            return
-          }
-          if (windowHeight - this.$el.clientHeight - rect.top < this.height) {
-            style.top = '-' + (this.height) + 'px'
-//            this.effect = 'climb'
+          let scrollTop = getBodyScrollTop()
+
+          console.log(scrollTop)
+
+          style.top = rect.bottom + scrollTop + 'px'
+          if (this.position === 'left') {
+//            style.left = rect.left
+            style.left = rect.left - this.width + this.$el.clientWidth + 'px'
+//            console.log(rect.left - this.width + this.$el.clientWidth)
           } else {
-//            this.effect = 'drop'
+            style.left = rect.left + 'px'
           }
+
           this.$set('styl', style)
+
+//          let windowHeight = global.document.documentElement.clientHeight
+//          if (rect.top < this.height) {
+//            this.$set('styl', style)
+//            return
+//          }
+//          if (windowHeight - this.$el.clientHeight - rect.top < this.height) {
+//            style.top = '-' + (this.height) + 'px'
+//            this.effect = 'climb'
+//          } else {
+//            this.effect = 'drop'
+//          }
+//          this.$set('styl', style)
         }
       }
     },
@@ -131,11 +151,13 @@
       }
     },
     ready() {
-      let el = this.$els.content
+      let el = this.contentEl = this.$els.content
       let display = el.style.display
       if (this.closeOnLoseFocus) {
         this._closeListener = EventListener.listen(window, 'click', (e) => {
-          if (this.$el && !this.$el.contains(e.target)) {
+          if ((this.$el && this.$el.contains(e.target)) || (this.contentEl && this.contentEl.contains(e.target))) {
+            // do nothing
+          } else {
             this.showDropDown = false
             this.show = false
           }
@@ -149,10 +171,14 @@
         this.height = el.clientHeight
         el.style.visibility = 'visible'
         el.style.display = display
+
+        el.parentNode.removeChild(el)
+        global.document.body.appendChild(el)
       })
     },
     beforeDestroy() {
       if (this._closeListener) this._closeListener.remove()
+      if (this.contentEl) this.contentEl.parentNode.removeChild(this.contentEl)
     }
   }
 </script>

@@ -161,6 +161,8 @@ export const weekArray = {
 }
 
 export function parseDateTime(dateTimeStr) {
+  // Date.parse 转换Number会返回NaN
+  if (typeof dateTimeStr === 'number') return dateTimeStr
   let ret = Date.parse(dateTimeStr)
   if (ret) {
     return ret
