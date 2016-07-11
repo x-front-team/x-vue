@@ -169,7 +169,9 @@ export function parseDateTime(dateTimeStr) {
   }
   // 如果是纯时间格式 10:00 这种,会转换为NaN,再给一个机会,加上年月日转换, 2016-01-01这个日子就随意啦
   if (/^\d{2}\:\d{2}$/.test(dateTimeStr)) {
-    ret = Date.parse(`2016-01-01 ${dateTimeStr}`)
+    let today = new Date()
+    let todayStr = [today.getFullYear(), today.getMonth() + 1, today.getDate()].join('-')
+    ret = Date.parse(todayStr + ' ' + dateTimeStr)
   }
   return ret
 }

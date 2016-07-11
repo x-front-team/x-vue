@@ -310,11 +310,11 @@
         // 必须设置毫秒, 否则range边界时间与选择的时间比较会出错
         timeDate.setMilliseconds(0)
         // todo 如果是时分秒的blur, 需要重置到最小/大允许值
-        if (this.startDate > -1 && this.startDate >= +timeDate) {
+        if (this.control.minDate > -1 && this.control.minDate >= +timeDate) {
 //          console.log('chosen time:', +timeDate, 'is smaller or equal than startDate:', this.startDate, '.refused')
           return
         }
-        if (this.endDate > -1 && this.endDate <= +timeDate) {
+        if (this.control.maxDate > -1 && this.control.maxDate <= +timeDate) {
 //          console.log('chosen time:', +timeDate, 'is bigger or equal than endDate:', this.endDate, '.refused')
           return
         }
