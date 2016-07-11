@@ -172,7 +172,10 @@
         el.style.visibility = 'visible'
         el.style.display = display
 
-        el.parentNode.removeChild(el)
+        // 看上去貌似有些时候parentNode不存在,而且貌似不remove也可以?
+        if (el.parentNode) {
+          el.parentNode.removeChild(el)
+        }
         global.document.body.appendChild(el)
       })
     },

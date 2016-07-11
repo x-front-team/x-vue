@@ -32,12 +32,9 @@
         </div>
         <button @click="decreaseSecond">
           <chevron-down></chevron-down>
-        ️</button>
+        </button>
       </div>
     </div>
-    <!--<div class="chose-now" @click="selectNow">-->
-      <!--<span>现在</span>-->
-    <!--</div>-->
   </div>
 
 </template>
@@ -179,7 +176,7 @@
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
   $light-color = #ccc;
-  
+
   button {
     background: none;
     border: none;
