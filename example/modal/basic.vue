@@ -5,7 +5,7 @@
   </p>
   <!--不舍得删囧-->
   <!--<Notification></Notification>-->
-  <modal :show.sync="isShow" size="lg">
+  <modal :show.sync="isShow" size="lg" title="This is title">
     <div>
       <p style="color: red;">这是模态框内容</p>
     </div>

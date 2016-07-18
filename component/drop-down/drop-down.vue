@@ -89,7 +89,7 @@
         show: false,
         width: 0,
         height: 0,
-        effect: 'fade',
+        effect: 'drop',
         styl: {}
       }
     },
@@ -100,16 +100,19 @@
           let rect = this.$el.getBoundingClientRect()
           let scrollTop = getBodyScrollTop()
 
-          console.log(scrollTop)
+//          console.log(scrollTop)
 
           style.top = rect.bottom + scrollTop + 'px'
           if (this.position === 'left') {
 //            style.left = rect.left
-            style.left = rect.left - this.width + this.$el.clientWidth + 'px'
+//            style.left = rect.left - this.width + this.$el.clientWidth + 'px'
+            style.right = document.body.clientWidth - rect.right + 'px'
 //            console.log(rect.left - this.width + this.$el.clientWidth)
           } else {
             style.left = rect.left + 'px'
           }
+
+          console.log(style)
 
           this.$set('styl', style)
 

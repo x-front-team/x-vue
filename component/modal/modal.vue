@@ -19,8 +19,8 @@
             <div class="modal-footer">
               <slot name="footer">
                 <button type="primary" classes="btn-modal-xs modal-footer-save" @click.prevent="confirm">确定</button>
-                <span class="btn-split">或</span>
-                <button type="link" @click="handleCancel(dropDown)" @click.prevent="cancel">取消</button>
+                <!--<span class="btn-split">或</span>-->
+                <button @click="cancel(dropDown)" @click.prevent="cancel">取消</button>
               </slot>
             </div>
           </div>
@@ -116,19 +116,19 @@
     padding-bottom : 10px
   }
   .modal-footer{
-    border-top-width 0
-    text-align center
+    /*border-top-width 0*/
+    /*text-align center*/
     .modal-footer-save{
-      width : 200px
+      /*width : 200px*/
     }
     .btn-split{
       margin : 0 10px
     }
   }
   .modal-title{
-    line-height :20px
-    font-size 14px
-    color: #3982c0
+    /*line-height :20px*/
+    /*font-size 14px*/
+    /*color: #3982c0*/
   }
   .vertical-alignment-helper {
     display: inline-block;

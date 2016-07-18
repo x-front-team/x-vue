@@ -26,6 +26,7 @@ module.exports = function (source) {
   var fileName = path.basename(filePath)
   var name = fileName.substr(0, fileName.lastIndexOf('.'))
   var docPath = path.join(filePath, '..', name)
+  var explainPath = path.join(filePath, '..', name, name + '.md')
   var docFiles
 
   if (query.post) {
@@ -64,6 +65,16 @@ module.exports = function (source) {
       components += 'demo' + index + ':' + ' require(\'./' + name + '/' + f + '\'),'
     }
   })
+
+  // console.log(explainPath)
+  if (fs.existsSync(explainPath)) {
+    var explain = fs.readFileSync(explainPath, 'utf8')
+    html += (
+      '<div class="explain markdown-body">' +
+        marked(explain) +
+      '</div>'
+    )
+  }
 
   var scripts = "<script>\n" +
       "export default {\n" +
