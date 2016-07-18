@@ -92,8 +92,9 @@
     methods: {
       getText (segment) {
         let value = this.control[segment]
-        let zeros = '0'.repeat(2 - `${value}`.length)
-        return `${zeros}${value}`
+        return (value + '').length === 2 ? value : '0' + value
+//        let zeros = '0'.repeat(2 - `${value}`.length)
+//        return `${zeros}${value}`
       },
       increaseHour () {
         if (this.hour >= 23) {

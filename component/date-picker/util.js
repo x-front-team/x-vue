@@ -4,16 +4,18 @@ export function isLeapYear(year) {
   return typeof year === 'number' && (year % 100 === 0 ? year % 400 === 0 : year % 4 === 0)
 }
 
-const testFullDate = new Date()
+let testFullDate
 let testFullSec = 0
 const isLessThen = function (year, month, date, minDate) {
   if (minDate === -1) return false
-  testFullDate.setFullYear(year)
-  testFullDate.setMonth(month)
-  testFullDate.setDate(date)
-  testFullDate.setHours(23)
-  testFullDate.setMinutes(59)
-  testFullDate.setSeconds(59)
+  // if (date === 30) debugger
+  // testFullDate.setFullYear(year)
+  // testFullDate.setMonth(month)
+  // testFullDate.setDate(date)
+  // testFullDate.setHours(23)
+  // testFullDate.setMinutes(59)
+  // testFullDate.setSeconds(59)
+  testFullDate = new Date(year, month, date, 23, 59, 59)
 
   testFullSec = testFullDate.getTime()
 
@@ -22,12 +24,14 @@ const isLessThen = function (year, month, date, minDate) {
 
 const isLargerThen = function (year, month, date, maxDate) {
   if (maxDate === -1) return false
-  testFullDate.setFullYear(year)
-  testFullDate.setMonth(month)
-  testFullDate.setDate(date)
-  testFullDate.setHours(23)
-  testFullDate.setMinutes(59)
-  testFullDate.setSeconds(59)
+  // if (date === 30) debugger
+  // testFullDate.setFullYear(year)
+  // testFullDate.setMonth(month)
+  // testFullDate.setDate(date)
+  // testFullDate.setHours(0)
+  // testFullDate.setMinutes(0)
+  // testFullDate.setSeconds(0)
+  testFullDate = new Date(year, month, date, 0, 0, 0)
 
   testFullSec = testFullDate.getTime()
 
