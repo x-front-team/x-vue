@@ -65,6 +65,15 @@ const config = Object.assign({}, baseConfig, {
   },
 })
 
+config.module.loaders.push({
+  test: /\.styl/,
+  loader: 'style!css!postcss!stylus'
+})
+config.module.loaders.push({
+  test: /\.css/,
+  loader: 'style!css'
+})
+
 config.plugins.push(new HtmlWebpackPlugin({
   template: path.join(__dirname, '../doc/index.html'),
   filename: 'index.html'

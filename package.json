@@ -1,12 +1,13 @@
 {
   "name": "x-vue",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "vue components based on bootstrap",
   "main": "dist/x-vue.min.js",
   "scripts": {
     "dev": "./build/dev.sh",
     "start": "node server.js",
-    "test": "gulp test"
+    "test": "gulp test",
+    "deploy-doc": "./build/deploy_doc.sh"
   },
   "keywords": [
     "vue",

@@ -1,3 +1,9 @@
+# v-0.1.0
+1. 发布到github开源
+2. 完善webpack配置,不再重复配置
+3. 增加deploy_doc脚本,自动部署文档到github/gh-pages
+4. 去掉无用的组件和文档页面
+
 # v-0.0.61
 1. 增加drop-down的onLoseFocus方法props
 
