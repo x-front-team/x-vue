@@ -95,3 +95,6 @@ export default {
   }
 
 }
+
+require('../style/index.styl')
+// import '../style/index.styl'

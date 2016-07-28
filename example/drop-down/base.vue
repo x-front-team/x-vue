@@ -9,7 +9,10 @@
     <x-drop-down btn-type="success" :label="'success'" position="left" id="x-vue-demo-drop-down-base-success">
       <example type="success"></example>
     </x-drop-down>
-    <x-drop-down btn-type="info" :label="'info'" id="x-vue-demo-drop-down-base-info">
+    <x-drop-down btn-type="info"
+                 :on-lose-focus="loseFocus"
+                 :label="'info'"
+                 id="x-vue-demo-drop-down-base-info">
       <example type="info"></example>
     </x-drop-down>
     <x-drop-down btn-type="danger" :label="'danger'" id="x-vue-demo-drop-down-base-danger">
@@ -28,6 +31,11 @@
 </style>
 <script type="text/babel">
   export default {
+    methods: {
+      loseFocus() {
+        console.log('lose focus')
+      }
+    },
     components: {
       example: {
         props: ['type'],

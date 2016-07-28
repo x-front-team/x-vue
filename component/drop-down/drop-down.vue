@@ -79,6 +79,11 @@
         default: false,
         twoWay: true
       },
+      // 解决失去焦点时需要进行一些操作的问题
+      onLoseFocus: {
+        type: Function,
+        default: () => {}
+      }
 //      renderToBody: {
 //        type: Boolean,
 //        default: false
@@ -112,7 +117,7 @@
             style.left = rect.left + 'px'
           }
 
-          console.log(style)
+//          console.log(style)
 
           this.$set('styl', style)
 
@@ -163,6 +168,7 @@
           } else {
             this.showDropDown = false
             this.show = false
+//            this.onLoseFocus()
           }
         })
       }

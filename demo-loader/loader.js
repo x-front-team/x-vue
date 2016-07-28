@@ -44,14 +44,14 @@ module.exports = function (source) {
 
   var html = '', components = '', code, demoFilePath
 
-  var self = this
-  // this.addContextDependency(docPath)
+  // var self = this
+  this.addContextDependency(docPath)
 
   docFiles.forEach(function (f, index) {
     if (path.extname(f) === '.vue') {
       demoFilePath = path.join(docPath, f)
       code = fs.readFileSync(demoFilePath, 'utf8')
-      self.addDependency(demoFilePath)
+      // self.addDependency(demoFilePath)
       html += (
         '<code-panel filename="' + f + '">\n' +
           '<div slot="demo">\n' +
@@ -68,6 +68,7 @@ module.exports = function (source) {
 
   // console.log(explainPath)
   if (fs.existsSync(explainPath)) {
+    // this.addDependency(explainPath)
     var explain = fs.readFileSync(explainPath, 'utf8')
     html += (
       '<div class="explain markdown-body">' +
