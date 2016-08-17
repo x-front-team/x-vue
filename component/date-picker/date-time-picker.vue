@@ -1,16 +1,18 @@
 <template>
 
   <div class="x-date-time-picker-container" :style="styl">
-    <div v-if="isDateEnabled && isTimeEnabled" class="x-date-picker-modes row">
-      <div class="col-xs-6 text-xs-center picker-tab"
-           @click.prevent="toggleMode('DATE')">
-        <a href="javascript:void(0)"
-           :class="{ 'active': currentMode === 'DATE' }"><event-note></event-note> 日期</a>
-      </div>
-      <div class="col-xs-6 text-xs-center picker-tab"
-           @click.prevent="toggleMode('TIME')">
-        <a href="javascript:void(0)"
-           :class="{ 'active': currentMode === 'TIME' }"><av-time></av-time> 时间</a>
+    <div class="container-fluid">
+      <div v-if="isDateEnabled && isTimeEnabled" class="x-date-picker-modes row">
+        <div class="col-xs-6 text-xs-center picker-tab"
+             @click.prevent="toggleMode('DATE')">
+          <a href="javascript:void(0)"
+             :class="{ 'active': currentMode === 'DATE' }"><event-note></event-note> 日期</a>
+        </div>
+        <div class="col-xs-6 text-xs-center picker-tab"
+             @click.prevent="toggleMode('TIME')">
+          <a href="javascript:void(0)"
+             :class="{ 'active': currentMode === 'TIME' }"><av-time></av-time> 时间</a>
+        </div>
       </div>
     </div>
     <div v-show="currentMode === 'DATE'">
@@ -180,7 +182,7 @@
       // 监听value的值得变化,如果改变判断年月是否相同,不同则改变control的值
       this._unWatchValue = this.$watch('value', (newVal) => {
         let date = new Date(newVal)
-        updateControl(date)
+        if (!isNaN(date.getTime())) updateControl(date)
       })
 
     },

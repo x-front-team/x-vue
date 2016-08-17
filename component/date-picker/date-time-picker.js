@@ -240,7 +240,6 @@ export default {
       methods: {
         onChange: function (value) {
           this.value = parseDateTime(value)
-
         },
         onComplete: function (value) {
           value = value || new Date()
