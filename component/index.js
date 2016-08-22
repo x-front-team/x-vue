@@ -37,6 +37,11 @@ import XNavGroup from './navbar/nav-group.vue'
 // pagination
 import XPagination from './pagination/index.vue'
 
+// alert
+import XAlert from './alert/alert.vue'
+import XAlertLink from './alert/alert-link.vue'
+import XAlertHeader from './alert/alert-heading.vue'
+
 // directives
 import DateTimePicker from './date-picker/date-time-picker'
 
@@ -74,6 +79,10 @@ export const components = {
   XNavGroup,
 
   XPagination,
+
+  XAlert,
+  XAlertLink,
+  XAlertHeader
 
   // Ueditor,
 }

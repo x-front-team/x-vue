@@ -122,6 +122,10 @@
       format: {
         type: String,
         default: 'yyyy-MM-dd'
+      },
+      align: {
+        type: String,
+        default: 'left'
       }
     },
     components: {
@@ -189,11 +193,16 @@
 
     computed: {
       styl () {
-        return {
-          left: this.rect.left + 'px',
+        let style = {
           top: this.rect.top + this.rect.height + 'px',
           width: !this.isDateEnabled && 'auto'
         }
+        if (this.align === 'right') {
+          style.right = document.body.clientWidth - this.rect.right + 'px'
+        } else {
+          style.left = this.rect.left + 'px'
+        }
+        return style
       },
       control() {
         let { year, month, date, hour, minute, second, minDate, maxDate, startDate, endDate } = this

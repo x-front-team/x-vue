@@ -50,6 +50,7 @@ const template = '<date-time-picker ' +
   ':on-complete="onComplete" ' +
   ':highlight-today="highlightToday" ' +
   ':format="format"' +
+  ':align="align"' +
   ':value="value"></date-time-picker>'
 
 const body = document.querySelector('body')
@@ -66,10 +67,17 @@ const RANGE_CONTROL = new Vue()
 
 // real directive
 export default {
-  // terminal: true,
-  // priority: Vue.directive('if').priority + 16,
 
-  params: ['value', 'format', 'default', 'highlightToday', 'closeOnSelected', 'maxDate', 'minDate'],
+  params: [
+    'value',
+    'format',
+    'default',
+    'highlightToday',
+    'closeOnSelected',
+    'maxDate',
+    'minDate',
+    'align'  // 对齐,left or right
+  ],
 
   paramWatchers: {
     highlightToday: function (val) {
@@ -84,6 +92,7 @@ export default {
   },
 
   bind: function () {
+    console.log(this.params)
     const el = this.el
     let _range = this.modifiers
     let _rangeName = this.expression
@@ -233,6 +242,7 @@ export default {
         rect: {},
         value: null,
         highlightToday: _this.params.highlightToday,
+        align: _this.params.align,
         minDate: parseDateTime(this.params.minDate) || -1,
         maxDate: parseDateTime(this.params.maxDate) || -1,
         format: _this.params.format,

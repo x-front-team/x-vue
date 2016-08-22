@@ -12,6 +12,7 @@ import Card from '../example/card.doc'
 import Navbar from '../example/navbar.doc'
 import Menu from '../example/menu.doc'
 import Tabs from '../example/tabs.doc'
+import Alert from '../example/alert.doc'
 
 import DateTimePicker from '../example/date-time-picker.doc'
 
@@ -65,6 +66,11 @@ export const routes = {
   'modal': {
     component: Modal,
     title: '模态框',
+  },
+
+  'alert': {
+    component: Alert,
+    title: 'alert'
   }
 }
 
