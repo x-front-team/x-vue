@@ -8,6 +8,7 @@ btnType | String | '' | bootstrap button style
 position | String | right | 'left' or 'right' 对齐方式
 toggle | Boolean | true | 是否点击按钮进行切换,如果时否,点击只打开
 showDropDown | Boolean | false | 双向属性,强制通过外部控制是否显示下拉框
+classNames | String, Object, Array | '' | 用classnames进行序列化,将传入的class加载drop-content上
 
 
 # slot
