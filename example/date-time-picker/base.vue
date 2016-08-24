@@ -18,6 +18,17 @@
            format="yyyy-MM-dd"
            :max-date="maxDate"
            @click="toggle">
+
+    <span v-for="item in list" track-by="$index">
+      <input type="text"
+             v-model="item.value"
+             v-date-time-picker
+             format="yyyy-MM-dd"
+             :max-date="maxDate"
+             @click="toggle">
+    </span>
+
+
   </p>
 
 </template>
@@ -34,7 +45,10 @@
         maxDate: new Date().getTime(),
         value: {
           a: ''
-        }
+        },
+        list: [{
+          value: ''
+        }]
       }
     },
     methods: {

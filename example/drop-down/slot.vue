@@ -2,7 +2,7 @@
   <div id="x-vue-demo-drop-down-auto-close" class="clearfix">
     <x-drop-down
             btn-type="primary"
-            disabled
+            class-names="slot-drop-down"
             id="x-vue-demo-drop-down-slot">
 
       <span class="demo-btn" slot="btn">

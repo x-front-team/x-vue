@@ -1,3 +1,7 @@
+# v-0.1.3
+1. 修改date-time-picker的样式文件,将所有样式包在x-date-time-picker-container里面
+2. 增加drop-down的classNames props,以便于对drop-down进行一些定制
+
 # v-0.1.2
 1. 增加外部改变日期控件value的时候校验生成的日期是否合法
 2. 修改日期控件顶部切换日期和时间的控制器的dom结构,使用row必须在外部包一层container

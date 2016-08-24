@@ -9,7 +9,7 @@
     <span class="drop-down-btn" @click="toggleShow" v-if="!label">
       <slot name="btn"></slot>
     </span>
-    <div :class="{'drop-down-content': true, 'open': true}"
+    <div :class="classes"
          v-show="isShow"
          :style="styl"
          v-el:content
@@ -35,6 +35,7 @@
   import EventListener from '../../util/EventListener'
   import Vue from 'vue'
   import { getBodyScrollTop } from 'util/dom'
+  import classnames from 'classnames'
   export default {
     components: {
       xButton
@@ -83,11 +84,10 @@
       onLoseFocus: {
         type: Function,
         default: () => {}
+      },
+      classNames: {
+        default: ''
       }
-//      renderToBody: {
-//        type: Boolean,
-//        default: false
-//      }
     },
     data() {
       return {
@@ -143,6 +143,9 @@
         } else {
           return this.showDropDown
         }
+      },
+      classes() {
+        return classnames('drop-down-content open', this.classNames)
       }
     },
     methods: {
