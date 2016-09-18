@@ -19,8 +19,8 @@
 </style>
 
 <script type="text/babel">
-  import ChevronLeft from '../../component/svg-icon/chevron-left.vue'
-  import xButton from '../../component/button/button.vue'
+  import ChevronLeft from '../../src/component/svg-icon/chevron-left.vue'
+  import xButton from '../../src/component/button/button.vue'
   export default {
     components: {
       xButton,

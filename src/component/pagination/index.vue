@@ -1,15 +1,36 @@
 <template>
   <nav v-if="total > 1">
     <ul :class="classes">
+      <!--go to prev page-->
       <li :class="{ disabled: current === 1 }" class="page-item">
         <a aria-label="Previous" @click.prevent="prev" class="page-link">
           <span aria-hidden="true">&laquo;</span>
         </a>
       </li>
+
+      <!--go to the first page-->
+      <li class="page-item" v-show="visiblePages[0] > 1">
+        <a @click.prevent="jump(1)" class="page-link">1</a>
+      </li>
+      <li class="page-item disabled" v-show="visiblePages[0] > 1">
+        <a class="page-link">...</a>
+      </li>
+
+      <!--normal pages-->
       <li v-for="page in visiblePages" :class="{ active: page == current }" class="page-item">
         <a @click.prevent="jump(page)" class="page-link">{{ page }}</a>
       </li>
-      <li :class="{ disabled: current === this.total }" class="page-item">
+
+      <!--go to the first page-->
+      <li class="page-item disabled" v-show="visiblePages[visiblePages.length - 1] < total">
+        <a class="page-link">...</a>
+      </li>
+      <li class="page-item" v-show="visiblePages[visiblePages.length - 1] < total">
+        <a @click.prevent="jump(total)" class="page-link">{{total}}</a>
+      </li>
+
+      <!--go to next page-->
+      <li :class="{ disabled: current === total }" class="page-item">
         <a aria-label="Next" @click.prevent="next" class="page-link">
           <span aria-hidden="true">&raquo;</span>
         </a>

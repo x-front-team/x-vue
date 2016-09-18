@@ -13,9 +13,6 @@ npm i x-vue
 import vue from 'vue'
 import XVue from 'x-vue'
 vue.use(XVue)
-
-// don't forget to require the css
-require('x-vue/dist/x-vue.min.css')
 ```
 
 # Development

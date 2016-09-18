@@ -2,7 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 
-const baseConfig = require('./webpack.base')
+const baseConfig = require('./webpack.base')()
 
 const config = Object.assign({}, baseConfig, {
   debug: false,

@@ -18,10 +18,5 @@
 </style>
 
 <script type="text/babel">
-  import xButton from '../../component/button/button.vue'
-  export default {
-    components: {
-      xButton
-    }
-  }
+  export default {}
 </script>

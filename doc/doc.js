@@ -1,11 +1,11 @@
 import Vue from 'vue'
-import XVue from '../component'
+import XVue from '../src'
 
 Vue.config.debug = true
 
 import 'bootstrap/dist/css/bootstrap.css'
 // import 'font-awesome/css/font-awesome.css'
-import '../style/index.styl'
+import '../src/style/index.styl'
 import './doc.styl'
 import 'highlight.js/styles/default.css'
 import 'highlight.js/styles/monokai-sublime.css'

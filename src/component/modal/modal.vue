@@ -31,8 +31,8 @@
 
 </template>
 <script type="text/babel">
-  import Button from 'component/button/button.vue'
-  import Backdrop from 'component/modal/backdrop.vue'
+  import Button from '../button/button.vue'
+  import Backdrop from './backdrop.vue'
   export default {
     props: {
       show: {

@@ -1,3 +1,13 @@
+# v-0.1.9
+1. 修改src中源文件的路径引用都为相对路径,保证编译的source文件能用
+
+# v-0.1.7
+1. 修改目录结构,将源文件都放入src目录下
+2. 发布到npm加入source文件夹,是编译成es5的js,并将其中的index.js作为入口文件
+
+# v-0.1.5
+1. 分页组件增加显示第一页和最后一页的选型
+
 # v-0.1.3
 1. 修改date-time-picker的样式文件,将所有样式包在x-date-time-picker-container里面
 2. 增加drop-down的classNames props,以便于对drop-down进行一些定制

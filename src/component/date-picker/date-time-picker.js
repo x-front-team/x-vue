@@ -92,7 +92,7 @@ export default {
   },
 
   bind: function () {
-    console.log(this.params)
+    // console.log(this.params)
     const el = this.el
     let _range = this.modifiers
     let _rangeName = this.expression

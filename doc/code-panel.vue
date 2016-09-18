@@ -26,7 +26,7 @@
 </style>
 
 <script>
-  import xButton from '../component/button/button.vue'
+  import xButton from '../src/component/button/button.vue'
   export default {
     components: {
       xButton

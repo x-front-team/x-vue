@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const defaultConfig = require('./webpack.base')
+const defaultConfig = require('./webpack.base')()
 
 const config = Object.assign({}, defaultConfig, {
   entry: [path.join(__dirname, '../doc/doc.js'), 'webpack-hot-middleware/client?reload=true'],

@@ -5,34 +5,38 @@
 </template>
 
 <script type="text/babel">
-  import propFill from '../mixin/prop-fill'
+//  import propFill from '../mixin/prop-fill'
   import cx from 'classnames'
   export default {
-    mixins: [propFill],
+//    mixins: [propFill],
     props: {
       type: { // primary success info secondary danger warning link
         type: String,
         default: 'secondary'
       },
       outline: {
-        fill: true
+        type: Boolean,
+        default: false
       },
       size: {
         type: String,
         default: ''
       },
       block: {
-        fill: true
+        type: Boolean,
+        default: false
       },
       disabled: {
-        fill: true
+        type: Boolean,
+        default: false
       },
       onClick: {
         type: Function,
         default: function () {}
       },
       dropDown: {
-        fill: true
+        type: Boolean,
+        default: false
       },
       classes: [String, Array, Object]
     },

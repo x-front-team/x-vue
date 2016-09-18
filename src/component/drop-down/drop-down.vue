@@ -33,8 +33,8 @@
 <script type="text/babel">
   import xButton from '../button/button.vue'
   import EventListener from '../../util/EventListener'
-  import Vue from 'vue'
-  import { getBodyScrollTop } from 'util/dom'
+//  import Vue from 'vue'
+  import { getBodyScrollTop } from '../../util/dom'
   import classnames from 'classnames'
   export default {
     components: {
@@ -104,35 +104,13 @@
           let style = {}
           let rect = this.$el.getBoundingClientRect()
           let scrollTop = getBodyScrollTop()
-
-//          console.log(scrollTop)
-
           style.top = rect.bottom + scrollTop + 'px'
           if (this.position === 'left') {
-//            style.left = rect.left
-//            style.left = rect.left - this.width + this.$el.clientWidth + 'px'
             style.right = document.body.clientWidth - rect.right + 'px'
-//            console.log(rect.left - this.width + this.$el.clientWidth)
           } else {
             style.left = rect.left + 'px'
           }
-
-//          console.log(style)
-
           this.$set('styl', style)
-
-//          let windowHeight = global.document.documentElement.clientHeight
-//          if (rect.top < this.height) {
-//            this.$set('styl', style)
-//            return
-//          }
-//          if (windowHeight - this.$el.clientHeight - rect.top < this.height) {
-//            style.top = '-' + (this.height) + 'px'
-//            this.effect = 'climb'
-//          } else {
-//            this.effect = 'drop'
-//          }
-//          this.$set('styl', style)
         }
       }
     },
@@ -163,33 +141,19 @@
     },
     ready() {
       let el = this.contentEl = this.$els.content
-      let display = el.style.display
       if (this.closeOnLoseFocus) {
         this._closeListener = EventListener.listen(window, 'click', (e) => {
           if ((this.$el && this.$el.contains(e.target)) || (this.contentEl && this.contentEl.contains(e.target))) {
-            // do nothing
           } else {
             this.showDropDown = false
             this.show = false
-//            this.onLoseFocus()
           }
         })
       }
-
-      el.style.visibility = 'hidden'
-      el.style.display = 'block'
-      Vue.nextTick(() => {
-        this.width = el.clientWidth
-        this.height = el.clientHeight
-        el.style.visibility = 'visible'
-        el.style.display = display
-
-        // 看上去貌似有些时候parentNode不存在,而且貌似不remove也可以?
-        if (el.parentNode) {
-          el.parentNode.removeChild(el)
-        }
-        global.document.body.appendChild(el)
-      })
+      if (el.parentNode) {
+        el.parentNode.removeChild(el)
+      }
+      global.document.body.appendChild(el)
     },
     beforeDestroy() {
       if (this._closeListener) this._closeListener.remove()

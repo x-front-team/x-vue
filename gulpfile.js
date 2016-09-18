@@ -1,7 +1,6 @@
-"use strict";
+'use strict'
 
 const gulp = require('gulp')
-// const $ = require('gulp-load-plugins')()
 const Server = require('karma').Server
 const spawn = require('child_process').spawn
 const rimraf = require('rimraf')
@@ -12,6 +11,7 @@ const autoprefixer = require('gulp-autoprefixer')
 const bump = require('gulp-bump')
 const header = require('gulp-header')
 const runSequence = require('run-sequence')
+const babel = require('gulp-babel')
 
 const webpack = require('gulp-webpack')
 
@@ -32,6 +32,33 @@ gulp.task('test', function (done) {
   })
 
   server.start()
+})
+
+
+gulp.task('copy-stylus', function () {
+  return gulp.src('src/**/*.stylus')
+    .pipe(gulp.dest('source'))
+})
+
+// copy vue files
+gulp.task('copy-vue', function () {
+  return gulp.src('src/**/*.vue')
+    .pipe(gulp.dest('source'))
+})
+
+gulp.task('compile-js', function () {
+  return gulp.src('src/**/*.js')
+    .pipe(babel())
+    .pipe(gulp.dest('source'))
+})
+
+// babel parse
+gulp.task('source', function (done) {
+  rimraf('./source', function () {
+    runSequence('copy-vue', 'copy-stylus', 'compile-js', function () {
+      done()
+    })
+  })
 })
 
 // publish to npm
@@ -92,8 +119,14 @@ gulp.task('add-header', function () {
     .pipe(gulp.dest('dist/'))
 })
 
+gulp.task('pre-publish', function (done) {
+  runSequence('clear-dist', 'source', 'bump', 'package', 'package-min', 'add-header', function () {
+    done()
+  })
+})
+
 gulp.task('publish', function (done) {
-  runSequence('clear-dist', 'bump', 'package', 'package-min', 'add-header', 'npm-publish', function () {
+  runSequence('npm-publish', function () {
     done()
   })
 })
