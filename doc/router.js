@@ -13,6 +13,7 @@ import Navbar from '../example/navbar.doc'
 import Menu from '../example/menu.doc'
 import Tabs from '../example/tabs.doc'
 import Alert from '../example/alert.doc'
+import Validator from '../example/validator.doc'
 
 import DateTimePicker from '../example/date-time-picker.doc'
 
@@ -71,6 +72,10 @@ export const routes = {
   'alert': {
     component: Alert,
     title: 'alert'
+  },
+  'validator': {
+    component: Validator,
+    title: '验证器'
   }
 }
 
