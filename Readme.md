@@ -22,6 +22,6 @@ npm install
 npm start
 ```
 
-# 文档生成
+# 文档如何生成
 在example根目录下加入某个组件为名字的`.doc`文件,如`button.doc`,然后创建一个button文件夹,
 在该文件夹中随意创建多个demo,以`.vue`为后缀,然后在`router.js`中引用这个`.doc`文件
