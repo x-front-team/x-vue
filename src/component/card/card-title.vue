@@ -9,6 +9,7 @@
 
 <script type="text/babel">
   import fillMixin from '../mixin/prop-fill'
+
   export default {
     mixins: [fillMixin],
     props: {
@@ -17,7 +18,7 @@
       }
     },
     computed: {
-      classes: function () {
+      classes() {
         return {
           'card-title': !this.sub,
           'card-subtitle': this.sub,

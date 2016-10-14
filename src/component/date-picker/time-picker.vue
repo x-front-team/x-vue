@@ -42,6 +42,7 @@
 <script type="text/babel">
   import chevronUp from '../svg-icon/chevron-up.vue'
   import chevronDown from '../svg-icon/chevron-down.vue'
+
   export default {
     props: {
       control: {

@@ -5,7 +5,7 @@ import chaiJquery from 'chai-jquery'
 import path from 'path'
 import _ from 'lodash'
 
-chai.use(function (chai, utils) {
+chai.use((chai, utils) => {
   return chaiJquery(chai, utils, jQuery)
 })
 
@@ -56,9 +56,7 @@ window.app = app
 window.Vue = Vue
 window.expect = chai.expect
 
-describe('x-vue', function () {
-
+describe('x-vue', () => {
   const testsContext = require.context('./demo_spec', false, /\.js$/)
   testsContext.keys().forEach(testsContext)
-
 })

@@ -16,6 +16,7 @@
 
 <script type="text/babel">
   import fillMixin from '../mixin/prop-fill'
+
   export default {
     mixins: [fillMixin],
     props: {

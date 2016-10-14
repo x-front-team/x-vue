@@ -28,12 +28,12 @@ module.exports = function () {
     },
     module: {
       preLoaders: [
-        {test: /\.(js|vue)$/, loader: 'eslint', exclude: /node_modules/}
+        { test: /\.(js|vue)$/, loader: 'eslint', exclude: /node_modules/ }
       ],
       loaders: [
-        {test: /\.js$/, loader: 'babel', exclude: /node_modules/},
-        {test: /\.vue/, loader: 'vue'},
-        {test: /\.doc/, loader: '../demo-loader/loader.js'},
+        { test: /\.js$/, loader: 'babel', exclude: /node_modules/ },
+        { test: /\.vue/, loader: 'vue' },
+        { test: /\.doc/, loader: '../demo-loader/loader.js' },
         {
           test: /\.(gif|jpg|jpeg|png|bmp|svg|woff|woff2|eot|ttf)(\?.*)?$/,
           loader: 'url',
@@ -45,9 +45,9 @@ module.exports = function () {
       ]
     },
     vue: {
-      postcss: postcss
+      postcss
     },
-    postcss: postcss,
+    postcss,
     plugins: [
       new webpack.DefinePlugin({
         'process.env': {

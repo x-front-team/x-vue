@@ -39,9 +39,9 @@ module.exports = {
     ]
   },
   vue: {
-    postcss: postcss
+    postcss
   },
-  postcss: postcss,
+  postcss,
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {

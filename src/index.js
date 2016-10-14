@@ -1,7 +1,7 @@
 // button
 import XButton from './component/button/button.vue'
 
-//modal
+// modal
 import XModal from './component/modal/modal.vue'
 
 // card
@@ -24,8 +24,8 @@ import XTab from './component/tabs/tab.vue'
 import XRouterTabs from './component/tabs/router-tabs.vue'
 
 // date picker
-import XDatePicker from './component/date-picker/date-picker.vue'
-import XDateTimePicker from './component/date-picker/date-time-picker.vue'
+// import XDatePicker from './component/date-picker/date-picker.vue'
+// import XDateTimePicker from './component/date-picker/date-time-picker.vue'
 
 // nav
 import XNavBar from './component/navbar/index.vue'
@@ -43,7 +43,7 @@ import XAlertLink from './component/alert/alert-link.vue'
 import XAlertHeader from './component/alert/alert-heading.vue'
 
 // directives
-import DateTimePicker from './component/date-picker/date-time-picker'
+// import DateTimePicker from './component/date-picker/date-time-picker'
 
 // ueditor
 // import Ueditor from './component/ueditor/ueditor.vue'
@@ -69,8 +69,8 @@ export const components = {
   XTab,
   XRouterTabs,
 
-  XDatePicker,
-  XDateTimePicker,
+  // XDatePicker,
+  // XDateTimePicker,
 
   XNavBar,
   XNavBarBrand,
@@ -87,9 +87,9 @@ export const components = {
   // Ueditor,
 }
 
-export const directives = {
-  DateTimePicker
-}
+// export const directives = {
+//   DateTimePicker
+// }
 
 export default {
 
@@ -98,9 +98,9 @@ export default {
     Object.keys(components).forEach((name) => {
       Vue.component(name, components[name])
     })
-    Object.keys(directives).forEach((name) => {
-      Vue.directive(name, directives[name])
-    })
+    // Object.keys(directives).forEach((name) => {
+    //   Vue.directive(name, directives[name])
+    // })
   }
 
 }

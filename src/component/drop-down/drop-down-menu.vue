@@ -50,7 +50,7 @@
       },
       onItemClick: {
         type: Function,
-        default: function (e) {
+        default(e) {
           e.preventDefault()
         }
       }

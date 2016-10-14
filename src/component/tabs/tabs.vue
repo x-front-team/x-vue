@@ -15,6 +15,7 @@
 
 <script type="text/babel">
   import tabsMixin from './tabs-mixin'
+
   export default {
     mixins: [tabsMixin],
     props: ['active'],

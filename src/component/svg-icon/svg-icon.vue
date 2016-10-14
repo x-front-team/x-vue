@@ -9,6 +9,7 @@
 
 <script type="text/babel">
   import propsMixin from './props-mixin'
+
   export default {
     mixins: [propsMixin],
     props: {

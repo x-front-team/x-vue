@@ -11,6 +11,7 @@
 
 <script type="text/babel">
   import classnames from 'classnames'
+
   export default {
     props: {
       msg: {

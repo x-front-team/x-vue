@@ -11,20 +11,19 @@
 
 <script type="text/babel">
 
-  const loadImage = function (src) {
-    return new Promise(function (resolve, reject) {
-      let image = new Image()
+  const loadImage = function loadImage(src) {
+    return new Promise((resolve, reject) => {
+      let image = new global.Image()
 
-      image.onload = function () {
+      image.onload = () => {
         resolve()
       }
 
-      image.onerror = function () {
+      image.onerror = () => {
         reject()
       }
 
       image.src = src
-
     })
   }
 

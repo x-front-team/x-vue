@@ -1,6 +1,5 @@
 
-describe('drop down base demo', function () {
-
+describe('drop down base demo', () => {
   let
     container = $('#x-vue-demo-drop-down-base'),
     linkDown = $('#x-vue-demo-drop-down-base-link'),
@@ -10,7 +9,7 @@ describe('drop down base demo', function () {
     dangerDown = $('#x-vue-demo-drop-down-base-danger')
 
 
-  it('exists', function () {
+  it('exists', () => {
     container.should.exist
     linkDown.should.exist
     primaryDown.should.exist
@@ -19,12 +18,11 @@ describe('drop down base demo', function () {
     dangerDown.should.exist
   })
 
-  it('will show drop down after btn click', function (done) {
+  it('will show drop down after btn click', (done) => {
     linkDown.find('.dropdown-toggle').click()
-    Vue.nextTick(function () {
+    Vue.nextTick(() => {
       $('#x-vue-demo-drop-down-base-card-link').should.exist
       done()
     })
   })
-
 })

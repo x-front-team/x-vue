@@ -31,11 +31,12 @@
 </style>
 
 <script type="text/babel">
+  import classnames from 'classnames'
   import xButton from '../button/button.vue'
   import EventListener from '../../util/EventListener'
 //  import Vue from 'vue'
   import { getBodyScrollTop } from '../../util/dom'
-  import classnames from 'classnames'
+
   export default {
     components: {
       xButton
@@ -118,9 +119,8 @@
       isShow() {
         if (this.toggle) {
           return this.show
-        } else {
-          return this.showDropDown
         }
+        return this.showDropDown
       },
       classes() {
         return classnames('drop-down-content open', this.classNames)
@@ -143,7 +143,9 @@
       let el = this.contentEl = this.$els.content
       if (this.closeOnLoseFocus) {
         this._closeListener = EventListener.listen(window, 'click', (e) => {
-          if ((this.$el && this.$el.contains(e.target)) || (this.contentEl && this.contentEl.contains(e.target))) {
+          if ((this.$el && this.$el.contains(e.target)) ||
+                  (this.contentEl && this.contentEl.contains(e.target))) {
+            console.log('')
           } else {
             this.showDropDown = false
             this.show = false

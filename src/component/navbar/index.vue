@@ -9,13 +9,13 @@ export default {
   props: {
     className: {
       type: Array,
-      default: function () {
+      default() {
         return []
       }
     },
     styles: {
       type: Object,
-      default: function () {
+      default() {
         return {}
       }
     }

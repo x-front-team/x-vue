@@ -33,6 +33,7 @@
 <script type="text/babel">
   import Button from '../button/button.vue'
   import Backdrop from './backdrop.vue'
+
   export default {
     props: {
       show: {

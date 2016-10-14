@@ -13,7 +13,7 @@
       },
       onClick: {
         type: Function,
-        default: function () {}
+        default() {}
       }
     }
   }

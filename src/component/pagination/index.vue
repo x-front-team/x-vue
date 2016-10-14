@@ -69,13 +69,13 @@ export default {
     },
     onChange: {
       type: Function,
-      default: function () {}
+      default() {}
     }
   },
 
   computed: {
     visiblePages() {
-      return PaginationPagesGenerate(this.current, this.visibleCount, this.total)
+      return paginationPagesGenerate(this.current, this.visibleCount, this.total)
     },
     classes() {
       let classes = {
@@ -90,8 +90,9 @@ export default {
 
   methods: {
     jump(num) {
-      if (num <= 0 || num > this.total)
+      if (num <= 0 || num > this.total) {
         return
+      }
 //      this.current = num
       this.onChange(num)
     },
@@ -115,8 +116,7 @@ export default {
 /**
  * 根据 当前页、显示页总数、总数，返回显示可视页数组
  */
-function PaginationPagesGenerate(current, visibleCount, total) {
-
+function paginationPagesGenerate(current, visibleCount, total) {
   current = parseInt(current, 10)
 
   function getDynamicPages() {
@@ -125,7 +125,7 @@ function PaginationPagesGenerate(current, visibleCount, total) {
       everyMiddle = parseInt(Math.floor(everyCount / 2), 10)
 
     from = current - everyMiddle
-    to = from + everyCount -  everyMiddle  % 2 - visibleCount % 2
+    to = from + everyCount - (everyMiddle % 2) - (visibleCount % 2)
 
     // 当前页处于中间页前半部分
     if (current > 0 && current <= everyMiddle) {
@@ -135,7 +135,7 @@ function PaginationPagesGenerate(current, visibleCount, total) {
 
     // 当前页加上中间页大于总页数
     if (current + everyMiddle > total) {
-      from = total - everyCount + (everyMiddle % 2) + visibleCount % 2
+      from = total - everyCount + (everyMiddle % 2) + (visibleCount % 2)
       to = total
     }
 
@@ -152,10 +152,10 @@ function PaginationPagesGenerate(current, visibleCount, total) {
     return pages
   }
 
-  if (total <= visibleCount)
+  if (total <= visibleCount) {
     return getVisiblePages(1, total)
-  else
-    return getDynamicPages()
+  }
+  return getDynamicPages()
 }
 
 </script>

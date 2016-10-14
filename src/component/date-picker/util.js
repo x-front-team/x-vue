@@ -40,7 +40,6 @@ const isLargerThen = function (year, month, date, maxDate) {
 
 // 获取正常的每个月的日期的数组
 export function getNormalDateArray(year, month, today, { maxDate, minDate, valueDate }) {
-
   let todayYear = today.getFullYear()
   let todayMonth = today.getMonth()
   let todayDate = today.getDate()
@@ -68,7 +67,6 @@ export function getNormalDateArray(year, month, today, { maxDate, minDate, value
   }
 
   return arr
-
 }
 
 export function getFirstDateArrayLength(difference) {
@@ -77,7 +75,6 @@ export function getFirstDateArrayLength(difference) {
 
 // 填入必要的上个月和下个月的日期,让二维数组都变成长度7
 export function fillDateArray(year, month, array, { maxDate, minDate, valueDate }) {
-
   let firstWeek = array[0]
   let lastWeek = array[array.length - 1]
 
@@ -122,7 +119,6 @@ export function fillDateArray(year, month, array, { maxDate, minDate, valueDate 
     })
     lastIndex++
   }
-
 }
 
 /**
@@ -130,17 +126,16 @@ export function fillDateArray(year, month, array, { maxDate, minDate, valueDate 
  * @param {Date|String|Number} date
  */
 export function formatDate(date, fmt) {
-
   date = new Date(date)
 
   let o = {
-    'M+': date.getMonth() + 1, //月份
-    'd+': date.getDate(), //日
-    'h+': date.getHours(), //小时
-    'm+': date.getMinutes(), //分
-    's+': date.getSeconds(), //秒
-    'q+': Math.floor((date.getMonth() + 3) / 3), //季度
-    'S': date.getMilliseconds() //毫秒
+    'M+': date.getMonth() + 1, // 月份
+    'd+': date.getDate(), // 日
+    'h+': date.getHours(), // 小时
+    'm+': date.getMinutes(), // 分
+    's+': date.getSeconds(), // 秒
+    'q+': Math.floor((date.getMonth() + 3) / 3), // 季度
+    'S': date.getMilliseconds() // 毫秒
   }
   if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length))
   for (let k in o) {
@@ -151,7 +146,6 @@ export function formatDate(date, fmt) {
   }
 
   return fmt
-
 }
 
 export const weekArray = {

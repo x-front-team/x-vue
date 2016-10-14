@@ -22,7 +22,7 @@ app.use(require('webpack-hot-middleware')(compiler))
 //   res.sendFile(path.join(__dirname, './dist/index.html'))
 // })
 
-app.listen(3333, '0.0.0.0', function (err) {
+app.listen(3333, '0.0.0.0', (err) => {
   if (err) {
     console.error(err)
     return

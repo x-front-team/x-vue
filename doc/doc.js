@@ -30,4 +30,3 @@ import App from './app.vue'
 
 router.start(App, '#root')
 
-
