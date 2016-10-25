@@ -6,11 +6,17 @@
 // but '' is falsy. As a solution add the
 export default {
   beforeCompile () {
-    for (let prop of Object.keys(this._props)) {
+    Object.keys(this._props).forEach((prop) => {
       let data = this._props[prop]
       if (data.options.fill && data.raw === '') {
         this[prop] = prop
       }
-    }
+    })
+    // for (let prop of Object.keys(this._props)) {
+    //   let data = this._props[prop]
+    //   if (data.options.fill && data.raw === '') {
+    //     this[prop] = prop
+    //   }
+    // }
   }
 }

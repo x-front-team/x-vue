@@ -1,16 +1,19 @@
 <template>
-  <div :class="classes" :transition="effect">
-    <button type="button" class="close" v-if="closeBtn" @click.prevent="handleClose">
-      <span>&times;</span>
-    </button>
-    <slot>
-      {{msg}}
-    </slot>
-  </div>
+  <transition :name="effect">
+    <div :class="classes">
+      <button type="button" class="close" v-if="closeBtn" @click.prevent="handleClose">
+        <span>&times;</span>
+      </button>
+      <slot>
+        {{msg}}
+      </slot>
+    </div>
+  </transition>
 </template>
 
 <script type="text/babel">
   import classnames from 'classnames'
+
   export default {
     props: {
       msg: {

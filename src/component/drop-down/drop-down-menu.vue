@@ -6,10 +6,10 @@
           :btn-type="btnType || 'primary'">
     <div class="dropdown-menu">
       <template v-for="item in items">
-        <menu-item
+        <item
                 v-if="!item.divider"
                 :disabled="item.disabled"
-                @click="handleItemClick($event, item)">{{item[itemLabel]}}</menu-item>
+                @click="handleItemClick($event, item)">{{item[itemLabel]}}</item>
         <menu-divider v-if="item.divider"></menu-divider>
       </template>
     </div>
@@ -18,7 +18,7 @@
 
 <script type="text/babel">
   import dropDown from './drop-down.vue'
-  import menuItem from './drop-down-menu-item.vue'
+  import item from './drop-down-menu-item.vue'
   import menuDivider from './drop-down-menu-divider.vue'
   import dropDownMixin from '../mixin/drop-down-mixin'
 
@@ -50,20 +50,20 @@
       },
       onItemClick: {
         type: Function,
-        default: function (e) {
+        default(e) {
           e.preventDefault()
         }
       }
     },
     components: {
       dropDown,
-      menuItem,
+      item,
       menuDivider
     },
     methods: {
-      handleItemClick(e, item) {
+      handleItemClick(e, clickedItem) {
         this.$els.drop.__vue__.show = false
-        this.onItemClick(e, item)
+        this.onItemClick(e, clickedItem)
       }
     }
   }

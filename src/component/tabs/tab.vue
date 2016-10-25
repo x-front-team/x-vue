@@ -10,6 +10,7 @@
 
 <script type="text/babel">
   import propType from '../mixin/prop-fill'
+
   export default {
     mixins: [propType],
     props: {
@@ -27,7 +28,6 @@
       }
     },
     created() {
-
       this.$parent.addItem(this.item)
     },
     computed: {

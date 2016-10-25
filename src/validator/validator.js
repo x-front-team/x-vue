@@ -12,7 +12,6 @@ export default class Validator {
 }
 
 export function createForm(fields) {
-
   let Vue = getVue()
   const vm = new Vue({
     data: {
@@ -24,18 +23,15 @@ export function createForm(fields) {
   let _status_str = 'status.'
 
   Object.keys(fields).forEach((key) => {
-
     vm.$set(_status_str + key, {
       valid: true,
       invalid: false,
-      validator: function (val) {
+      validator (val) {
         console.log(this)
         return !!val.trim()
       }
     })
-
   })
 
   return _status
-
 }

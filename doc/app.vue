@@ -1,6 +1,6 @@
 <template>
   <div>
-    <menu :menus="routes"></menu>
+    <doc-menu :menus="routes[0].children"></doc-menu>
     <div id="container">
       <router-view></router-view>
     </div>
@@ -8,9 +8,10 @@
 </template>
 
 <script>
-  import { routes } from './router'
-  import menu from './menu.vue'
+  import router, { routes } from './router'
+  import docMenu from './menu.jsx'
   export default {
+    router,
     data() {
       return {
         routes,
@@ -18,7 +19,7 @@
       }
     },
     components: {
-      menu
+      docMenu
     }
   }
 </script>

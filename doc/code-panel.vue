@@ -11,6 +11,8 @@
     </x-card-block>
     <div class="code-container" v-show="showCode" transition="drop">
       <slot name="code"></slot>
+      <!--{{{ this.source }}-->
+      <!--<div v-html="code"></div>-->
     </div>
   </x-card>
 </template>
@@ -27,16 +29,17 @@
 
 <script>
   import xButton from '../src/component/button/button.vue'
+
   export default {
     components: {
       xButton
     },
-    data: function () {
+    data() {
       return {
         showCode: false
       }
     },
-    props: ['filename'],
+    props: ['filename', 'code'],
     methods: {
       toggleCode(e) {
         e.preventDefault()

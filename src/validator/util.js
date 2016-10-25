@@ -15,7 +15,7 @@ export function getVue() {
 // }
 
 const defaultValidations = {
-  required: function (value) {
+  required (value) {
     return typeof value === 'string' && value.trim().length > 0
   }
 }

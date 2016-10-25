@@ -1,20 +1,23 @@
 <template>
-  <ul :class="classes">
-    <li class="nav-item" v-for="item in items" track-by="$index">
-      <a href="#"
-         @click.prevent="changeSelectedItem(item)"
-         :class="{'nav-link': true, active: item.index === active, disabled: item.disabled}">
-        {{item.title}}
-      </a>
-    </li>
-  </ul>
-  <div class="tab-content">
-    <slot></slot>
+  <div>
+    <ul :class="classes">
+      <li class="nav-item" v-for="item in items" track-by="$index">
+        <a href="#"
+           @click.prevent="changeSelectedItem(item)"
+           :class="{'nav-link': true, active: item.index === active, disabled: item.disabled}">
+          {{item.title}}
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
 <script type="text/babel">
   import tabsMixin from './tabs-mixin'
+
   export default {
     mixins: [tabsMixin],
     props: ['active'],
@@ -25,12 +28,6 @@
       }
     },
     ready() {
-//      let flag = this.items.reduce((result, item) => {
-//        return result || item.active
-//      }, false)
-//      if (!flag) {
-//        this.items[0].vue.active = true
-//      }
     },
     methods: {
       addItem(item) {

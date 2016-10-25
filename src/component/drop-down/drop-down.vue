@@ -4,15 +4,15 @@
     <x-button :type="btnType"
               v-if="label"
               :disabled="disabled"
-              @click="toggleShow"
+              :on-click="toggleShow"
               drop-down>{{label}}</x-button>
-    <span class="drop-down-btn" @click="toggleShow" v-if="!label">
+    <span class="drop-down-btn" v-on:click="toggleShow" v-if="!label">
       <slot name="btn"></slot>
     </span>
     <div :class="classes"
          v-show="isShow"
          :style="styl"
-         v-el:content
+         ref="content"
          :transition="effect">
       <slot></slot>
     </div>
@@ -31,11 +31,12 @@
 </style>
 
 <script type="text/babel">
+  import classnames from 'classnames'
   import xButton from '../button/button.vue'
   import EventListener from '../../util/EventListener'
 //  import Vue from 'vue'
   import { getBodyScrollTop } from '../../util/dom'
-  import classnames from 'classnames'
+
   export default {
     components: {
       xButton
@@ -118,9 +119,8 @@
       isShow() {
         if (this.toggle) {
           return this.show
-        } else {
-          return this.showDropDown
         }
+        return this.showDropDown
       },
       classes() {
         return classnames('drop-down-content open', this.classNames)
@@ -139,11 +139,13 @@
         }
       }
     },
-    ready() {
-      let el = this.contentEl = this.$els.content
+    mounted() {
+      let el = this.contentEl = this.$refs.content
       if (this.closeOnLoseFocus) {
         this._closeListener = EventListener.listen(window, 'click', (e) => {
-          if ((this.$el && this.$el.contains(e.target)) || (this.contentEl && this.contentEl.contains(e.target))) {
+          if ((this.$el && this.$el.contains(e.target)) ||
+                  (this.contentEl && this.contentEl.contains(e.target))) {
+            // don't do anything here
           } else {
             this.showDropDown = false
             this.show = false

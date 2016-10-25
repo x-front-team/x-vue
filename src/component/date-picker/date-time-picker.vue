@@ -1,5 +1,4 @@
 <template>
-
   <div class="x-date-time-picker-container" :style="styl">
     <div class="container-fluid">
       <div v-if="isDateEnabled && isTimeEnabled" class="x-date-picker-modes row">
@@ -90,11 +89,11 @@
       rect: {},
       onChange: {
         type: Function,
-        default: function () {}
+        default() {}
       },
       onComplete: {
         type: Function,
-        default: function () {}
+        default() {}
       },
       highlightToday: {
         type: Boolean,
@@ -178,19 +177,17 @@
 
       let date = this.value || today
 
-      if (typeof date !== Date) {
+      if (!(date instanceof Date)) {
         date = new Date(date)
       }
 
       updateControl(date)
       // 监听value的值得变化,如果改变判断年月是否相同,不同则改变control的值
       this._unWatchValue = this.$watch('value', (newVal) => {
-        let date = new Date(newVal)
-        if (!isNaN(date.getTime())) updateControl(date)
+        let d = new Date(newVal)
+        if (!isNaN(d.getTime())) updateControl(d)
       })
-
     },
-
     computed: {
       styl () {
         let style = {
@@ -322,11 +319,9 @@
         timeDate.setMilliseconds(0)
         // todo 如果是时分秒的blur, 需要重置到最小/大允许值
         if (this.control.minDate > -1 && this.control.minDate >= +timeDate) {
-//          console.log('chosen time:', +timeDate, 'is smaller or equal than startDate:', this.startDate, '.refused')
           return
         }
         if (this.control.maxDate > -1 && this.control.maxDate <= +timeDate) {
-//          console.log('chosen time:', +timeDate, 'is bigger or equal than endDate:', this.endDate, '.refused')
           return
         }
         this.onChange(timeDate)

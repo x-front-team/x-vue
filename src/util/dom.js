@@ -1,6 +1,6 @@
 export function getBodyScrollTop() {
   let scrollTop
-  if (typeof window.pageYOffset !== 'undefined') { //pageYOffset指的是滚动条顶部到网页顶部的距离
+  if (typeof window.pageYOffset !== 'undefined') { // pageYOffset指的是滚动条顶部到网页顶部的距离
     scrollTop = window.pageYOffset
   } else if (typeof document.compatMode !== 'undefined' && document.compatMode !== 'BackCompat') {
     scrollTop = document.documentElement.scrollTop
@@ -9,3 +9,5 @@ export function getBodyScrollTop() {
   }
   return scrollTop
 }
+
+export default getBodyScrollTop

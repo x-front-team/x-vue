@@ -5,6 +5,7 @@
 <script>
   import svgIcon from './svg-icon.vue'
   import propsMixin from './props-mixin'
+
   export default {
     mixins: [propsMixin],
     components: {

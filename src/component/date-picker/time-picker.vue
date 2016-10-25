@@ -1,7 +1,7 @@
 <template>
   <div class="x-time-picker">
     <div class="time-area">
-      <div class="time-part col-xs-{{colSpan}} text-xs-center">
+      <div :class="['time-part', 'col-xs-' + colSpan, 'text-xs-center']">
         <button  @click="increaseHour">
           <chevron-up></chevron-up>
         </button>
@@ -12,7 +12,7 @@
           <chevron-down></chevron-down>
         </button>
       </div>
-      <div class="time-part col-xs-{{colSpan}} text-xs-center">
+      <div :class="['time-part', 'col-xs-' + colSpan, 'text-xs-center']">
         <button @click="increaseMinute">
           <chevron-up></chevron-up>
         </button>
@@ -23,7 +23,7 @@
           <chevron-down></chevron-down>
         </button>
       </div>
-      <div v-if="isSecondEnabled" class="time-part col-xs-{{colSpan}} text-xs-center" >
+      <div v-if="isSecondEnabled" :class="['time-part', 'col-xs-' + colSpan, 'text-xs-center']" >
         <button @click="increaseSecond">
           <chevron-up></chevron-up>
         </button>
@@ -42,6 +42,7 @@
 <script type="text/babel">
   import chevronUp from '../svg-icon/chevron-up.vue'
   import chevronDown from '../svg-icon/chevron-down.vue'
+
   export default {
     props: {
       control: {

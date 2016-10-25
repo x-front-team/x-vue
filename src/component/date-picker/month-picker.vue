@@ -1,6 +1,5 @@
 <template>
   <div class="x-month-picker">
-
     <table>
       <tbody>
       <tr v-for="line in months">
@@ -30,7 +29,7 @@
       },
       selectedYear: {
         type: Function,
-        default: function () {}
+        default() {}
       },
       control: {
         type: Object
@@ -40,7 +39,7 @@
       }
     },
 
-    data: function () {
+    data() {
       return {
 //        months: [[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12]],
 //        selectedYear: 0,
@@ -82,8 +81,6 @@
           monthArr.push(arr)
         }
         return monthArr
-
-
       }
     },
     methods: {

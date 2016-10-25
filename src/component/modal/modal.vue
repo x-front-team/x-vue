@@ -3,7 +3,7 @@
     <backdrop v-if="show"></backdrop>
     <div class="modal" v-if="show" transition="slide-down" @click="cancel">
       <div class="modal-center-wrapper">
-        <div class="modal-dialog modal-{{size}}" @click="stopEvent">
+        <div :class="['modal-dialog', 'modal-' + size]" @click="stopEvent">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" @click.prevent="cancel">
@@ -18,9 +18,9 @@
             </div>
             <div class="modal-footer">
               <slot name="footer">
-                <button type="primary" classes="btn-modal-xs modal-footer-save" @click.prevent="confirm">确定</button>
+                <x-button type="primary" classes="btn-modal-xs modal-footer-save" @click.prevent="confirm">确定</x-button>
                 <!--<span class="btn-split">或</span>-->
-                <button @click="cancel(dropDown)" @click.prevent="cancel">取消</button>
+                <x-button @click="cancel(dropDown)" @click.prevent="cancel">取消</x-button>
               </slot>
             </div>
           </div>
@@ -31,8 +31,9 @@
 
 </template>
 <script type="text/babel">
-  import Button from '../button/button.vue'
+  import XButton from '../button/button.vue'
   import Backdrop from './backdrop.vue'
+
   export default {
     props: {
       show: {
@@ -62,7 +63,7 @@
       }
     },
     components: {
-      Button,
+      XButton,
       Backdrop,
     },
 //    data () {

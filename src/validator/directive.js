@@ -3,7 +3,6 @@ export default {
     const _el = this.el
     // 检查是否是input节点,如果不是,报错
     _el.addEventListener('change', this.doValidate.bind(this))
-
   },
   update(value) {
     this._value = value

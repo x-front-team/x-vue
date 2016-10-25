@@ -42,30 +42,29 @@
   const today = new Date()
 
   export default {
-
     props: {
       weekArray: {
         type: Array,
-        default: function () {
+        default() {
           return [0, 1, 2, 3, 4, 5, 6]
         }
       },
       defaultDate: {
         type: Date,
-        default: function () {
+        default() {
           return today
         }
       },
       value: {
         type: Number,
-        default: function () {
+        default() {
           return today
         },
         twoWay: false
       },
       onChange: {
         type: Function,
-        default: function () {}
+        default() {}
       },
       highlightToday: {
         type: Boolean,
@@ -73,7 +72,7 @@
       },
       selectMonth: {
         type: Function,
-        default: function () {}
+        default() {}
       },
       control: {
         type: Object
@@ -86,7 +85,7 @@
 
     data() {
       return {
-        today: today,
+        today,
         weeks: weekArray
       }
     },

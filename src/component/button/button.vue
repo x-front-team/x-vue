@@ -7,6 +7,7 @@
 <script type="text/babel">
 //  import propFill from '../mixin/prop-fill'
   import cx from 'classnames'
+
   export default {
 //    mixins: [propFill],
     props: {
@@ -32,7 +33,7 @@
       },
       onClick: {
         type: Function,
-        default: function () {}
+        default() {}
       },
       dropDown: {
         type: Boolean,

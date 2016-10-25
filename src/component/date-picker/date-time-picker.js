@@ -80,18 +80,18 @@ export default {
   ],
 
   paramWatchers: {
-    highlightToday: function (val) {
+    highlightToday (val) {
       this.__vm.highlightToday = !!val
     },
-    minDate: function (val) {
+    minDate (val) {
       this.__vm.minDate = parseDateTime(val)
     },
-    maxDate: function (val) {
+    maxDate (val) {
       this.__vm.maxDate = parseDateTime(val)
     }
   },
 
-  bind: function () {
+  bind () {
     // console.log(this.params)
     const el = this.el
     let _range = this.modifiers
@@ -141,16 +141,14 @@ export default {
 
     // 根据目标节点绑定事件控制控件显示
     this.bindEvent()
-
   },
 
-  unbind: function () {
+  unbind () {
     if (this._removeEventBind) {
       this._removeEventBind()
     }
 
     if (this._removeRangeControl) this._removeRangeControl()
-
   },
 
   /*
@@ -179,7 +177,6 @@ export default {
 
   // bind events to toggle date time picker
   bindEvent() {
-
     const focusCb = () => {
       // TODO:这样的定位方式存在一些缺陷
       // 如果存在局部滚动,在局部滚动的时候就会出现错位
@@ -228,12 +225,10 @@ export default {
       _closeEleListener.remove()
       // _closeTargetListener.remove()
     }
-
   },
 
   // create date-time-picker Vue instance with init data and components
   createVm() {
-
     const _this = this
     let vm = new Component({
       replace: false,
@@ -248,10 +243,10 @@ export default {
         format: _this.params.format,
       },
       methods: {
-        onChange: function (value) {
+        onChange (value) {
           this.value = parseDateTime(value)
         },
-        onComplete: function (value) {
+        onComplete (value) {
           value = value || new Date()
           // 如果设置了在选择时关闭则设置show为false
           if (_this.params.closeOnSelected !== false) {
@@ -271,7 +266,6 @@ export default {
     })
 
     return vm
-
   },
 
   parseModelRaw (raw) {
