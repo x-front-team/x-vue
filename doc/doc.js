@@ -10,6 +10,7 @@ import 'highlight.js/styles/tomorrow.css'
 import XVue from '../src'
 import '../src/style/index.styl'
 import './doc.styl'
+import './example.styl'
 
 import App from './app.jsx'
 

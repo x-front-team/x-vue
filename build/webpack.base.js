@@ -35,7 +35,7 @@ module.exports = function () {
         { test: /\.jsx/, loader: 'babel' },
         { test: /\.vue/, loader: 'vue' },
         // { test: /\.doc/, loader: '../../vue-demo-loader/src/loader.js' },
-        { test: /\.doc/, loader: 'babel!../../vue-demo-loader/src/jsx-loader.js' },
+        { test: /\.doc/, loader: 'babel!vue-demo-loader/src/jsx-loader.js' },
         {
           test: /\.(gif|jpg|jpeg|png|bmp|svg|woff|woff2|eot|ttf)(\?.*)?$/,
           loader: 'url',

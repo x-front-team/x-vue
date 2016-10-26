@@ -4,13 +4,13 @@ import Vue from 'vue'
 
 import Index from './index.jsx'
 import DropDown from '../example/drop-down.doc'
-// import Modal from '../example/modal.doc'
-// import pagination from '../example/pagination.doc'
-// import Button from '../example/button.doc'
-// import Card from '../example/card.doc'
-// import Navbar from '../example/navbar.doc'
+import Modal from '../example/modal.doc'
+import Pagination from '../example/pagination.doc'
+import Button from '../example/button.doc'
+import Card from '../example/card.doc'
+import Navbar from '../example/navbar.doc'
 // import Menu from '../example/menu.doc'
-// import Tabs from '../example/tabs.doc'
+import Tabs from '../example/tabs.doc'
 import Alert from '../example/alert.doc'
 // import Validator from '../example/validator.doc'
 
@@ -25,6 +25,11 @@ export const routes = [
     title: '首页'
   },
   {
+    path: '/button',
+    component: Button,
+    title: 'Button'
+  },
+  {
     path: '/alert',
     component: Alert,
     title: 'Alert'
@@ -33,32 +38,32 @@ export const routes = [
     path: '/dropdown',
     component: DropDown,
     title: 'DropDown'
-  }
-  // title: '首页'
-  // 'drop-down': {
-  //   component: DropDown,
-  //   title: '下拉框'
-  // },
-  //
-  // 'pagination': {
-  //   component: pagination,
-  //   title: '分页'
-  // },
-  //
-  // 'button': {
-  //   component: Button,
-  //   title: '按钮'
-  // },
-  //
-  // 'card': {
-  //   component: Card,
-  //   title: '卡片'
-  // },
-  //
-  // 'navbar': {
-  //   component: Navbar,
-  //   title: 'Navbar'
-  // },
+  },
+  {
+    path: '/pagination',
+    component: Pagination,
+    title: 'Pagination'
+  },
+  {
+    path: '/card',
+    component: Card,
+    title: 'Card'
+  },
+  {
+    path: '/navbar',
+    component: Navbar,
+    title: 'Navbar'
+  },
+  {
+    path: '/modal',
+    component: Modal,
+    title: 'Modal'
+  },
+  {
+    path: '/tabs',
+    component: Tabs,
+    title: 'Tabs'
+  },
   //
   // 'menu': {
   //   component: Menu,
@@ -73,16 +78,6 @@ export const routes = [
   // 'date-time-picker': {
   //   component: DateTimePicker,
   //   title: '日期时间'
-  // },
-  //
-  // 'modal': {
-  //   component: Modal,
-  //   title: '模态框',
-  // },
-  //
-  // 'alert': {
-  //   component: Alert,
-  //   title: 'alert'
   // },
   // 'validator': {
   //   component: Validator,
