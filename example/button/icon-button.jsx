@@ -10,12 +10,24 @@ export default {
         <x-button type="primary">
           <chevron-left size={20}></chevron-left>
         </x-button>
-        <x-button type="success">success</x-button>
-        <x-button type="info">info</x-button>
-        <x-button type="danger">danger</x-button>
-        <x-button type="warning">warning</x-button>
-        <x-button type="secondary">secondary</x-button>
-        <x-button type="link">link</x-button>
+        <x-button type="success">
+          <chevron-left size={20}></chevron-left>
+        </x-button>
+        <x-button type="info">
+          <chevron-left size={20}></chevron-left>
+        </x-button>
+        <x-button type="danger">
+          <chevron-left size={20}></chevron-left>
+        </x-button>
+        <x-button type="warning">
+          <chevron-left size={20}></chevron-left>
+        </x-button>
+        <x-button type="secondary">
+          <chevron-left size={20}></chevron-left>
+        </x-button>
+        <x-button type="link">
+          <chevron-left size={20}></chevron-left>
+        </x-button>
       </div>
     )
   }

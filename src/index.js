@@ -42,6 +42,10 @@ import XAlert from './component/alert/alert.vue'
 import XAlertLink from './component/alert/alert-link.vue'
 import XAlertHeader from './component/alert/alert-heading.vue'
 
+// Menu
+import XMenu from './component/menu/menu.vue'
+import XMenuItem from './component/menu/menu-item.vue'
+
 // directives
 // import DateTimePicker from './component/date-picker/date-time-picker'
 
@@ -82,7 +86,10 @@ export const components = {
 
   XAlert,
   XAlertLink,
-  XAlertHeader
+  XAlertHeader,
+
+  XMenu,
+  XMenuItem
 
   // Ueditor,
 }
