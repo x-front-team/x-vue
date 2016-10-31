@@ -9,7 +9,7 @@ import Pagination from '../example/pagination.doc'
 import Button from '../example/button.doc'
 import Card from '../example/card.doc'
 import Navbar from '../example/navbar.doc'
-// import Menu from '../example/menu.doc'
+import Menu from '../example/menu.doc'
 import Tabs from '../example/tabs.doc'
 import Alert from '../example/alert.doc'
 // import Validator from '../example/validator.doc'
@@ -64,15 +64,15 @@ export const routes = [
     component: Tabs,
     title: 'Tabs'
   },
+  {
+    path: '/menu',
+    component: Menu,
+    title: 'Menu'
+  }
   //
   // 'menu': {
   //   component: Menu,
   //   title: 'Menu'
-  // },
-  //
-  // 'tabs': {
-  //   component: Tabs,
-  //   title: 'Tab'
   // },
   //
   // 'date-time-picker': {

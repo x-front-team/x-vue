@@ -26,29 +26,34 @@ export default {
         <div>
           <span>tab类型:</span>
           <input type="radio"
+                 name="test1"
                  value="tabs"
                  checked={this.type === 'tabs'}
-                 on-click={this.handleTypeChange} /> tabs
+                 on-change={this.handleTypeChange} /> tabs
           <input type="radio"
+                 name="test1"
                  value="pills"
                  checked={this.type === 'pills'}
-                 on-click={this.handleTypeChange} /> pills
+                 on-change={this.handleTypeChange} /> pills
         </div>
 
         <div>
           <span>选中tab:</span>
           <input type="radio"
+                 name="test2"
                  value={1}
                  checked={this.selected === 1}
-                 on-click={this.handleSelectedChange} /> tab1
+                 on-change={this.handleSelectedChange} /> tab1
           <input type="radio"
+                 name="test2"
                  value={2}
                  checked={this.selected === 2}
-                 on-click={this.handleSelectedChange} /> tab2
+                 on-change={this.handleSelectedChange} /> tab2
           <input type="radio"
+                 name="test2"
                  value={3}
                  checked={this.selected === 3}
-                 on-click={this.handleSelectedChange} /> tab3
+                 on-change={this.handleSelectedChange} /> tab3
         </div>
       </div>
     )
