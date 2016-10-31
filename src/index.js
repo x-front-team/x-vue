@@ -46,6 +46,9 @@ import XAlertHeader from './component/alert/alert-heading.vue'
 import XMenu from './component/menu/menu.vue'
 import XMenuItem from './component/menu/menu-item.vue'
 
+// loading
+import XLoading from './component/loading/loading.jsx'
+
 // directives
 // import DateTimePicker from './component/date-picker/date-time-picker'
 
@@ -89,7 +92,9 @@ export const components = {
   XAlertHeader,
 
   XMenu,
-  XMenuItem
+  XMenuItem,
+
+  XLoading
 
   // Ueditor,
 }

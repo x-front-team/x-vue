@@ -1,7 +1,14 @@
 <template>
   <div>
-    <img :src="src" :class="{'card-img-top': top, 'card-image': true}" alt="Card image cap" v-if="loaded" transition="fade">
-    <div v-if="!loaded">loading placeholder</div><!-- 替换成loading组件 -->
+    <transition name="fade">
+      <img :src="src"
+           :class="{'card-img-top': top, 'card-image': true}"
+           alt="Card image cap"
+           v-if="loaded">
+    </transition>
+    <div v-if="!loaded">
+      <loading></loading>
+    </div><!-- 替换成loading组件 -->
   </div>
 </template>
 
@@ -12,6 +19,8 @@
 </style>
 
 <script type="text/babel">
+  import Loading from '../loading/loading.jsx'
+
   const loadImage = function _loadImage (src) {
     return new Promise((resolve, reject) => {
       let image = new global.Image()
@@ -37,6 +46,10 @@
       top: {
         fill: true
       }
+    },
+
+    components: {
+      Loading
     },
 
     data() {

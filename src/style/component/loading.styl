@@ -1,0 +1,42 @@
+.x-loading {
+  margin: 100px auto;
+  width: 55px;
+  height: 60px;
+  text-align: center;
+  font-size: 10px;
+}
+
+.x-loading > .rect {
+  background-color: #0275d8;
+  height: 100%;
+  width: 6px;
+  margin : 0 2.5px
+  display: inline-block;
+
+  animation: stretchdelay 1.2s infinite ease-in-out;
+}
+
+.x-loading .rect2 {
+  animation-delay: -1.1s;
+}
+
+.x-loading .rect3 {
+  animation-delay: -1.0s;
+}
+
+.x-loading .rect4 {
+  animation-delay: -0.9s;
+}
+
+.x-loading .rect5 {
+  animation-delay: -0.8s;
+}
+
+@keyframes stretchdelay {
+  0%, 40%, 100% {
+    transform: scaleY(0.4);
+  }
+  20% {
+    transform: scaleY(1.0);
+  }
+}
