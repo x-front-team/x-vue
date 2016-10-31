@@ -16,7 +16,7 @@ import XCardImage from './component/card/card-image.vue'
 import XDropDown from './component/drop-down/drop-down.vue'
 import XDropDownMenu from './component/drop-down/drop-down-menu.vue'
 import XDropDownMenuDivider from './component/drop-down/drop-down-menu-divider.vue'
-import XDropDownItem from './component/drop-down/drop-down-menu-item.vue'
+import XDropDownMenuItem from './component/drop-down/drop-down-menu-item.vue'
 
 // tabs
 import XTabs from './component/tabs/tabs.vue'
@@ -63,7 +63,7 @@ export const components = {
   XDropDown,
   XDropDownMenu,
   XDropDownMenuDivider,
-  XDropDownItem,
+  XDropDownMenuItem,
 
   XTabs,
   XTab,

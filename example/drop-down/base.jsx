@@ -1,58 +1,57 @@
 export default {
-  methods: {
-    loseFocus() {
-      console.log('lose focus')
-    }
-  },
   components: {
-    example: {
-      props: ['type'],
-      computed: {
-        text() {
-          return 'This is a drop down type of ' + this.type
-        }
-      },
+    demo: {
       render(h) {
-        let id = 'x-vue-demo-drop-down-base-card-' + this.type
         return (
-          <x-card id={id}>
-            <x-card-block>
-              <x-card-title>{this.type}</x-card-title>
-              <x-card-text>{this.text}</x-card-text>
-            </x-card-block>
-          </x-card>
+            <div>
+              <div style={{
+                width: '200px',
+                border: '1px solid #ccc',
+                backgroundColor: '#fff',
+                borderRadius: '3px',
+              }}>
+                这时百测试内容 <br/>
+                这时百测试内容 <br/>
+                这时百测试内容 <br/>
+                这时百测试内容 <br/>
+              </div>
+            </div>
         )
       }
     }
   },
   render(h) {
     return (
-      <div id="x-vue-demo-drop-down-base" class="clearfix">
-        <x-drop-down btn-type="link" label="link" id="x-vue-demo-drop-down-base-link">
-          <example type="link"></example>
-        </x-drop-down>
-        <x-drop-down position="left"
-                     btn-type="primary"
-                     disabled label="primary"
-                     id="x-vue-demo-drop-down-base-primary">
-          <example type="primary"></example>
-        </x-drop-down>
-        <x-drop-down btn-type="success"
-                     label="success"
-                     position="left"
-                     id="x-vue-demo-drop-down-base-success">
-          <example type="success"></example>
-        </x-drop-down>
-        <x-drop-down btn-type="info"
-                     onLoseFocus={this.loseFocus}
-                     label="info"
-                     id="x-vue-demo-drop-down-base-info">
-          <example type="info"></example>
-        </x-drop-down>
-        <x-drop-down btn-type="danger" label="danger" id="x-vue-demo-drop-down-base-danger">
-          <example type="danger"></example>
-        </x-drop-down>
-      </div>
+        <div style={{ textAlign: 'center' }}>
+          <div>
+            <h2>x-drop-down</h2>
+            <p>支持left、top、right、bottom、left-start、bottom-end</p>
+            <h3>left</h3>
+            <x-drop-down label="test" btnType="primary" alignment="left">
+              <div slot="content">
+                <demo />
+              </div>
+            </x-drop-down>
+            <h3>right</h3>
+            <x-drop-down label="test" btnType="primary" alignment="right">
+              <div slot="content">
+                <demo />
+              </div>
+            </x-drop-down>
+            <h3>top</h3>
+            <x-drop-down label="test" btnType="primary" alignment="top">
+              <div slot="content">
+                <demo />
+              </div>
+            </x-drop-down>
+            <h3>bottom</h3>
+            <x-drop-down label="test" btnType="primary" alignment="bottom">
+              <div slot="content">
+                <demo />
+              </div>
+            </x-drop-down>
+          </div>
+        </div>
     )
   }
 }

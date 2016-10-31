@@ -6,18 +6,18 @@
       </x-drop-down>
     </div>
     <x-button type="primary" @click="toggle">show drop down</x-button>
-    <!--<x-drop-down position="left" btn-type="primary" disabled :label="'primary'" id="x-vue-demo-drop-down-base-primary">-->
+    <!--<x-drop-down-old position="left" btn-type="primary" disabled :label="'primary'" id="x-vue-demo-drop-down-old-base-primary">-->
       <!--<example type="primary"></example>-->
-    <!--</x-drop-down>-->
-    <!--<x-drop-down btn-type="success" :label="'success'" position="left" id="x-vue-demo-drop-down-base-success">-->
+    <!--</x-drop-down-old>-->
+    <!--<x-drop-down-old btn-type="success" :label="'success'" position="left" id="x-vue-demo-drop-down-old-base-success">-->
       <!--<example type="success"></example>-->
-    <!--</x-drop-down>-->
-    <!--<x-drop-down btn-type="info" :label="'info'" id="x-vue-demo-drop-down-base-info">-->
+    <!--</x-drop-down-old>-->
+    <!--<x-drop-down-old btn-type="info" :label="'info'" id="x-vue-demo-drop-down-old-base-info">-->
       <!--<example type="info"></example>-->
-    <!--</x-drop-down>-->
-    <!--<x-drop-down btn-type="danger" :label="'danger'" id="x-vue-demo-drop-down-base-danger">-->
+    <!--</x-drop-down-old>-->
+    <!--<x-drop-down-old btn-type="danger" :label="'danger'" id="x-vue-demo-drop-down-old-base-danger">-->
       <!--<example type="danger"></example>-->
-    <!--</x-drop-down>-->
+    <!--</x-drop-down-old>-->
   </div>
 </template>
 <style lang="stylus" rel="stylesheet/stylus">

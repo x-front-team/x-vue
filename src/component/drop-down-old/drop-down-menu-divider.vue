@@ -2,6 +2,6 @@
   <div class="dropdown-divider"></div>
 </template>
 
-<script type="text/babel">
+<script>
   export default {}
 </script>
