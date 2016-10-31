@@ -12,6 +12,7 @@ import Navbar from '../example/navbar.doc'
 import Menu from '../example/menu.doc'
 import Tabs from '../example/tabs.doc'
 import Alert from '../example/alert.doc'
+import Loading from '../example/loading.doc'
 // import Validator from '../example/validator.doc'
 
 // import DateTimePicker from '../example/date-time-picker.doc'
@@ -68,6 +69,11 @@ export const routes = [
     path: '/menu',
     component: Menu,
     title: 'Menu'
+  },
+  {
+    path: '/loading',
+    component: Loading,
+    title: 'Loading'
   }
   //
   // 'menu': {
@@ -90,7 +96,5 @@ export const routes = [
 const router = new VueRouter({
   routes
 })
-
-console.log(router)
 
 export default router
