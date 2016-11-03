@@ -4,7 +4,7 @@ export default {
   props: {
     placement: {  // popper 出现的位置
       type: String,
-      default: 'bottom'
+      default: 'bottom-start'
     },
     boundariesPadding: {  // 相对定位节点的padding
       type: Number,

@@ -49,6 +49,10 @@ import XMenuItem from './component/menu/menu-item.vue'
 // loading
 import XLoading from './component/loading/loading.jsx'
 
+import _popper from './component/mixin/vue-popper'
+
+export const popper = _popper
+
 // directives
 // import DateTimePicker from './component/date-picker/date-time-picker'
 

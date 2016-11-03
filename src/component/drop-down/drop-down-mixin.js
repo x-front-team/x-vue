@@ -3,7 +3,7 @@ export default {
     // 按扭样式
     btnType: {
       type: String,
-      default: ''
+      default: 'primary'
     },
     // 按扭文字
     label: {
@@ -14,15 +14,6 @@ export default {
     disabled: {
       type: Boolean,
       default: false
-    },
-    // 弹出层对齐方式
-    alignment: { // start end
-      type: String,
-      default: 'end'
-    },
-    placement: {  // top right bottom left
-      type: String,
-      default: 'bottom'
     },
     onTrigger: {
       type: Function,
