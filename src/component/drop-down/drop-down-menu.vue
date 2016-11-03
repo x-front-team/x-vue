@@ -1,6 +1,9 @@
 <template>
-  <x-drop-down :label="label" :disabled="disabled" :btn-type="btnType" :alignment="alignment">
-    <div class="dropdown-menu" slot="content">
+  <x-drop-down :label="label"
+               :disabled="disabled"
+               :btn-type="btnType"
+               :alignment="alignment">
+    <div class="dropdown-menu">
       <template v-for="(item, index) in menu">
         <x-drop-down-menu-item
                 v-if="!item.divider"
@@ -15,7 +18,12 @@
 </template>
 
 <script type="text/babel">
+  import dropDown from './drop-down.jsx'
+
   export default {
+    components: {
+      xDropDown: dropDown
+    },
     props: {
       label: {
         type: String,

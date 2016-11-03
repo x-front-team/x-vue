@@ -1,7 +1,9 @@
 <template>
-  <div class="back-drop" transition="fade" @click="handleClick">
-    <slot></slot>
-  </div>
+  <transition name="fade">
+    <div class="back-drop" @click="handleClick">
+      <slot></slot>
+    </div>
+  </transition>
 </template>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>

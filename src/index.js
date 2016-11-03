@@ -13,10 +13,10 @@ import XCardBlock from './component/card/card-block.vue'
 import XCardImage from './component/card/card-image.vue'
 
 // drop down
-import XDropDown from './component/drop-down/drop-down.vue'
-import XDropDownMenu from './component/drop-down/drop-down-menu.vue'
+import XDropDown from './component/drop-down/drop-down.jsx'
+import XDropDownMenu from './component/drop-down/drop-down-menu.jsx'
 import XDropDownMenuDivider from './component/drop-down/drop-down-menu-divider.vue'
-import XDropDownMenuItem from './component/drop-down/drop-down-menu-item.vue'
+import XDropDownMenuItem from './component/drop-down/drop-down-menu-item.jsx'
 
 // tabs
 import XTabs from './component/tabs/tabs.vue'

@@ -1,32 +1,34 @@
 <template>
   <div>
     <backdrop v-if="show"></backdrop>
-    <div class="modal" v-if="show" transition="slide-down" @click="cancel">
-      <div class="modal-center-wrapper">
-        <div :class="['modal-dialog', 'modal-' + size]" @click="stopEvent">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" @click.prevent="cancel">
-                <span aria-hidden="true">&times;</span>
-              </button>
-              <slot name="header">
-                <h4 class="modal-title">{{title}}</h4>
-              </slot>
-            </div>
-            <div class="modal-body">
-              <slot></slot>
-            </div>
-            <div class="modal-footer">
-              <slot name="footer">
-                <x-button type="primary" classes="btn-modal-xs modal-footer-save" @click.prevent="confirm">确定</x-button>
-                <!--<span class="btn-split">或</span>-->
-                <x-button @click="cancel(dropDown)" @click.prevent="cancel">取消</x-button>
-              </slot>
+    <transition name="slide-down">
+      <div class="modal" v-if="show" @click="cancel">
+        <div class="modal-center-wrapper">
+          <div :class="['modal-dialog', 'modal-' + size]" @click="stopEvent">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" @click.prevent="cancel">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <slot name="header">
+                  <h4 class="modal-title">{{title}}</h4>
+                </slot>
+              </div>
+              <div class="modal-body">
+                <slot></slot>
+              </div>
+              <div class="modal-footer">
+                <slot name="footer">
+                  <x-button type="primary" classes="btn-modal-xs modal-footer-save" @click.prevent="confirm">确定</x-button>
+                  <!--<span class="btn-split">或</span>-->
+                  <x-button @click="cancel(dropDown)" @click.prevent="cancel">取消</x-button>
+                </slot>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </transition>
   </div>
 
 </template>

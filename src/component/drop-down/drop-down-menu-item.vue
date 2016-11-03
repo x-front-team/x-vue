@@ -17,6 +17,6 @@
       params: {
         type: Object
       }
-    }
+    },
   }
 </script>
