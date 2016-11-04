@@ -22,7 +22,8 @@ export default {
   },
   data() {
     return {
-      show: false
+      show: false,
+      showSlot: false
     }
   },
   methods: {
@@ -40,6 +41,14 @@ export default {
                        onTrigger={this.toggle}
                        onEscape={ () => { this.show = false } }
                        placement="left">
+            <demo />
+          </x-drop-down>
+          <x-drop-down show={this.showSlot}
+                       onEscape={ () => { this.showSlot = false } }
+                       placement="left">
+            <x-button type="primary"
+                      slot="trigger"
+                      onClick={() => { this.showSlot = !this.showSlot }}>{'slot example'}</x-button>
             <demo />
           </x-drop-down>
         </div>

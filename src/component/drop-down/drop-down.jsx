@@ -16,7 +16,7 @@ export default {
   },
   mounted() {
     if (this.$slots.trigger) {
-      this.referenceElm = this.$slots.trigger[0]
+      this.referenceElm = this.$slots.trigger[0].elm
     } else {
       this.referenceElm = this.$refs.reference.$el
     }
@@ -34,7 +34,7 @@ export default {
     return (
       <div class="dropdown" v-co={this.handleEscape}>
         {
-          this.$slots.btn || (
+          this.$slots.trigger || (
             <x-button type={this.btnType}
                       ref="reference"
                       onClick={this.handleTrigger}
