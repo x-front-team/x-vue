@@ -22,15 +22,24 @@ export default {
     }
     this.popperElm = this.$refs.popper
   },
+  methods: {
+    handleTrigger() {
+      if (!this.disabled) this.onTrigger()
+    },
+    handleEscape() {
+      if (!this.disabled) this.onEscape()
+    }
+  },
   render(h) {
     return (
-      <div class="dropdown" v-co={this.onEscape}>
+      <div class="dropdown" v-co={this.handleEscape}>
         {
           this.$slots.btn || (
             <x-button type={this.btnType}
                       ref="reference"
-                      onClick={this.onTrigger}
-                      disabled={this.disabled}>{this.label}
+                      onClick={this.handleTrigger}
+                      disabled={this.disabled}>
+              {this.label}
             </x-button>
           )
         }

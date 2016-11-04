@@ -50,10 +50,10 @@
         }
         let type = 'btn-'
         if (this.type) {
-          type += this.type
           if (this.outline) {
-            type += '-outline'
+            type += 'outline-'
           }
+          type += this.type
           classes[type] = true
         }
         if (this.size) {

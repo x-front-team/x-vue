@@ -20,7 +20,13 @@
 
   export default {
     mixins: [tabsMixin],
-    props: ['active'],
+    props: {
+      active: {},
+      onChange: {
+        type: Function,
+        default: () => {}
+      }
+    },
     data() {
       return {
         items: [],
@@ -45,7 +51,8 @@
 //        })
 //
 //        item.select()
-        this.active = item.index
+//        this.active = item.index
+        this.onChange(item.index)
       },
       setSelectedItem(son) {
         this.items.forEach((child) => {

@@ -11,13 +11,16 @@ export default {
     },
     handleSelectedChange(e) {
       this.selected = Math.floor(e.target.value)
+    },
+    handleSwitch(index) {
+      this.selected = index
     }
   },
   render(h) {
     console.log(this.type, this.selected)
     return (
       <div>
-        <x-tabs type={this.type} active={this.selected}>
+        <x-tabs type={this.type} active={this.selected} onChange={this.handleSwitch}>
           <x-tab title="tab1" transition="fade" index={1}>This is Tab1</x-tab>
           <x-tab title="tab2" transition="fade" index={2}>This is Tab2</x-tab>
           <x-tab title="tab3" transition="fade" index={3}>This is Tab3</x-tab>
