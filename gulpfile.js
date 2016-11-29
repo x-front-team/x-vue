@@ -1,4 +1,4 @@
-
+'use strict'
 
 const gulp = require('gulp')
 const Server = require('karma').Server
