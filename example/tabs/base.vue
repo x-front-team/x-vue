@@ -2,7 +2,7 @@
 
   <x-tabs :type="type" :active.sync="selected">
     <x-tab title="tab1" transition="fade" :index="1">This is Tab1</x-tab>
-    <x-tab title="tab2" transition="fade" :index="2">This is Tab2</x-tab>
+    <x-tab :title="tab2Name" transition="fade" :index="2">This is Tab2</x-tab>
     <x-tab title="tab3" transition="fade" :index="3">This is Tab3</x-tab>
   </x-tabs>
 
@@ -19,6 +19,8 @@
     <input type="radio" value="3" number v-model="selected"> tab3
   </div>
 
+  tab2 name: <input type="text" v-model="tab2Name">
+
 </template>
 <style lang="stylus" rel="stylesheet/stylus">
   .tab-content {
@@ -30,7 +32,8 @@
     data() {
       return {
         type: 'tabs',
-        selected: 1
+        selected: 1,
+        tab2Name: 'tab2'
       }
     }
   }

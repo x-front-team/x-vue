@@ -27,8 +27,18 @@
         fill: true
       }
     },
+    data() {
+      return {
+        number: 0
+      }
+    },
     created() {
-      this.$parent.addItem(this.item)
+      this.number = this.$parent.addItem(this.item)
+    },
+    watch: {
+      item(val) {
+        this.$parent.updateItem(this.number, val)
+      }
     },
     computed: {
       show() {

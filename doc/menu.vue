@@ -12,7 +12,7 @@
   </nav>
 
 </template>
-<style lang="sass" scoped rel="stylesheet/scss">
+<style scoped>
   .menu-item.active{
     background-color: white;
   }
